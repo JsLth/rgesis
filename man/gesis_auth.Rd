@@ -4,18 +4,13 @@
 \alias{gesis_auth}
 \title{Authenticate user}
 \usage{
-gesis_auth(
-  email = getOption("gesis_email"),
-  password = getOption("gesis_password"),
-  prompt = interactive()
-)
+gesis_auth(email = NULL, password = NULL, prompt = interactive())
 }
 \arguments{
 \item{email, password}{Email address and password linked to a GESIS user
-account. These values should preferably be provided using
-\code{options(gesis_email = ..., gesis_password = ...)} in \code{.Rprofile}
-to make code files reproducible. If not specified and \code{prompt = TRUE},
-asks for email and password interactively.}
+account. These only have to be provided once and will be retrieved using
+\code{\link[keyring]{key_get}} afterwards. If not specified and
+\code{prompt = TRUE}, asks for email and password interactively.}
 
 \item{prompt}{If \code{TRUE} and \code{email} or \code{password} are
 not specified, opens a console prompt to provide these arguments. If
@@ -42,11 +37,12 @@ of storing access credentials on disk. See
 }
 \examples{
 if (FALSE) {
-# if email and password are provided in .Rprofile, gesis_auth() can be called without parameters
-options(gesis_email = "name@test.org", gesis_password = "DONTLOOK")
-gesis_auth()
-
-# email and password can also be provided manually -- not recommended
+# if email and password are not stored yet, gesis_auth() registers them
+# in a keyring and checks if they work
 gesis_auth(email = "name@test.org", password = "DONTLOOK")
+
+# if credentials are already stored in a keyring, gesis_auth() simply
+# checks if the login works
+gesis_auth()
 }
 }

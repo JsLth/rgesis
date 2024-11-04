@@ -4,10 +4,9 @@
 #' download datasets using \code{\link{gesis_data}}.
 #'
 #' @param email,password Email address and password linked to a GESIS user
-#' account. These values should preferably be provided using
-#' \code{options(gesis_email = ..., gesis_password = ...)} in \code{.Rprofile}
-#' to make code files reproducible. If not specified and \code{prompt = TRUE},
-#' asks for email and password interactively.
+#' account. These only have to be provided once and will be retrieved using
+#' \code{\link[keyring]{key_get}} afterwards. If not specified and
+#' \code{prompt = TRUE}, asks for email and password interactively.
 #' @param prompt If \code{TRUE} and \code{email} or \code{password} are
 #' not specified, opens a console prompt to provide these arguments. If
 #' \code{FALSE}, throws an error in this case. Defaults to \code{TRUE} if
@@ -30,20 +29,29 @@
 #'
 #' @examples
 #' if (FALSE) {
-#' # if email and password are provided in .Rprofile, gesis_auth() can be called without parameters
-#' options(gesis_email = "name@test.org", gesis_password = "DONTLOOK")
-#' gesis_auth()
-#'
-#' # email and password can also be provided manually -- not recommended
+#' # if email and password are not stored yet, gesis_auth() registers them
+#' # in a keyring and checks if they work
 #' gesis_auth(email = "name@test.org", password = "DONTLOOK")
+#'
+#' # if credentials are already stored in a keyring, gesis_auth() simply
+#' # checks if the login works
+#' gesis_auth()
 #' }
-gesis_auth <- function(email = getOption("gesis_email"),
-                       password = getOption("gesis_password"),
+gesis_auth <- function(email = NULL,
+                       password = NULL,
                        prompt = interactive()) {
   assert_keyring_support()
   assert_vector(email, "character", size = 1, null = TRUE)
   assert_vector(password, "character", size = 1, null = TRUE)
   assert_flag(prompt)
+
+  if (is.null(email) && is.null(password) && has_key()) {
+    assert_login()
+    return(invisible())
+  }
+
+  email <- email %||% gesis_get_email()
+  password <- password %||% gesis_get_password()
 
   if (is.null(email) && prompt) {
     cli::cli_inform(c("i" = "Email not set, needs manual input."))
@@ -62,23 +70,74 @@ gesis_auth <- function(email = getOption("gesis_email"),
     ))
   }
 
-  httr2::oauth_flow_password(gesis_client(), username = email, password = password)
-  keyring::key_set_with_value("rgesis", username = email, password = password)
-  cli::cli_alert_success("Successfully performed GESIS login.")
+  assert_login(email = email, password = password)
+  gesis_set_auth(email = email, password = password)
   invisible(NULL)
 }
 
 
-gesis_get_auth <- function() {
-  email <- keyring::key_list("rgesis")[["username"]] %empty% NULL
-  password <- keyring::key_get("rgesis", username = email) %except% NULL
+has_key <- function(email) {
+  keys <- keyring::key_list(rgesis_keyring())
+  if (nrow(keys) > 1) {
+    rg_stop(
+      "Multiple credentials found in keyring {.val rgesis}.",
+      "i" = "You can manually fix this using `keyring::key_delete()`."
+    )
+  }
+  nrow(keys) == 1
+}
 
-  if (is.null(email) || is.null(password)) {
+
+assert_login <- function(email = NULL, password = NULL) {
+  if (is.null(email) && is.null(password)) {
+    creds <- gesis_get_auth()
+    email <- creds$email
+    password <- creds$password
+  }
+
+  httr2::oauth_flow_password(
+    gesis_client(),
+    username = email,
+    password = password
+  )
+
+  cli::cli_alert_success("Successfully performed GESIS login.")
+}
+
+
+gesis_set_auth <- function(email, password) {
+  keyring::key_set_with_value(
+    rgesis_keyring(),
+    username = email,
+    password = password
+  )
+}
+
+
+# try to get email, return NULL if not found
+gesis_get_email <- function() {
+  keyring::key_list(rgesis_keyring())[["username"]] %empty% NULL
+}
+
+
+# try to get password, return NULL if not found
+gesis_get_password <- function() {
+  keyring::key_get(rgesis_keyring(), username = email) %except% NULL
+}
+
+
+# get email and password, throw error if not found
+gesis_get_auth <- function() {
+  if (!has_key()) {
     rg_stop(c(
       "Credentials could not be loaded.",
       "i" = "You can set them using {.fn gesis_auth}."
     ))
   }
+
+  keys <- keyring::key_list(rgesis_keyring())
+  email <- keys[["username"]]
+  password <- keyring::key_get(rgesis_keyring(), username = email)
 
   list(email = email, password = password)
 }
@@ -106,3 +165,6 @@ req_add_auth <- function(req) {
     cache_disk = getOption("rgesis_cache_disk", FALSE)
   )
 }
+
+
+rgesis_keyring <- function() "rgesis"
