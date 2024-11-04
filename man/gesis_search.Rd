@@ -41,7 +41,7 @@ Queryless searches can still be filtered using the parameters below.}
 \item{type}{Type of search results to retrieve. Can be one of
 \code{"research_data"}, \code{"variables"}, \code{"instruments_tools"},
 \code{"publication"}, \code{"gesis_bib"}, or \code{"gesis_web"} or
-\code{gesis_person}. If \code{NULL}, includes all result types. Defaults to
+\code{"gesis_person"}. If \code{NULL}, includes all result types. Defaults to
 \code{NULL}.}
 
 \item{default_operator}{Character specifying the default operator to use

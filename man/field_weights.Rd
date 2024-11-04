@@ -4,14 +4,11 @@
 \alias{field_weights}
 \title{Construct field weights}
 \usage{
-field_weights(..., all = TRUE, use_default = TRUE)
+field_weights(..., use_default = TRUE)
 }
 \arguments{
 \item{...}{Key-value pairs where the key is the name of the field and the
 value is the weight.}
-
-\item{all}{Whether to take all fields into account for weighting. Adds
-\code{"_all"} to the query.}
 
 \item{use_default}{Whether to use a sensible default when passing nothing
 to \code{...}.}
@@ -30,4 +27,7 @@ field_weights()
 
 # set a stronger weight on the abstract
 field_weights(abstract = 5)
+
+# set no weights
+field_weights(use_default = FALSE)
 }

@@ -123,8 +123,6 @@ query_set_filter <- function(q, ..., queryless = FALSE) {
 #'
 #' @param ... Key-value pairs where the key is the name of the field and the
 #' value is the weight.
-#' @param all Whether to take all fields into account for weighting. Adds
-#' \code{"_all"} to the query.
 #' @param use_default Whether to use a sensible default when passing nothing
 #' to \code{...}.
 #' @returns A character vector of field weights.
@@ -137,8 +135,11 @@ query_set_filter <- function(q, ..., queryless = FALSE) {
 #'
 #' # set a stronger weight on the abstract
 #' field_weights(abstract = 5)
-field_weights <- function(..., all = TRUE, use_default = TRUE) {
-  if (is.null(...names())) {
+#'
+#' # set no weights
+#' field_weights(use_default = FALSE)
+field_weights <- function(..., use_default = TRUE) {
+  if (is.null(...names()) && use_default) {
     args <- list(
       title = 10,
       topic = 7,
