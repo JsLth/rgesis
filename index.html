@@ -148,25 +148,26 @@
 <p>The results include metadata in complex data structures – or simplified to a tidy rectangular shape.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span>tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 30</span></span>
-<span><span class="co">#&gt;    id        title date  portal_url person source subtype institutions coreSjahr</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;list&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;list&gt;       &lt;chr&gt;    </span></span>
-<span><span class="co">#&gt;  1 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  2 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  3 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  4 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  5 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  6 gesis-ss… The … 2005  http://ww… &lt;chr&gt;  In: E… journa… &lt;chr [1]&gt;    2005     </span></span>
-<span><span class="co">#&gt;  7 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  8 gesis-ss… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt;  9 gesis-ss… The … 2005  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt; 10 gesis-ss… Excl… 2005  &lt;NA&gt;       &lt;chr&gt;  &lt;NA&gt;   &lt;NA&gt;    &lt;chr [1]&gt;    &lt;NA&gt;     </span></span>
-<span><span class="co">#&gt; # ℹ 21 more variables: coreZsband &lt;chr&gt;, coreLanguage &lt;chr&gt;, urn &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   index_source &lt;chr&gt;, link_count &lt;chr&gt;, fulltext &lt;chr&gt;, full_text &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   abstract &lt;chr&gt;, type &lt;chr&gt;, person_sort &lt;chr&gt;, links &lt;list&gt;,</span></span>
-<span><span class="co">#&gt; #   document_type &lt;chr&gt;, coreAuthor &lt;list&gt;, coreJournalTitle &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   coreZsnummer &lt;chr&gt;, doi &lt;chr&gt;, data_source &lt;chr&gt;, database &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   gesis_own &lt;chr&gt;, metadata_quality &lt;chr&gt;, related_references &lt;list&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 10 × 31</span></span>
+<span><span class="co">#&gt;    title   id    date  date_recency abstract portal_url type  person person_sort</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt; &lt;list&gt; &lt;chr&gt;      </span></span>
+<span><span class="co">#&gt;  1 Global… gesi… 2008  2008         This ar… http://ww… publ… &lt;chr&gt;  Forrest    </span></span>
+<span><span class="co">#&gt;  2 From S… gesi… 2008  2008         The art… http://ww… publ… &lt;chr&gt;  Bradshaw   </span></span>
+<span><span class="co">#&gt;  3 Global… gesi… 2008  2008         Violent… http://ww… publ… &lt;chr&gt;  Piachaud   </span></span>
+<span><span class="co">#&gt;  4 Cultur… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  Ticktin    </span></span>
+<span><span class="co">#&gt;  5 Insuff… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  Lowe       </span></span>
+<span><span class="co">#&gt;  6 The te… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  HelliwellH…</span></span>
+<span><span class="co">#&gt;  7 Kinshi… gesi… 2005  2005         Among t… http://ww… publ… &lt;chr&gt;  Yemelianova</span></span>
+<span><span class="co">#&gt;  8 Libera… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  Loobuyck   </span></span>
+<span><span class="co">#&gt;  9 The li… gesi… 2005  2005         The foc… http://ww… publ… &lt;chr&gt;  HickmanMor…</span></span>
+<span><span class="co">#&gt; 10 Exclus… gesi… 2005  2005         This ar… http://ww… publ… &lt;chr&gt;  AndersonTa…</span></span>
+<span><span class="co">#&gt; # ℹ 22 more variables: source &lt;chr&gt;, subtype &lt;chr&gt;, document_type &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   institutions &lt;list&gt;, coreAuthor &lt;list&gt;, coreSjahr &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   coreJournalTitle &lt;chr&gt;, coreZsband &lt;chr&gt;, coreZsnummer &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   coreLanguage &lt;chr&gt;, doi &lt;chr&gt;, urn &lt;chr&gt;, data_source &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   index_source &lt;chr&gt;, database &lt;chr&gt;, link_count &lt;int&gt;, gesis_own &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   fulltext &lt;int&gt;, metadata_quality &lt;int&gt;, full_text &lt;chr&gt;, coreIssn &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   topic &lt;list&gt;</span></span></code></pre></div>
 <p>Metadata records can also be used to download survey data directly from the data archive. You need to be logged in, though.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gesis_auth()</span></span>
