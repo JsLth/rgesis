@@ -204,7 +204,7 @@ as.data.frame.gesis_hits <- function(x, ...) {
     rec <- rec[lengths(rec) > 0]
 
     # drop all deeply nested lists
-    nst <- vapply(rec[lengths(rec) > 1], \(f) all(lengths(f) > 1), FUN.VALUE = logical(1))
+    nst <- vapply(rec, \(f) all(lengths(f) > 1), FUN.VALUE = logical(1))
     rec <- rec[!nst]
 
     not_nst <- lengths(rec) > 1
