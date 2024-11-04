@@ -14,9 +14,9 @@ gesis_data(
 )
 }
 \arguments{
-\item{hit}{Object of class \code{gesis_hit} or dataset ID. If a dataset ID
-is passed, the function performs a call to \code{\link{gesis_search}} and
-uses the first result.}
+\item{hit}{Object of class \code{gesis_hit} as returned by
+\code{\link{gesis_search}} and \code{gesis_get} or dataset ID. If a dataset ID
+is passed, the function performs a call to \code{\link{gesis_get}}.}
 
 \item{download_purpose}{Purpose for the use of the research data as
 demanded by GESIS. Must be one of \code{"final_thesis"},
@@ -29,14 +29,17 @@ a temporary file path.}
 
 \item{type}{Type of data to download. Must be one of \code{"dataset"},
 \code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"}. Defaults
-to \code{"dataset"}.}
+to \code{"dataset"}. A list of available data types for a given record can
+be retrieved using \code{\link{gesis_file_types}}.}
 
 \item{select}{Character string to select a data file in case multiple files
 are available for the selected data type. The character string is
 matched against the file label using regular expressions. This argument
-can also be used to match explicitly for file extensions, e.g. "\\.sav"
-or "\\.dat". If \code{NULL}, multiple files are detected, and the session is
-interactive, prompts the user to select a file. Defaults to \code{NULL}.}
+can also be used to match explicitly for file extensions, e.g.
+\code{"\\\\.sav"} or \code{"\\\\.dat"}. A list of file labels for a given
+record can be retrieved using \code{\link{gesis_files}}. If \code{NULL},
+multiple files are detected, and the session is interactive, prompts the
+user to select a file. Defaults to \code{NULL}.}
 
 \item{prompt}{If \code{TRUE}, allows the function to open an interactive
 prompt in case multiple files are found and \code{select} is either
@@ -68,5 +71,15 @@ path <- gesis_data(hit[[1]])
 
 # in other cases, certain arguments should be provided
 path <- gesis_data(hit[[1]], download_purpose = "non_scientific", select = "\\\\.sav")
+
+# you can also simply pass a dataset ID
+path <- gesis_data("ZA3753", select = "\\\\.por")
+
+# data files must be read using other tools and packages, e.g. haven
+haven::read_por(path)
+
+# ... or pdftools
+path <- gesis_data("ZA3753", select = "fb\\\\.pdf", type = "questionnaire")
+pdftools::pdf_text(path)
 }
 }
