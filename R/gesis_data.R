@@ -14,9 +14,11 @@
 #' @param path Path where the downloaded file should be stored. Defaults to
 #' a temporary file path.
 #' @param type Type of data to download. Must be one of \code{"dataset"},
-#' \code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"}. Defaults
-#' to \code{"dataset"}. A list of available data types for a given record can
-#' be retrieved using \code{\link{gesis_file_types}}.
+#' \code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"},
+#' or \code{"uncategorized"}. A file type is "uncategorized" if it is falls
+#' under none of the other file types. Defaults to \code{"dataset"}. A list of
+#' available data types for a given record can be retrieved using
+#' \code{\link{gesis_file_types}}.
 #' @param select Character string to select a data file in case multiple files
 #' are available for the selected data type. The character string is
 #' matched against the file label using regular expressions. This argument
@@ -86,7 +88,7 @@ gesis_data <- function(hit,
     "further_education", "scientific_research", "studies"
   ))
   type <- match.arg(type, choices = c(
-    "dataset", "questionnaire", "codebook", "otherdocs"
+    "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
   ))
 
   # if a character is provided, interpret it as an id and look it up
@@ -95,7 +97,8 @@ gesis_data <- function(hit,
   }
 
   links <- get_links_from_hit(hit, type = type)
-  labels <- vapply(links, FUN.VALUE = character(1), "[[", "label_en")
+  label_field <- if ("label_en" %in% names(links)) "label_en" else "label"
+  labels <- vapply(links, FUN.VALUE = character(1), "[[", label_field)
 
   # if multiple links are found, select one using regex if provided
   if (length(links) > 1 && !is.null(select)) {
@@ -133,27 +136,38 @@ gesis_data <- function(hit,
   # otherwise adopt the provided file name
   if (is_dir(path)) {
     file <- labels[choice]
-    file <- filename_from_label(file)
+    file <- filename_from_label(file) %|||% basename(tempfile(pattern = "gesis"))
     path <- file.path(path, file)
   }
 
-  url <- links[[1]]$url
-  resp <- download_file(url, path = path, purpose = download_purpose)
+  url <- links[[1]]$url %||% links[[1]]$link
+  resp <- gesis_download(url, path = path, purpose = download_purpose)
   unclass(normalizePath(resp$body, "/"))
 }
 
 
-download_file <- function(url, path, purpose) {
-  httr2::request(url) |>
-    httr2::req_url_query(download_purpose = purpose) |>
-    httr2::req_error(body = function(resp) {
-      if (resp$status_code == 401) {
-        content <- httr2::resp_body_json(resp)
-        content$detail
-      }
-    }) |>
-    req_add_auth() |>
-    httr2::req_perform(path = path)
+gesis_download <- function(url, path, purpose) {
+  req <- httr2::request(url)
+  req <- httr2::req_url_query(req, download_purpose = purpose)
+  req <- httr2::req_error(req, body = function(resp) {
+    if (resp$status_code == 401) {
+      content <- httr2::resp_body_json(resp)
+      content$detail
+    }
+  })
+
+  # only add auth info when hostname is gesis.org
+  if (is_gesis_url(url)) {
+    req <- req_add_auth(req)
+  }
+
+  httr2::req_perform(req, path = path)
+}
+
+
+is_gesis_url <- function(url) {
+  url <- httr2::url_parse(url)
+  grepl("gesis.org", url$hostname, fixed = TRUE)
 }
 
 
