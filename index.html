@@ -55,7 +55,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> provides a simple, programmatic and reproducible to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.</p>
+<p><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> provides a simple, programmatic and reproducible interface to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.</p>
 <p>Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account <a href="https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login" class="external-link">here</a>. <a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> takes over continuous credentials management and OAuth authentication using the <a href="https://keyring.r-lib.org/" class="external-link"><code>{keyring}</code></a> and <a href="https://httr2.r-lib.org/" class="external-link"><code>{httr2}</code></a> packages.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -149,25 +149,25 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span>tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 10 × 31</span></span>
-<span><span class="co">#&gt;    title   id    date  date_recency abstract portal_url type  person person_sort</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt; &lt;list&gt; &lt;chr&gt;      </span></span>
-<span><span class="co">#&gt;  1 Global… gesi… 2008  2008         This ar… http://ww… publ… &lt;chr&gt;  Forrest    </span></span>
-<span><span class="co">#&gt;  2 From S… gesi… 2008  2008         The art… http://ww… publ… &lt;chr&gt;  Bradshaw   </span></span>
-<span><span class="co">#&gt;  3 Global… gesi… 2008  2008         Violent… http://ww… publ… &lt;chr&gt;  Piachaud   </span></span>
-<span><span class="co">#&gt;  4 Cultur… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  Ticktin    </span></span>
-<span><span class="co">#&gt;  5 Insuff… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  Lowe       </span></span>
-<span><span class="co">#&gt;  6 The te… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  HelliwellH…</span></span>
-<span><span class="co">#&gt;  7 Kinshi… gesi… 2005  2005         Among t… http://ww… publ… &lt;chr&gt;  Yemelianova</span></span>
-<span><span class="co">#&gt;  8 Libera… gesi… 2005  2005         &lt;NA&gt;     http://ww… publ… &lt;chr&gt;  Loobuyck   </span></span>
-<span><span class="co">#&gt;  9 The li… gesi… 2005  2005         The foc… http://ww… publ… &lt;chr&gt;  HickmanMor…</span></span>
-<span><span class="co">#&gt; 10 Exclus… gesi… 2005  2005         This ar… http://ww… publ… &lt;chr&gt;  AndersonTa…</span></span>
+<span><span class="co">#&gt;    id      title type  date  date_recency abstract portal_url person person_sort</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;      &lt;list&gt; &lt;chr&gt;      </span></span>
+<span><span class="co">#&gt;  1 gesis-… Glob… publ… 2008  2008         This ar… http://ww… &lt;chr&gt;  Forrest    </span></span>
+<span><span class="co">#&gt;  2 gesis-… From… publ… 2008  2008         The art… http://ww… &lt;chr&gt;  Bradshaw   </span></span>
+<span><span class="co">#&gt;  3 gesis-… Glob… publ… 2008  2008         Violent… http://ww… &lt;chr&gt;  Piachaud   </span></span>
+<span><span class="co">#&gt;  4 gesis-… Cult… publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  Ticktin    </span></span>
+<span><span class="co">#&gt;  5 gesis-… Insu… publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  Lowe       </span></span>
+<span><span class="co">#&gt;  6 gesis-… The … publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  HelliwellH…</span></span>
+<span><span class="co">#&gt;  7 gesis-… Kins… publ… 2005  2005         Among t… http://ww… &lt;chr&gt;  Yemelianova</span></span>
+<span><span class="co">#&gt;  8 gesis-… Libe… publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  Loobuyck   </span></span>
+<span><span class="co">#&gt;  9 gesis-… The … publ… 2005  2005         The foc… http://ww… &lt;chr&gt;  HickmanMor…</span></span>
+<span><span class="co">#&gt; 10 gesis-… Excl… publ… 2005  2005         This ar… http://ww… &lt;chr&gt;  AndersonTa…</span></span>
 <span><span class="co">#&gt; # ℹ 22 more variables: source &lt;chr&gt;, subtype &lt;chr&gt;, document_type &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   institutions &lt;list&gt;, coreAuthor &lt;list&gt;, coreSjahr &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   institutions &lt;chr&gt;, coreAuthor &lt;list&gt;, coreSjahr &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   coreJournalTitle &lt;chr&gt;, coreZsband &lt;chr&gt;, coreZsnummer &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   coreLanguage &lt;chr&gt;, doi &lt;chr&gt;, urn &lt;chr&gt;, data_source &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   index_source &lt;chr&gt;, database &lt;chr&gt;, link_count &lt;int&gt;, gesis_own &lt;int&gt;,</span></span>
 <span><span class="co">#&gt; #   fulltext &lt;int&gt;, metadata_quality &lt;int&gt;, full_text &lt;chr&gt;, coreIssn &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   topic &lt;list&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; #   topic &lt;chr&gt;</span></span></code></pre></div>
 <p>Metadata records can also be used to download survey data directly from the data archive. You need to be logged in, though.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gesis_auth()</span></span>
