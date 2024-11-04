@@ -1,0 +1,77 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# rgesis
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/jslth/rgesis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jslth/rgesis/actions/workflows/R-CMD-check.yaml)
+[![R-hub](https://github.com/jslth/rgesis/actions/workflows/rhub.yaml/badge.svg)](https://github.com/jslth/rgesis/actions/workflows/rhub.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rgesis)](https://CRAN.R-project.org/package=rgesis)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Codecov test
+coverage](https://codecov.io/gh/JsLth/rgesis/branch/main/graph/badge.svg)](https://app.codecov.io/gh/JsLth/rgesis?branch=main)
+[![CodeFactor](https://www.codefactor.io/repository/github/jslth/rgesis/badge/main)](https://www.codefactor.io/repository/github/jslth/rgesis/overview/main)
+<!-- badges: end -->
+
+`{rgesis}` provides a simple, programmatic and reproducible to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.
+
+Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account [here](https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login). `{rgesis}` takes over continuous credentials management and OAuth authentication using the [`{keyring}`](https://keyring.r-lib.org/) and [`{httr2}`](https://httr2.r-lib.org/) packages.
+
+## Installation
+
+You can install the development version of rgesis from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pkg_install("jslth/rgesis")
+```
+
+## Example
+
+`{rgesis}` can be used to search for research data
+
+```{r search-data}
+library(rgesis)
+gesis_search("allbus", type = "research_data")
+```
+
+... or other things from the social sciences, like publications.
+
+```{r}
+gesis_search("climate change", type = "publication")
+```
+
+The results include metadata in complex data structures -- or simplified to a tidy rectangular shape.
+
+```{r}
+gesis_search(tidy = TRUE)
+```
+
+Metadata records can also be used to download survey data directly from the data archive. You need to be logged in, though.
+
+```{r, eval=FALSE}
+# gesis_auth()
+sav_file <- gesis_data("ZA5272", select = "\\.sav")
+haven::read_sav(sav_file)
+```
+
+
+# Related packages
+
+- [`{gesisdata}`](https://fsolt.org/gesisdata/) provides access to the GESIS data archive using web browser automation
+- [`{mannheim}`](https://github.com/sumtxt/mannheim) and [`{gesis}`](https://github.com/expersso/gesis) provide direct API access but are outdated and do not account for the full capabilities of the search engine
