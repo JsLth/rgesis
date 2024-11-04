@@ -180,26 +180,26 @@ records is a priority, you should leave the output untidy.</p>
 <span>  collection_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2018</span>, <span class="fl">2018</span><span class="op">)</span>,</span>
 <span>  tidy <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 108</span></span></span>
-<span><span class="co">#&gt;    title       study_title id    date  date_recency primary_researchers_…¹ type </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> German Gen… German Gen… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [6]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Allgemeine… Allgemeine… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [1]&gt;</span>              <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [26]&gt;</span>             rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> German Gen… German Gen… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [11]&gt;</span>             rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> German Gen… German Gen… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [6]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> German Gen… German Gen… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Allgemeine… Allgemeine… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [6]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_researchers_advisory_board_institution</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 101 more variables: subtype &lt;chr&gt;, abstract &lt;chr&gt;, source &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   time_collection &lt;chr&gt;, time_collection_max_year &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 104</span></span></span>
+<span><span class="co">#&gt;    title            study_title id    date  date_recency study_number portal_url</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> German General … German Gen… ZA52… 2019  2018         ZA5272       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Allgemeine Bevö… Allgemeine… ZA52… 2019  2018         ZA5270       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5260       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5274       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> German General … German Gen… ZA52… 2021  2018         ZA5276       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5262       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> German General … German Gen… ZA52… 2019  2018         ZA5273       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> German General … German Gen… ZA52… 2021  2018         ZA5277       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Allgemeine Bevö… Allgemeine… ZA52… 2019  2018         ZA5271       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5275       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 97 more variables: person_sort &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   primary_researchers_advisory_board_institution &lt;list&gt;, type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   subtype &lt;chr&gt;, abstract &lt;chr&gt;, source &lt;chr&gt;, time_collection &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   time_collection_max_year &lt;chr&gt;, time_collection_min_year &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   time_collection_years &lt;list&gt;, countries_collection &lt;list&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   countries_iso &lt;list&gt;, countries_free &lt;list&gt;, countries_view &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   number_units &lt;chr&gt;, universe &lt;chr&gt;, selection_method &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   data_collector &lt;chr&gt;, person &lt;list&gt;, topic &lt;list&gt;, study_group &lt;list&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   methodology_collection &lt;chr&gt;, analysis_system &lt;chr&gt;, …</span></span></span></code></pre></div>
 <p>While the first 10 results are enough for many use cases, sometimes
 you just need more than that. By default, <code><a href="../reference/gesis_search.html">gesis_search()</a></code>
 only requests the first search page. You can choose which pages to
@@ -213,29 +213,29 @@ all pages by setting it to <code>NULL</code>.</p>
 <span>  tidy <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  pages <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 125</span></span></span>
-<span><span class="co">#&gt;    title       study_title id    date  date_recency primary_researchers_…¹ type </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> German Gen… German Gen… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [6]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Allgemeine… Allgemeine… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [1]&gt;</span>              <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [26]&gt;</span>             rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> German Gen… German Gen… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [11]&gt;</span>             rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> German Gen… German Gen… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [6]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> German Gen… German Gen… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Allgemeine… Allgemeine… ZA52… 2019  2018         <span style="color: #949494;">&lt;chr [6]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Allgemeine… Allgemeine… ZA52… 2021  2018         <span style="color: #949494;">&lt;chr [30]&gt;</span>             <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Harmonizin… Harmonizin… SDN-… 2021  2021         <span style="color: #949494;">&lt;chr [1]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Harmonizin… Harmonizin… SDN-… 2021  2021         <span style="color: #949494;">&lt;chr [1]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Harmonizin… Harmonizin… SDN-… 2021  2021         <span style="color: #949494;">&lt;chr [1]&gt;</span>              rese…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_researchers_advisory_board_institution</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 118 more variables: subtype &lt;chr&gt;, abstract &lt;chr&gt;, source &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   time_collection &lt;list&gt;, time_collection_max_year &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 120</span></span></span>
+<span><span class="co">#&gt;    title            study_title id    date  date_recency study_number portal_url</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> German General … German Gen… ZA52… 2019  2018         ZA5272       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Allgemeine Bevö… Allgemeine… ZA52… 2019  2018         ZA5270       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5260       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5274       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> German General … German Gen… ZA52… 2021  2018         ZA5276       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5262       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> German General … German Gen… ZA52… 2019  2018         ZA5273       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> German General … German Gen… ZA52… 2021  2018         ZA5277       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Allgemeine Bevö… Allgemeine… ZA52… 2019  2018         ZA5271       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Allgemeine Bevö… Allgemeine… ZA52… 2021  2018         ZA5275       https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Harmonizing and… Harmonizin… SDN-… 2021  2021         <span style="color: #BB0000;">NA</span>           https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Harmonizing and… Harmonizin… SDN-… 2021  2021         <span style="color: #BB0000;">NA</span>           https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Harmonizing and… Harmonizin… SDN-… 2021  2021         <span style="color: #BB0000;">NA</span>           https://d…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 113 more variables: person_sort &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   primary_researchers_advisory_board_institution &lt;list&gt;, type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   subtype &lt;chr&gt;, abstract &lt;chr&gt;, source &lt;chr&gt;, time_collection &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   time_collection_max_year &lt;chr&gt;, time_collection_min_year &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   time_collection_years &lt;list&gt;, countries_collection &lt;list&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   countries_iso &lt;list&gt;, countries_free &lt;list&gt;, countries_view &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   number_units &lt;chr&gt;, universe &lt;chr&gt;, selection_method &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   data_collector &lt;chr&gt;, person &lt;list&gt;, topic &lt;list&gt;, study_group &lt;list&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   methodology_collection &lt;list&gt;, analysis_system &lt;chr&gt;, …</span></span></span></code></pre></div>
 <p>To exemplify, we can perform a very basic bibliographic analysis of
 the evolution of climate change literature based on the most relevant
 5000 records in the GESIS archive.</p>
