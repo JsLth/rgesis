@@ -83,13 +83,8 @@ gesis_data <- function(hit,
     download_purpose <- names(purposes[choice])
   }
 
-  download_purpose <- match.arg(download_purpose, choices = c(
-    "final_thesis", "commercial_research", "non_scientific", "lecturer",
-    "further_education", "scientific_research", "studies"
-  ))
-  type <- match.arg(type, choices = c(
-    "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
-  ))
+  download_purpose <- match.arg(download_purpose, choices = names(purposes))
+  type <- match.arg(type, choices = file_types)
 
   # if a character is provided, interpret it as an id and look it up
   if (is.character(hit)) {
@@ -179,4 +174,9 @@ purposes <- c(
   scientific_research = "for scientific research (incl. doctorate)",
   studies = "in the course of my studies",
   lecturer = "in a course as a lecturer"
+)
+
+
+file_types <- c(
+  "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
 )

@@ -34,9 +34,7 @@
 #' hit <- gesis_files("pretest-129", type = "none")}
 gesis_files <- function(hit, type = "dataset") {
   assert_class(hit, c("character", "gesis_hit"))
-  type <- match.arg(type, choices = c(
-    "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
-  ))
+  type <- match.arg(type, choices = file_types)
 
   if (is.character(hit)) {
     hit <- gesis_get(hit)
@@ -59,7 +57,6 @@ gesis_file_types <- function(hit) {
 
   cats <- names(hit)
   cats <- cats[startsWith(cats, "links")]
-
   cats[cats %in% "links"] <- "uncategorized"
   gsub("^links_", "", cats) %empty% NULL
 }
@@ -95,6 +92,7 @@ format.gesis_files <- function(x, ...) {
     cli::cli_text("{.cls {class(x)}}")
 
     for (i in seq_along(x)) {
+      cli::cli_text("{cli::symbol$arrow_right} File {i}")
       file <- x[[i]]
       label <- file$label_en %||% file$label
       if (!is.null(label)) {
