@@ -95,16 +95,41 @@ categorized. If <code>NULL</code>, no files are available for download.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show all dataset files for ALLBUS 1998</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_files</span><span class="op">(</span><span class="st">"ZA3753"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in gesis_files("ZA3753"):</span> could not find function "gesis_files"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_files&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753.por</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Format:</span> application/x-spss-por</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">File size:</span> 3.53 MB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ────</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753.sav</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Format:</span> application/x-spss-sav</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">File size:</span> 2.55 MB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ────</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753_missing.sps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">File size:</span> 0.02 MB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ────</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753_variable-list.txt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">File size:</span> 0.02 MB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ────</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753_v1-0-0.dta.zip</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">File size:</span> 0.64 MB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> yes</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show all of its questionnaire files</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_files</span><span class="op">(</span><span class="st">"ZA3753"</span>, type <span class="op">=</span> <span class="st">"questionnaire"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in gesis_files("ZA3753", type = "questionnaire"):</span> could not find function "gesis_files"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_files&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3000_fb.pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ────</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753_q.pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> no</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># other record types can have files, too</span></span></span>
 <span class="r-in"><span><span class="va">type</span> <span class="op">&lt;-</span> <span class="fu">gesis_file_types</span><span class="op">(</span><span class="st">"pretest-129"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">hit</span> <span class="op">&lt;-</span> <span class="fu">gesis_files</span><span class="op">(</span><span class="st">"pretest-129"</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in gesis_files("pretest-129", type = "none"):</span> could not find function "gesis_files"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
