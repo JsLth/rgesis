@@ -140,3 +140,53 @@ In any case, the query used to retrieve the data is stored in the attribute
 Query the GESIS search engine to retrieve metadata on research data,
 variables, tools, publications, libraries, and websites.
 }
+\examples{
+\donttest{# Make a queryless search across the entire database and return
+# the first 10 results
+gesis_search()
+
+# Queries can be narrowed down by providing a query string
+hit <- gesis_search("climate change")
+
+# gesis_search() searches for all types of records by default. If you only
+# want to search for, say, datasets, you can set the `type` argument.
+gesis_search(type = "research_data")
+
+# By default, only 10 results (1 page) are returned. You can specify
+# which pages should queried or if all should be returned
+gesis_search("climate change", pages = 2:3) # pages 2 and 3
+if (FALSE) gesis_search("climate change", pages = NULL) # all pages
+
+# By default, results are wrapped in a complex list structure. This is
+# good for representing detailed information, but not for analyzing data.
+# Results can be tidied up to a dataframe using either `as.data.frame()`
+# or by setting the `tidy` argument to TRUE
+as.data.frame(hit)
+gesis_search("climate change", tidy = TRUE)
+
+# Using the fields argument you can control how different text fields
+# are weighted in matching the query string. Here we search for
+# "climate change" only in full texts, not in other fields
+gesis_search("climate change", fields = field_weights(full_text = 10))
+
+# Search strings are separated by an AND operator by default
+# this default can be overwritten by setting default_operator = "OR"
+# or by manually separating the query string
+weight <- field_weights(title = 100)
+and <- gesis_search("climate change", sort = "title_ascending", fields = weight)
+or1 <- gesis_search("climate OR change", sort = "title_ascending", fields = weight)
+or2 <- gesis_search("climate change", sort = "title_ascending", default_operator = "OR", fields = weight)
+attr(and, "query") <- NULL
+attr(or1, "query") <- NULL
+attr(or2, "query") <- NULL
+identical(and, or1)
+identical(or1, or2)
+
+# Similarly, you can construct complex query terms using operators
+gesis_search("(climate or environmental) AND (change OR crisis OR action)")
+
+# Another way to narrow down the search is to set filters. GESIS Search
+# offers a number of filters, including topic, publication year or
+# methodology. Sensible values can be checked on https://search.gesis.org/.
+gesis_search(topics = "climate change", type = "publication") # search for records on climate change}
+}

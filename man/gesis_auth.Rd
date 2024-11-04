@@ -21,7 +21,7 @@ run in an interactive session.}
 \code{NULL}, invisibly.
 }
 \description{
-Authenticate a GESIS user account using OpenID. This is necessary to
+Authenticate a GESIS user account using OAuth 2.0. This is necessary to
 download datasets using \code{\link{gesis_data}}.
 }
 \details{

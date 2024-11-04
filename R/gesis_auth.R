@@ -1,6 +1,6 @@
 #' Authenticate user
 #' @description
-#' Authenticate a GESIS user account using OpenID. This is necessary to
+#' Authenticate a GESIS user account using OAuth 2.0. This is necessary to
 #' download datasets using \code{\link{gesis_data}}.
 #'
 #' @param email,password Email address and password linked to a GESIS user
