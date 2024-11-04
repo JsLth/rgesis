@@ -17,10 +17,10 @@ coverage](https://codecov.io/gh/JsLth/rgesis/branch/main/graph/badge.svg)](https
 [![CodeFactor](https://www.codefactor.io/repository/github/jslth/rgesis/badge/main)](https://www.codefactor.io/repository/github/jslth/rgesis/overview/main)
 <!-- badges: end -->
 
-`{rgesis}` provides a simple, programmatic and reproducible to the GESIS
-search engine. It allows the retrieval of metadata on records like
-research datasets, variables, publications, and tools. Based on this,
-the package can also download survey data from the data archive.
+`{rgesis}` provides a simple, programmatic and reproducible interface to
+the GESIS search engine. It allows the retrieval of metadata on records
+like research datasets, variables, publications, and tools. Based on
+this, the package can also download survey data from the data archive.
 
 Note that while the GESIS search API can be accessed directly, you need
 to be logged in to download any survey data. You can create a user
@@ -131,25 +131,25 @@ to a tidy rectangular shape.
 ``` r
 gesis_search(tidy = TRUE)
 #> # A tibble: 10 × 31
-#>    title   id    date  date_recency abstract portal_url type  person person_sort
-#>    <chr>   <chr> <chr> <chr>        <chr>    <chr>      <chr> <list> <chr>      
-#>  1 Global… gesi… 2008  2008         This ar… http://ww… publ… <chr>  Forrest    
-#>  2 From S… gesi… 2008  2008         The art… http://ww… publ… <chr>  Bradshaw   
-#>  3 Global… gesi… 2008  2008         Violent… http://ww… publ… <chr>  Piachaud   
-#>  4 Cultur… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  Ticktin    
-#>  5 Insuff… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  Lowe       
-#>  6 The te… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  HelliwellH…
-#>  7 Kinshi… gesi… 2005  2005         Among t… http://ww… publ… <chr>  Yemelianova
-#>  8 Libera… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  Loobuyck   
-#>  9 The li… gesi… 2005  2005         The foc… http://ww… publ… <chr>  HickmanMor…
-#> 10 Exclus… gesi… 2005  2005         This ar… http://ww… publ… <chr>  AndersonTa…
+#>    id      title type  date  date_recency abstract portal_url person person_sort
+#>    <chr>   <chr> <chr> <chr> <chr>        <chr>    <chr>      <list> <chr>      
+#>  1 gesis-… Glob… publ… 2008  2008         This ar… http://ww… <chr>  Forrest    
+#>  2 gesis-… From… publ… 2008  2008         The art… http://ww… <chr>  Bradshaw   
+#>  3 gesis-… Glob… publ… 2008  2008         Violent… http://ww… <chr>  Piachaud   
+#>  4 gesis-… Cult… publ… 2005  2005         <NA>     http://ww… <chr>  Ticktin    
+#>  5 gesis-… Insu… publ… 2005  2005         <NA>     http://ww… <chr>  Lowe       
+#>  6 gesis-… The … publ… 2005  2005         <NA>     http://ww… <chr>  HelliwellH…
+#>  7 gesis-… Kins… publ… 2005  2005         Among t… http://ww… <chr>  Yemelianova
+#>  8 gesis-… Libe… publ… 2005  2005         <NA>     http://ww… <chr>  Loobuyck   
+#>  9 gesis-… The … publ… 2005  2005         The foc… http://ww… <chr>  HickmanMor…
+#> 10 gesis-… Excl… publ… 2005  2005         This ar… http://ww… <chr>  AndersonTa…
 #> # ℹ 22 more variables: source <chr>, subtype <chr>, document_type <chr>,
-#> #   institutions <list>, coreAuthor <list>, coreSjahr <chr>,
+#> #   institutions <chr>, coreAuthor <list>, coreSjahr <chr>,
 #> #   coreJournalTitle <chr>, coreZsband <chr>, coreZsnummer <chr>,
 #> #   coreLanguage <chr>, doi <chr>, urn <chr>, data_source <chr>,
 #> #   index_source <chr>, database <chr>, link_count <int>, gesis_own <int>,
 #> #   fulltext <int>, metadata_quality <int>, full_text <chr>, coreIssn <chr>,
-#> #   topic <list>
+#> #   topic <chr>
 ```
 
 Metadata records can also be used to download survey data directly from

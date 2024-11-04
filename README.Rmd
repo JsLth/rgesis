@@ -28,7 +28,7 @@ coverage](https://codecov.io/gh/JsLth/rgesis/branch/main/graph/badge.svg)](https
 [![CodeFactor](https://www.codefactor.io/repository/github/jslth/rgesis/badge/main)](https://www.codefactor.io/repository/github/jslth/rgesis/overview/main)
 <!-- badges: end -->
 
-`{rgesis}` provides a simple, programmatic and reproducible to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.
+`{rgesis}` provides a simple, programmatic and reproducible interface to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.
 
 Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account [here](https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login). `{rgesis}` takes over continuous credentials management and OAuth authentication using the [`{keyring}`](https://keyring.r-lib.org/) and [`{httr2}`](https://httr2.r-lib.org/) packages.
 
