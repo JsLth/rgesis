@@ -72,15 +72,21 @@ or <code>"lecturer"</code>.</p></dd>
 
 
 <dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
-<dd><p>Path where the downloaded file should be stored. Defaults to
-a temporary file path.</p></dd>
+<dd><p>Path where the downloaded file should be stored. Can be path
+to a directory or a file. If a directory path, it is attempted to infer the
+file name from the file to be downloaded. If this is not possible, the file
+is stored in a file called <code>gesis</code> with no file extension. If a file
+path is passed, the file is directly downloaded to this path. Defaults to
+a temporary directory path.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>Type of data to download. Must be one of <code>"dataset"</code>,
-<code>"questionnaire"</code>, <code>"codebook"</code>, <code>"otherdocs"</code>. Defaults
-to <code>"dataset"</code>. A list of available data types for a given record can
-be retrieved using <code><a href="gesis_files.html">gesis_file_types</a></code>.</p></dd>
+<code>"questionnaire"</code>, <code>"codebook"</code>, <code>"otherdocs"</code>,
+or <code>"uncategorized"</code>. A file type is "uncategorized" if it is falls
+under none of the other file types. Defaults to <code>"dataset"</code>. A list of
+available data types for a given record can be retrieved using
+<code><a href="gesis_files.html">gesis_file_types</a></code>.</p></dd>
 
 
 <dt id="arg-select">select<a class="anchor" aria-label="anchor" href="#arg-select"></a></dt>
@@ -108,6 +114,12 @@ interactive session.</p></dd>
 there are different ways to read the file contents. Traditionally, data
 files are offered in Stata and SPSS file formats and can be read using the
 <a href="https://haven.tidyverse.org/" class="external-link">haven</a> package.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Access and refresh tokens are automatically attached to the requests sent
+if possible. This is done only for URLs pointing to the domain gesis.org
+to avoid sending authentication information to other domains.</p>
     </div>
 
     <div class="section level2">
