@@ -17,6 +17,8 @@
 #' types that are available. If \code{"none"}, files are available but not
 #' categorized. If \code{NULL}, no files are available for download.
 #'
+#' @export
+#'
 #' @examples
 #' \donttest{# check what file types are available
 #' gesis_file_types("ZA3753")
