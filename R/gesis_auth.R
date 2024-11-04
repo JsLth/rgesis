@@ -122,6 +122,7 @@ gesis_get_email <- function() {
 
 # try to get password, return NULL if not found
 gesis_get_password <- function() {
+  email <- gesis_get_email()
   keyring::key_get(rgesis_keyring(), username = email) %except% NULL
 }
 
