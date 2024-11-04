@@ -173,9 +173,22 @@ gesis_search("climate change", fields = field_weights(full_text = 10))
 # this default can be overwritten by setting default_operator = "OR"
 # or by manually separating the query string
 weight <- field_weights(title = 100)
-and <- gesis_search("climate change", sort = "title_ascending", fields = weight)
-or1 <- gesis_search("climate OR change", sort = "title_ascending", fields = weight)
-or2 <- gesis_search("climate change", sort = "title_ascending", default_operator = "OR", fields = weight)
+and <- gesis_search(
+  "climate change",
+  sort = "title_ascending",
+  fields = weight
+)
+or1 <- gesis_search(
+  "climate OR change",
+  sort = "title_ascending",
+  fields = weight
+)
+or2 <- gesis_search(
+  "climate change",
+  sort = "title_ascending",
+  default_operator = "OR",
+  fields = weight
+)
 attr(and, "query") <- NULL
 attr(or1, "query") <- NULL
 attr(or2, "query") <- NULL
@@ -188,5 +201,5 @@ gesis_search("(climate or environmental) AND (change OR crisis OR action)")
 # Another way to narrow down the search is to set filters. GESIS Search
 # offers a number of filters, including topic, publication year or
 # methodology. Sensible values can be checked on https://search.gesis.org/.
-gesis_search(topics = "climate change", type = "publication") # search for records on climate change}
+gesis_search(topics = "climate change", type = "publication")}
 }
