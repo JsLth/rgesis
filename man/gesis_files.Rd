@@ -15,9 +15,11 @@ gesis_file_types(hit)
 is passed, the function performs a call to \code{\link{gesis_get}}.}
 
 \item{type}{Type of data to download. Must be one of \code{"dataset"},
-\code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"}. Defaults
-to \code{"dataset"}. A list of available data types for a given record can
-be retrieved using \code{\link{gesis_file_types}}.}
+\code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"},
+or \code{"uncategorized"}. A file type is "uncategorized" if it is falls
+under none of the other file types. Defaults to \code{"dataset"}. A list of
+available data types for a given record can be retrieved using
+\code{\link{gesis_file_types}}.}
 }
 \value{
 \code{gesis_files} returns a list of class \code{gesis_file}

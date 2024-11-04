@@ -11,8 +11,12 @@
 #' \code{"commercial_research"}, \code{"non_scientific"},
 #' \code{"further_education"}, \code{"scientific_research"}, \code{"studies"},
 #' or \code{"lecturer"}.
-#' @param path Path where the downloaded file should be stored. Defaults to
-#' a temporary file path.
+#' @param path Path where the downloaded file should be stored. Can be path
+#' to a directory or a file. If a directory path, it is attempted to infer the
+#' file name from the file to be downloaded. If this is not possible, the file
+#' is stored in a file called \code{gesis} with no file extension. If a file
+#' path is passed, the file is directly downloaded to this path. Defaults to
+#' a temporary directory path.
 #' @param type Type of data to download. Must be one of \code{"dataset"},
 #' \code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"},
 #' or \code{"uncategorized"}. A file type is "uncategorized" if it is falls
@@ -37,6 +41,11 @@
 #' there are different ways to read the file contents. Traditionally, data
 #' files are offered in Stata and SPSS file formats and can be read using the
 #' \href{https://haven.tidyverse.org/}{haven} package.
+#'
+#' @details
+#' Access and refresh tokens are automatically attached to the requests sent
+#' if possible. This is done only for URLs pointing to the domain gesis.org
+#' to avoid sending authentication information to other domains.
 #'
 #' @export
 #'

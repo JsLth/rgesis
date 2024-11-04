@@ -90,6 +90,7 @@ cc <- gesis_search(
   tidy = TRUE
 )
 
+library(ggplot2)
 ggplot(na.omit(cc[c("date", "subtype")])) +
   geom_bar(aes(x = date, fill = subtype)) +
   scale_y_continuous(expand = c(0, 0)) +
@@ -126,43 +127,16 @@ path <- gesis_data(allbus, select = "\\.sav")
 Since GESIS files can come in all kinds of file formats, the package leaves reading the data to the user. In this case, we can use the [haven](https://haven.tidyverse.org/) package to read the downloaded file.
 
 ```{r, eval=FALSE}
+library(dplyr)
+library(stringr)
 library(haven)
 allbus_data <- read_sav(path)
-allbus_data
-#> ! Multiple files in zip: reading ''ZA5272_v1-0-0.sav''
-#> # A tibble: 3,477 × 708
-#>    za_nr            doi     version respid eastwest german  ep01    ep03    ep04    ep06    lm01    lm02  lm19   
-#>    <dbl+lbl>        <chr>   <chr>    <dbl> <dbl+lb> <dbl+l> <dbl+l> <dbl+l> <dbl+l> <dbl+l> <dbl+l> <dbl> <dbl+l>
-#>  1 5272 [GGSS 2018] doi:10… 1.0.0 …      1 1 [OLD … 1 [YES… 1 [VER… 2 [GOO… 2 [SOM… 3 [THE… 6 [6 D…  75   1 [YES]
-#>  2 5272 [GGSS 2018] doi:10… 1.0.0 …      2 2 [NEW … 1 [YES… 2 [GOO… 4 [BAD] 3 [THE… 3 [THE… 7 [ALL… 240   1 [YES]
-#>  3 5272 [GGSS 2018] doi:10… 1.0.0 …      3 1 [OLD … 1 [YES… 2 [GOO… 2 [GOO… 3 [THE… 2 [SOM… 2 [2 D… 120   1 [YES]
-#>  4 5272 [GGSS 2018] doi:10… 1.0.0 …      4 2 [NEW … 1 [YES… 2 [GOO… 2 [GOO… 3 [THE… 3 [THE… 7 [ALL… 180   1 [YES]
-#>  5 5272 [GGSS 2018] doi:10… 1.0.0 …      5 2 [NEW … 1 [YES… 3 [PAR… 2 [GOO… 3 [THE… 2 [SOM… 7 [ALL…  60   1 [YES]
-#>  6 5272 [GGSS 2018] doi:10… 1.0.0 …      6 1 [OLD … 1 [YES… 1 [VER… 3 [PAR… 3 [THE… 2 [SOM… 3 [3 D… 120   1 [YES]
-#>  7 5272 [GGSS 2018] doi:10… 1.0.0 …      7 1 [OLD … 1 [YES… 3 [PAR… 2 [GOO… 3 [THE… 3 [THE… 7 [ALL… 120   1 [YES]
-#>  8 5272 [GGSS 2018] doi:10… 1.0.0 …      8 1 [OLD … 1 [YES… 2 [GOO… 3 [PAR… 3 [THE… 2 [SOM… 2 [2 D…  60   2 [NO] 
-#>  9 5272 [GGSS 2018] doi:10… 1.0.0 …      9 1 [OLD … 1 [YES… 1 [VER… 2 [GOO… 4 [SOM… 3 [THE… 3 [3 D…  60   1 [YES]
-#> 10 5272 [GGSS 2018] doi:10… 1.0.0 …     10 2 [NEW … 1 [YES… 2 [GOO… 2 [GOO… 2 [SOM… 3 [THE… 7 [ALL… 240   1 [YES]
-#> # ℹ 3,467 more rows
-#> # ℹ 695 more variables: lm20 <dbl+lbl>, lm21 <dbl+lbl>, lm22 <dbl+lbl>, lm14 <dbl+lbl>, lm23 <dbl+lbl>,
-#> #   lm24 <dbl+lbl>, pa09 <dbl+lbl>, pa10 <dbl+lbl>, pa11 <dbl+lbl>, pa12 <dbl+lbl>, pa13 <dbl+lbl>,
-#> #   pa14 <dbl+lbl>, pa15 <dbl+lbl>, pa16 <dbl+lbl>, pa17 <dbl+lbl>, pa08a <dbl+lbl>, pa18 <dbl+lbl>,
-#> #   pa19 <dbl+lbl>, pp06 <dbl+lbl>, pp07 <dbl+lbl>, pp08 <dbl+lbl>, pp09 <dbl+lbl>, pp10 <dbl+lbl>,
-#> #   pp12 <dbl+lbl>, pp17 <dbl+lbl>, pp18 <dbl+lbl>, pp19 <dbl+lbl>, pp20 <dbl+lbl>, pp22 <dbl+lbl>,
-#> #   pp60 <dbl+lbl>, pp23 <dbl+lbl>, pp61 <dbl+lbl>, pp62 <dbl+lbl>, pp24 <dbl+lbl>, pp25 <dbl+lbl>, …
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
-```
-
-
-```{r, eval=FALSE}
-library(dplyr)
-library(ggplot2)
-library(stringr)
 
 allbus_data <- allbus_data |>
   select(eastwest, economic_situation = ep01, samesex_marriage = pa12) |>
   mutate(across(everything(), .fns = ~as_factor(.x))) |>
   mutate(eastwest = str_to_title(eastwest)) |>
+  select(economic_situation, samesex_marriage, eastwest) |>
   na.omit()
 
 ggplot(allbus_data, aes(economic_situation)) +

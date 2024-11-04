@@ -159,9 +159,9 @@ if (FALSE) gesis_search("climate change", pages = NULL) # all pages
 
 # By default, results are wrapped in a complex list structure. This is
 # good for representing detailed information, but not for analyzing data.
-# Results can be tidied up to a dataframe using either `as.data.frame()`
+# Results can be tidied up to a dataframe using either `as_tibble()`
 # or by setting the `tidy` argument to TRUE
-as.data.frame(hit)
+tibble::as_tibble(hit)
 gesis_search("climate change", tidy = TRUE)
 
 # Using the fields argument you can control how different text fields

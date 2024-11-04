@@ -24,13 +24,19 @@ demanded by GESIS. Must be one of \code{"final_thesis"},
 \code{"further_education"}, \code{"scientific_research"}, \code{"studies"},
 or \code{"lecturer"}.}
 
-\item{path}{Path where the downloaded file should be stored. Defaults to
-a temporary file path.}
+\item{path}{Path where the downloaded file should be stored. Can be path
+to a directory or a file. If a directory path, it is attempted to infer the
+file name from the file to be downloaded. If this is not possible, the file
+is stored in a file called \code{gesis} with no file extension. If a file
+path is passed, the file is directly downloaded to this path. Defaults to
+a temporary directory path.}
 
 \item{type}{Type of data to download. Must be one of \code{"dataset"},
-\code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"}. Defaults
-to \code{"dataset"}. A list of available data types for a given record can
-be retrieved using \code{\link{gesis_file_types}}.}
+\code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"},
+or \code{"uncategorized"}. A file type is "uncategorized" if it is falls
+under none of the other file types. Defaults to \code{"dataset"}. A list of
+available data types for a given record can be retrieved using
+\code{\link{gesis_file_types}}.}
 
 \item{select}{Character string to select a data file in case multiple files
 are available for the selected data type. The character string is
@@ -56,6 +62,11 @@ files are offered in Stata and SPSS file formats and can be read using the
 \description{
 Downloads survey data from GESIS given a hit or a dataset ID. To download
 data, the session must be authenticated using \code{\link{gesis_auth}}.
+}
+\details{
+Access and refresh tokens are automatically attached to the requests sent
+if possible. This is done only for URLs pointing to the domain gesis.org
+to avoid sending authentication information to other domains.
 }
 \examples{
 if (FALSE) {
