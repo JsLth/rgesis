@@ -58,9 +58,9 @@ data, the session must be authenticated using <code><a href="gesis_auth.html">ge
 
 
 <dl><dt id="arg-hit">hit<a class="anchor" aria-label="anchor" href="#arg-hit"></a></dt>
-<dd><p>Object of class <code>gesis_hit</code> or dataset ID. If a dataset ID
-is passed, the function performs a call to <code><a href="gesis_search.html">gesis_search</a></code> and
-uses the first result.</p></dd>
+<dd><p>Object of class <code>gesis_hit</code> as returned by
+<code><a href="gesis_search.html">gesis_search</a></code> and <code>gesis_get</code> or dataset ID. If a dataset ID
+is passed, the function performs a call to <code><a href="gesis_get.html">gesis_get</a></code>.</p></dd>
 
 
 <dt id="arg-download-purpose">download_purpose<a class="anchor" aria-label="anchor" href="#arg-download-purpose"></a></dt>
@@ -79,16 +79,19 @@ a temporary file path.</p></dd>
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>Type of data to download. Must be one of <code>"dataset"</code>,
 <code>"questionnaire"</code>, <code>"codebook"</code>, <code>"otherdocs"</code>. Defaults
-to <code>"dataset"</code>.</p></dd>
+to <code>"dataset"</code>. A list of available data types for a given record can
+be retrieved using <code><a href="gesis_files.html">gesis_file_types</a></code>.</p></dd>
 
 
 <dt id="arg-select">select<a class="anchor" aria-label="anchor" href="#arg-select"></a></dt>
 <dd><p>Character string to select a data file in case multiple files
 are available for the selected data type. The character string is
 matched against the file label using regular expressions. This argument
-can also be used to match explicitly for file extensions, e.g. "\.sav"
-or "\.dat". If <code>NULL</code>, multiple files are detected, and the session is
-interactive, prompts the user to select a file. Defaults to <code>NULL</code>.</p></dd>
+can also be used to match explicitly for file extensions, e.g.
+<code>"\\.sav"</code> or <code>"\\.dat"</code>. A list of file labels for a given
+record can be retrieved using <code><a href="gesis_files.html">gesis_files</a></code>. If <code>NULL</code>,
+multiple files are detected, and the session is interactive, prompts the
+user to select a file. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-prompt">prompt<a class="anchor" aria-label="anchor" href="#arg-prompt"></a></dt>
@@ -122,6 +125,16 @@ files are offered in Stata and SPSS file formats and can be read using the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># in other cases, certain arguments should be provided</span></span></span>
 <span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu">gesis_data</span><span class="op">(</span><span class="va">hit</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, download_purpose <span class="op">=</span> <span class="st">"non_scientific"</span>, select <span class="op">=</span> <span class="st">"\\.sav"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># you can also simply pass a dataset ID</span></span></span>
+<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu">gesis_data</span><span class="op">(</span><span class="st">"ZA3753"</span>, select <span class="op">=</span> <span class="st">"\\.por"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># data files must be read using other tools and packages, e.g. haven</span></span></span>
+<span class="r-in"><span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html" class="external-link">read_por</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ... or pdftools</span></span></span>
+<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu">gesis_data</span><span class="op">(</span><span class="st">"ZA3753"</span>, select <span class="op">=</span> <span class="st">"fb\\.pdf"</span>, type <span class="op">=</span> <span class="st">"questionnaire"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pdftools</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/pdftools/reference/pdftools.html" class="external-link">pdf_text</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
