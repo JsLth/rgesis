@@ -35,7 +35,7 @@
 gesis_files <- function(hit, type = "dataset") {
   assert_class(hit, c("character", "gesis_hit"))
   type <- match.arg(type, choices = c(
-    "dataset", "questionnaire", "codebook", "otherdocs", "none"
+    "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
   ))
 
   if (is.character(hit)) {
@@ -60,13 +60,13 @@ gesis_file_types <- function(hit) {
   cats <- names(hit)
   cats <- cats[startsWith(cats, "links")]
 
-  cats[cats %in% "links"] <- "none"
+  cats[cats %in% "links"] <- "uncategorized"
   gsub("^links_", "", cats) %empty% NULL
 }
 
 
 get_links_from_hit <- function(hit, type) {
-  if (!identical(type, "none")) {
+  if (!identical(type, "uncategorized")) {
     link_field <- sprintf("links_%s", type)
   } else {
     link_field <- "links"
@@ -74,7 +74,11 @@ get_links_from_hit <- function(hit, type) {
 
   if (!link_field %in% names(hit)) {
     trail_s <- ifelse(!identical(type, "otherdocs"), "s", "")
-    rg_stop("No {.field {type}}{trail_s} are available for record ID {.val {attr(hit, 'id')}}.")
+    id <- attr(hit, 'id')
+    rg_stop(c(
+      "No {.field {type}}{trail_s} are available for record ID {.val {id}}.",
+      "i" = "You can find out which file types are available using `gesis_file_types(\"{id}\")`."
+    ))
   }
   hit[[link_field]]
 }
