@@ -31,7 +31,7 @@
 #'
 #' # other record types can have files, too
 #' type <- gesis_file_types("pretest-129")
-#' hit <- gesis_files("pretest-129", type = "none")}
+#' gesis_files("pretest-129", type = "uncategorized")}
 gesis_files <- function(hit, type = "dataset") {
   assert_class(hit, c("character", "gesis_hit"))
   type <- match.arg(type, choices = file_types)

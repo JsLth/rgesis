@@ -51,5 +51,5 @@ gesis_files("ZA3753", type = "questionnaire")
 
 # other record types can have files, too
 type <- gesis_file_types("pretest-129")
-hit <- gesis_files("pretest-129", type = "none")}
+gesis_files("pretest-129", type = "uncategorized")}
 }
