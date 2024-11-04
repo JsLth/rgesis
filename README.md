@@ -130,25 +130,26 @@ to a tidy rectangular shape.
 
 ``` r
 gesis_search(tidy = TRUE)
-#> # A tibble: 10 × 30
-#>    id        title date  portal_url person source subtype institutions coreSjahr
-#>    <chr>     <chr> <chr> <chr>      <list> <chr>  <chr>   <list>       <chr>    
-#>  1 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  2 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  3 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  4 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  5 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  6 gesis-ss… The … 2005  http://ww… <chr>  In: E… journa… <chr [1]>    2005     
-#>  7 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  8 gesis-ss… <NA>  <NA>  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#>  9 gesis-ss… The … 2005  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#> 10 gesis-ss… Excl… 2005  <NA>       <chr>  <NA>   <NA>    <chr [1]>    <NA>     
-#> # ℹ 21 more variables: coreZsband <chr>, coreLanguage <chr>, urn <chr>,
-#> #   index_source <chr>, link_count <chr>, fulltext <chr>, full_text <chr>,
-#> #   abstract <chr>, type <chr>, person_sort <chr>, links <list>,
-#> #   document_type <chr>, coreAuthor <list>, coreJournalTitle <chr>,
-#> #   coreZsnummer <chr>, doi <chr>, data_source <chr>, database <chr>,
-#> #   gesis_own <chr>, metadata_quality <chr>, related_references <list>
+#> # A tibble: 10 × 31
+#>    title   id    date  date_recency abstract portal_url type  person person_sort
+#>    <chr>   <chr> <chr> <chr>        <chr>    <chr>      <chr> <list> <chr>      
+#>  1 Global… gesi… 2008  2008         This ar… http://ww… publ… <chr>  Forrest    
+#>  2 From S… gesi… 2008  2008         The art… http://ww… publ… <chr>  Bradshaw   
+#>  3 Global… gesi… 2008  2008         Violent… http://ww… publ… <chr>  Piachaud   
+#>  4 Cultur… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  Ticktin    
+#>  5 Insuff… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  Lowe       
+#>  6 The te… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  HelliwellH…
+#>  7 Kinshi… gesi… 2005  2005         Among t… http://ww… publ… <chr>  Yemelianova
+#>  8 Libera… gesi… 2005  2005         <NA>     http://ww… publ… <chr>  Loobuyck   
+#>  9 The li… gesi… 2005  2005         The foc… http://ww… publ… <chr>  HickmanMor…
+#> 10 Exclus… gesi… 2005  2005         This ar… http://ww… publ… <chr>  AndersonTa…
+#> # ℹ 22 more variables: source <chr>, subtype <chr>, document_type <chr>,
+#> #   institutions <list>, coreAuthor <list>, coreSjahr <chr>,
+#> #   coreJournalTitle <chr>, coreZsband <chr>, coreZsnummer <chr>,
+#> #   coreLanguage <chr>, doi <chr>, urn <chr>, data_source <chr>,
+#> #   index_source <chr>, database <chr>, link_count <int>, gesis_own <int>,
+#> #   fulltext <int>, metadata_quality <int>, full_text <chr>, coreIssn <chr>,
+#> #   topic <list>
 ```
 
 Metadata records can also be used to download survey data directly from
