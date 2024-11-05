@@ -12,7 +12,8 @@
 #' \code{FALSE}, throws an error in this case. Defaults to \code{TRUE} if
 #' run in an interactive session.
 #'
-#' @returns \code{NULL}, invisibly.
+#' @returns \code{gesis_auth} returns \code{NULL}, invisibly.
+#' \code{gesis_can_auth} always returns \code{TRUE} or \code{FALSE}.
 #'
 #' @details
 #' \code{gesis_auth()} performs a GESIS login once and, if successful, stores

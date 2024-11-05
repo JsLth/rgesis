@@ -21,7 +21,8 @@ not specified, opens a console prompt to provide these arguments. If
 run in an interactive session.}
 }
 \value{
-\code{NULL}, invisibly.
+\code{gesis_auth} returns \code{NULL}, invisibly.
+\code{gesis_can_auth} always returns \code{TRUE} or \code{FALSE}.
 }
 \description{
 Authenticate a GESIS user account using OAuth 2.0. This is necessary to
