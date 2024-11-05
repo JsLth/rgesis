@@ -287,14 +287,35 @@ returned by <code><a href="../reference/gesis_search.html">gesis_search()</a></c
 from the GESIS data archive. First, authentication is needed to be
 allowed to download in the first place. Second, a metadata record (or at
 least a record ID) is needed to specify what dataset you want to
-download. Accordingly, we can simply use the allbus record we queried
-above to download a .sav file from GESIS.</p>
+download. Finally, it is often a good idea to first explore what kinds
+of data are in store for a given record. The
+<code><a href="../reference/gesis_files.html">gesis_file_types()</a></code> function gives insights into the types
+of data available.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gesis_files.html">gesis_file_types</a></span><span class="op">(</span><span class="va">allbus</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "dataset"       "questionnaire" "codebook"</span></span></code></pre></div>
+<p>Now we know that the ALLBUS record contains dataset files. But which
+files are available exactly?</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gesis_files.html">gesis_files</a></span><span class="op">(</span><span class="va">allbus</span>, type <span class="op">=</span> <span class="st">"dataset"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">&lt;gesis_files&gt;</span></span></span>
+<span><span class="co">#&gt; → File 1</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Label:</span> ZA5272_v1-0-0.dta.zip</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">File size:</span> 0.94 MB</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Login required?</span> yes</span></span>
+<span><span class="co">#&gt; ────</span></span>
+<span><span class="co">#&gt; → File 2</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Label:</span> ZA5272_v1-0-0.sav.zip</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">File size:</span> 1.02 MB</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Login required?</span> yes</span></span></code></pre></div>
+<p>Using this information, we can download the .sav file to disk using
+the <code><a href="../reference/gesis_data.html">gesis_data()</a></code> function.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gesis_data.html">gesis_data</a></span><span class="op">(</span><span class="va">allbus</span>, select <span class="op">=</span> <span class="st">"\\.sav"</span><span class="op">)</span></span></code></pre></div>
 <p>Since GESIS files can come in all kinds of file formats, the package
 leaves reading the data to the user. In this case, we can use the <a href="https://haven.tidyverse.org/" class="external-link">haven</a> package to read the
 downloaded file.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
