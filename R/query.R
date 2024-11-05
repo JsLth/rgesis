@@ -159,6 +159,6 @@ field_weights <- function(..., use_default = TRUE) {
     args <- list(...)
   }
 
-  fields <- c("_all", paste(names(args), args, sep = "^"))
+  fields <- c(paste(names(args), args, sep = "^"))
   gsub("^\\^", "", fields)
 }

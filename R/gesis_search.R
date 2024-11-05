@@ -197,6 +197,9 @@ gesis_search <- function(query = NULL,
   assert_vector(interview_language, "character", null = TRUE)
   assert_flag(tidy)
 
+  # add _all to field weights to ensure that the query is valid
+  fields <- c("_all", setdiff(fields, "_all"))
+
   if (!is.null(pages)) {
     from <- (pages - 1) * 10
   } else {
