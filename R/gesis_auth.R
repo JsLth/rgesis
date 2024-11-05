@@ -179,9 +179,6 @@ gesis_client <- function() {
 
 req_add_auth <- function(req) {
   creds <- gesis_get_auth()
-  if (!length(drop_null(creds))) {
-    return(req)
-  }
   httr2::req_oauth_password(
     req,
     client = gesis_client(),

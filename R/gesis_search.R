@@ -302,11 +302,6 @@ as.data.frame.gesis_hits <- function(x, ...) {
 }
 
 
-#as_tibble.gesis_hits <- function(x, ...) {
-#  tibble::as_tibble(as.data.frame(x), ...)
-#}
-
-
 #' @export
 format.gesis_hit <- function(x, max_persons = 5, ...) {
   cli::cli_format_method({
@@ -344,8 +339,8 @@ format.gesis_hit <- function(x, max_persons = 5, ...) {
 
 
 #' @export
-print.gesis_hit <- function(x, ...) {
-  cat(format(x), sep = "\n")
+print.gesis_hit <- function(x, max_persons = 5, ...) {
+  cat(format(x, max_persons = max_persons, ...), sep = "\n")
   invisible(x)
 }
 
@@ -358,7 +353,7 @@ format.gesis_hits <- function(x, n = 3, max_persons = 5, ...) {
     if (length(x)) {
       for (i in seq(1, min(length(x), n))) {
         cli::cat_line()
-        print(x[[i]], max_persons = max_persons)
+        print(x[[i]], max_persons = max_persons, ...)
       }
 
       if (length(x) > 5) {
@@ -371,7 +366,7 @@ format.gesis_hits <- function(x, n = 3, max_persons = 5, ...) {
 
 
 #' @export
-print.gesis_hits <- function(x, n = 5, ...) {
-  cat(format(x, all = all), sep = "\n")
+print.gesis_hits <- function(x, n = 5, max_persons = 5, ...) {
+  cat(format(x, n = n, max_persons = max_persons, ...), sep = "\n")
   invisible(x)
 }
