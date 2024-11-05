@@ -118,7 +118,19 @@ allbus
 
 # Data retrieval
 
-Both of the last two steps ultimately help to retrieve survey data from the GESIS data archive. First, authentication is needed to be allowed to download in the first place. Second, a metadata record (or at least a record ID) is needed to specify what dataset you want to download. Accordingly, we can simply use the allbus record we queried above to download a .sav file from GESIS.
+Both of the last two steps ultimately help to retrieve survey data from the GESIS data archive. First, authentication is needed to be allowed to download in the first place. Second, a metadata record (or at least a record ID) is needed to specify what dataset you want to download. Finally, it is often a good idea to first explore what kinds of data are in store for a given record. The `gesis_file_types()` function gives insights into the types of data available.
+
+```{r}
+gesis_file_types(allbus)
+```
+
+Now we know that the ALLBUS record contains dataset files. But which files are available exactly?
+
+```{r}
+gesis_files(allbus, type = "dataset")
+```
+
+Using this information, we can download the .sav file to disk using the `gesis_data()` function.
 
 ```{r, eval=FALSE}
 path <- gesis_data(allbus, select = "\\.sav")
