@@ -2,9 +2,12 @@
 % Please edit documentation in R/gesis_auth.R
 \name{gesis_auth}
 \alias{gesis_auth}
+\alias{gesis_can_auth}
 \title{Authenticate user}
 \usage{
 gesis_auth(email = NULL, password = NULL, prompt = interactive())
+
+gesis_can_auth()
 }
 \arguments{
 \item{email, password}{Email address and password linked to a GESIS user
@@ -34,6 +37,19 @@ OAuth request is sent, you can set \code{options(rgesis_cache_disk = TRUE)}
 to allow the access token to be cached. Note that this comes at the cost
 of storing access credentials on disk. See
 \code{\link[httr2]{req_oauth_password}} for details.
+
+To check if the package can successfully authenticate without passing
+new credentials, you can run \code{gesis_can_auth()}. Note that this
+function catches all types of errors that occur when trying to
+authenticate. It does not make assumptions about the reason why an error
+occured. In other words, a failing auth check is not a guarantee that an
+authentication is invalid. This function can be handy to check if datasets
+can be downloaded in automated workflows without throwing an error. For
+example:
+
+\preformatted{if (gesis_can_auth()) {
+  gesis_data(...)
+}}
 }
 \examples{
 if (FALSE) {

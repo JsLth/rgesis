@@ -25,6 +25,19 @@
 #' of storing access credentials on disk. See
 #' \code{\link[httr2]{req_oauth_password}} for details.
 #'
+#' To check if the package can successfully authenticate without passing
+#' new credentials, you can run \code{gesis_can_auth()}. Note that this
+#' function catches all types of errors that occur when trying to
+#' authenticate. It does not make assumptions about the reason why an error
+#' occured. In other words, a failing auth check is not a guarantee that an
+#' authentication is invalid. This function can be handy to check if datasets
+#' can be downloaded in automated workflows without throwing an error. For
+#' example:
+#'
+#' \preformatted{if (gesis_can_auth()) {
+#'   gesis_data(...)
+#' }}
+#'
 #' @export
 #'
 #' @examples
@@ -76,6 +89,14 @@ gesis_auth <- function(email = NULL,
 }
 
 
+#' @rdname gesis_auth
+#' @export
+gesis_can_auth <- function() {
+  assert_login(quiet = TRUE) %except% return(FALSE)
+  TRUE
+}
+
+
 has_key <- function(email) {
   keys <- keyring::key_list(rgesis_keyring())
   if (nrow(keys) > 1) {
@@ -88,7 +109,7 @@ has_key <- function(email) {
 }
 
 
-assert_login <- function(email = NULL, password = NULL) {
+assert_login <- function(email = NULL, password = NULL, quiet = FALSE) {
   if (is.null(email) && is.null(password)) {
     creds <- gesis_get_auth()
     email <- creds$email
@@ -101,7 +122,11 @@ assert_login <- function(email = NULL, password = NULL) {
     password = password
   )
 
-  cli::cli_alert_success("Successfully performed GESIS login.")
+  if (!quiet) {
+    cli::cli_alert_success("Successfully performed GESIS login.")
+  }
+
+  TRUE
 }
 
 
