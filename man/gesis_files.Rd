@@ -5,12 +5,12 @@
 \alias{gesis_file_types}
 \title{GESIS files}
 \usage{
-gesis_files(hit, type = "dataset")
+gesis_files(record, type = "dataset")
 
-gesis_file_types(hit)
+gesis_file_types(record)
 }
 \arguments{
-\item{hit}{Object of class \code{gesis_hit} as returned by
+\item{record}{Object of class \code{gesis_record} as returned by
 \code{\link{gesis_search}} and \code{gesis_get} or dataset ID. If a dataset ID
 is passed, the function performs a call to \code{\link{gesis_get}}.}
 

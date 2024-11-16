@@ -2,7 +2,7 @@
 % Please edit documentation in R/gesis_search.R
 \name{gesis_search}
 \alias{gesis_search}
-\alias{as.data.frame.gesis_hits}
+\alias{as.data.frame.gesis_records}
 \title{GESIS Search}
 \usage{
 gesis_search(
@@ -30,7 +30,7 @@ gesis_search(
   tidy = FALSE
 )
 
-\method{as.data.frame}{gesis_hits}(x, ...)
+\method{as.data.frame}{gesis_records}(x, ...)
 }
 \arguments{
 \item{query}{The search term to query. Terms can be seperated by operators
@@ -116,18 +116,18 @@ all pages.}
 \item{tidy}{If \code{TRUE}, returns the records in a rectangular shape that
 can be wrangled more easily. In this form, some more complex metadata fields
 that cannot be converted to a rectangular shapre are discarded. If
-\code{FALSE}, returns the records as a list-like \code{gesis_hits} object.
+\code{FALSE}, returns the records as a list-like \code{gesis_records} object.
 This object is more comprehensive, but harder to work with. Defaults to
 \code{FALSE}.}
 
-\item{x}{Object of class \code{gesis_hits}}
+\item{x}{Object of class \code{gesis_records}}
 
 \item{...}{Arguments passed on to the respective S3 methods.}
 }
 \value{
 If \code{tidy = FALSE}, returns an object of class
-\code{gesis_hits} consisting of multiple objects of class \code{gesis_hit}.
-Each \code{gesis_hit} contains attributes \code{index}, \code{id}, and
+\code{gesis_records} consisting of multiple objects of class \code{gesis_record}.
+Each \code{gesis_record} contains attributes \code{index}, \code{id}, and
 \code{score} specifying the index, the record ID, and the match score.
 
 If \code{tidy = TRUE}, returns a dataframe or tibble where each
@@ -146,7 +146,7 @@ variables, tools, publications, libraries, and websites.
 gesis_search()
 
 # Queries can be narrowed down by providing a query string
-hit <- gesis_search("climate change")
+record <- gesis_search("climate change")
 
 # gesis_search() searches for all types of records by default. If you only
 # want to search for, say, datasets, you can set the `type` argument.
@@ -161,13 +161,20 @@ if (FALSE) gesis_search("climate change", pages = NULL) # all pages
 # good for representing detailed information, but not for analyzing data.
 # Results can be tidied up to a dataframe using either `as_tibble()`
 # or by setting the `tidy` argument to TRUE
-tibble::as_tibble(hit)
+tibble::as_tibble(record)
 gesis_search("climate change", tidy = TRUE)
 
 # Using the fields argument you can control how different text fields
-# are weighted in matching the query string. Here we search for
-# "climate change" only in full texts, not in other fields
-gesis_search("climate change", fields = field_weights(full_text = 10))
+# are weighted in matching the query string.
+# Search for "climate change" only in texts, not in other fields
+gesis_search("climate change", fields = field_weights(
+  full_text = 10,
+  abstract_en = 5,
+  abstract = 3
+))
+
+# Search for articles in a specified journal
+gesis_search("urban planning", fields = field_weights(coreJournalTitle = 10))
 
 # Search strings are separated by an AND operator by default
 # this default can be overwritten by setting default_operator = "OR"

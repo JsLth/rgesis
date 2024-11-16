@@ -32,15 +32,15 @@
 #' # other record types can have files, too
 #' type <- gesis_file_types("pretest-129")
 #' gesis_files("pretest-129", type = "uncategorized")}
-gesis_files <- function(hit, type = "dataset") {
-  assert_class(hit, c("character", "gesis_hit"))
+gesis_files <- function(record, type = "dataset") {
+  assert_class(record, c("character", "gesis_record"))
   type <- match.arg(type, choices = file_types)
 
-  if (is.character(hit)) {
-    hit <- gesis_get(hit)
+  if (is.character(record)) {
+    record <- gesis_get(record)
   }
 
-  links <- get_links_from_hit(hit, type = type)
+  links <- get_links_from_record(record, type = type)
   class(links) <- "gesis_files"
   links
 }
@@ -48,36 +48,36 @@ gesis_files <- function(hit, type = "dataset") {
 
 #' @rdname gesis_files
 #' @export
-gesis_file_types <- function(hit) {
-  assert_class(hit, c("character", "gesis_hit"))
+gesis_file_types <- function(record) {
+  assert_class(record, c("character", "gesis_record"))
 
-  if (is.character(hit)) {
-    hit <- gesis_get(hit)
+  if (is.character(record)) {
+    record <- gesis_get(record)
   }
 
-  cats <- names(hit)
+  cats <- names(record)
   cats <- cats[startsWith(cats, "links")]
   cats[cats %in% "links"] <- "uncategorized"
   gsub("^links_", "", cats) %empty% NULL
 }
 
 
-get_links_from_hit <- function(hit, type) {
+get_links_from_record <- function(record, type) {
   if (!identical(type, "uncategorized")) {
     link_field <- sprintf("links_%s", type)
   } else {
     link_field <- "links"
   }
 
-  if (!link_field %in% names(hit)) {
+  if (!link_field %in% names(record)) {
     trail_s <- ifelse(!identical(type, "otherdocs"), "s", "")
-    id <- attr(hit, 'id')
+    id <- attr(record, 'id')
     rg_stop(c(
       "No {.field {type}}{trail_s} are available for record ID {.val {id}}.",
       "i" = "You can find out which file types are available using `gesis_file_types(\"{id}\")`."
     ))
   }
-  hit[[link_field]]
+  record[[link_field]]
 }
 
 

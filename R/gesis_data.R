@@ -1,9 +1,9 @@
 #' Download survey data
 #' @description
-#' Downloads survey data from GESIS given a hit or a dataset ID. To download
+#' Downloads survey data from GESIS given a record or a dataset ID. To download
 #' data, the session must be authenticated using \code{\link{gesis_auth}}.
 #'
-#' @param hit Object of class \code{gesis_hit} as returned by
+#' @param record Object of class \code{gesis_record} as returned by
 #' \code{\link{gesis_search}} and \code{gesis_get} or dataset ID. If a dataset ID
 #' is passed, the function performs a call to \code{\link{gesis_get}}.
 #' @param download_purpose Purpose for the use of the research data as
@@ -52,17 +52,17 @@
 #' @examples
 #' if (FALSE) {
 #' # retrieve a search record to pass on to gesis_data()
-#' hit <- gesis_search(
+#' record <- gesis_search(
 #'   "allbus",
 #'   publication_year = c(2019, 2020),
 #'   type = "research_data"
 #' )
 #'
 #' # in interactive mode, the function can be run without arguments
-#' path <- gesis_data(hit[[1]])
+#' path <- gesis_data(record[[1]])
 #'
 #' # in other cases, certain arguments should be provided
-#' path <- gesis_data(hit[[1]], download_purpose = "non_scientific", select = "\\.sav")
+#' path <- gesis_data(record[[1]], download_purpose = "non_scientific", select = "\\.sav")
 #'
 #' # you can also simply pass a dataset ID
 #' path <- gesis_data("ZA3753", select = "\\.por")
@@ -74,13 +74,13 @@
 #' path <- gesis_data("ZA3753", select = "fb\\.pdf", type = "questionnaire")
 #' pdftools::pdf_text(path)
 #' }
-gesis_data <- function(hit,
+gesis_data <- function(record,
                        download_purpose = NULL,
                        path = tempdir(),
                        type = "dataset",
                        select = NULL,
                        prompt = interactive()) {
-  assert_class(hit, c("character", "gesis_hit"))
+  assert_class(record, c("character", "gesis_record"))
   assert_vector(path, "character", size = 1)
   assert_vector(select, "character", size = 1, null = TRUE)
   assert_flag(prompt)
@@ -96,11 +96,11 @@ gesis_data <- function(hit,
   type <- match.arg(type, choices = file_types)
 
   # if a character is provided, interpret it as an id and look it up
-  if (is.character(hit)) {
-    hit <- gesis_get(hit)
+  if (is.character(record)) {
+    record <- gesis_get(record)
   }
 
-  links <- get_links_from_hit(hit, type = type)
+  links <- get_links_from_record(record, type = type)
   label_field <- if ("label_en" %in% names(links)) "label_en" else "label"
   labels <- vapply(links, FUN.VALUE = character(1), "[[", label_field)
 
@@ -122,7 +122,7 @@ gesis_data <- function(hit,
 
   # if no file matches the select regex, fail
   if (!length(links)) {
-    rg_stop("`select` did not match any {.field {type}} for record ID {.val {attr(hit, 'id')}}.")
+    rg_stop("`select` did not match any {.field {type}} for record ID {.val {attr(record, 'id')}}.")
   }
 
   # if there's still multiple links, fail

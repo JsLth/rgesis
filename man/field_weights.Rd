@@ -17,7 +17,7 @@ to \code{...}.}
 A character vector of field weights.
 }
 \description{
-Construct a vector that can be used to weight metadata fields of search hits.
+Construct a vector that can be used to weight metadata fields of search records.
 To be used as input to the \code{fields} argument in
 \code{\link{gesis_search}}.
 }

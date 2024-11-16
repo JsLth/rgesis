@@ -10,7 +10,7 @@ gesis_get(id)
 \item{id}{Dataset ID of the record.}
 }
 \value{
-An object of class \code{gesis_hit}.
+An object of class \code{gesis_record}.
 }
 \description{
 Performs a simple lookup of a specific GESIS record ID and retrieves its

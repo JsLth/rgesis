@@ -47,9 +47,31 @@ pak::pkg_install("jslth/rgesis")
 ``` r
 library(rgesis)
 gesis_search("allbus", type = "research_data")
-#> A list of <gesis_hits> with 10 hits
+#> A list of <gesis_records> with 10 records
 #> 
-#> <gesis_hit>
+#> <gesis_record>
+#> Type: research_data
+#> ID: SDN-10.7802-2497
+#> Title: Code/Syntax: The role of values as mediator in relationships between
+#> social position and cultural omnivorousness in Germany [Replication files]
+#> Date: 2022
+#> Person:
+#> • Voronin, Yevhen
+#> 
+#> <gesis_record>
+#> Type: research_data
+#> ID: ZA5272
+#> Title: German General Social Survey - ALLBUS 2018
+#> Date: 2019
+#> Persons:
+#> • Diekmann, Andreas
+#> • Hadjar, Andreas
+#> • Kurz, Karin
+#> • Rosar, Ulrich
+#> • Wagner, Ulrich
+#> • ... and 1 more
+#> 
+#> <gesis_record>
 #> Type: research_data
 #> ID: ZA3753
 #> Title: German General Social Survey - ALLBUS 1998
@@ -62,7 +84,7 @@ gesis_search("allbus", type = "research_data")
 #> • Müller, Walter
 #> • ... and 2 more
 #> 
-#> <gesis_hit>
+#> <gesis_record>
 #> Type: research_data
 #> ID: ZA3702
 #> Title: German General Social Survey - ALLBUS 2002
@@ -75,10 +97,10 @@ gesis_search("allbus", type = "research_data")
 #> • Huinink, Johannes
 #> • ... and 2 more
 #> 
-#> <gesis_hit>
+#> <gesis_record>
 #> Type: research_data
-#> ID: ZA5272
-#> Title: German General Social Survey - ALLBUS 2018
+#> ID: ZA5270
+#> Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 2018
 #> Date: 2019
 #> Persons:
 #> • Diekmann, Andreas
@@ -87,17 +109,17 @@ gesis_search("allbus", type = "research_data")
 #> • Rosar, Ulrich
 #> • Wagner, Ulrich
 #> • ... and 1 more
-#> # ℹ 7 more hits
-#> # ℹ Use `print(n = ...)` to see more hits
+#> # ℹ 5 more records
+#> # ℹ Use `print(n = ...)` to see more records
 ```
 
 … or other things from the social sciences, like publications.
 
 ``` r
 gesis_search("climate change", type = "publication")
-#> A list of <gesis_hits> with 10 hits
+#> A list of <gesis_records> with 10 records
 #> 
-#> <gesis_hit>
+#> <gesis_record>
 #> Type: publication
 #> ID: csa-pais-2011-148719
 #> Title: Migration and Climate Change
@@ -107,7 +129,7 @@ gesis_search("climate change", type = "publication")
 #> • Pecoud, Antoine [Ed]
 #> • de Guchteneire, Paul [Ed]
 #> 
-#> <gesis_hit>
+#> <gesis_record>
 #> Type: publication
 #> ID: gesis-ssoar-75571
 #> Title: Japan's Climate Change Discourse: Toward Climate Securitisation?
@@ -116,13 +138,29 @@ gesis_search("climate change", type = "publication")
 #> • Koppenborg, Florentine
 #> • Hanssen, Ulv
 #> 
-#> <gesis_hit>
+#> <gesis_record>
 #> Type: publication
 #> ID: fes-bib-469114
 #> Title: Human rights and climate change
 #> Date: 2009
-#> # ℹ 7 more hits
-#> # ℹ Use `print(n = ...)` to see more hits
+#> 
+#> <gesis_record>
+#> Type: publication
+#> ID: gesis-ssoar-76642
+#> Title: Attitudes towards climate change migrants
+#> Date: 2020
+#> Person:
+#> • Helbling, Marc
+#> 
+#> <gesis_record>
+#> Type: publication
+#> ID: bibsonomy-goughietal2008climate
+#> Title: Climate Change and Social Policy
+#> Date: 2008
+#> Person:
+#> • Gough, I. et al
+#> # ℹ 5 more records
+#> # ℹ Use `print(n = ...)` to see more records
 ```
 
 The results include metadata in complex data structures – or simplified
@@ -130,26 +168,26 @@ to a tidy rectangular shape.
 
 ``` r
 gesis_search(tidy = TRUE)
-#> # A tibble: 10 × 31
-#>    id      title type  date  date_recency abstract portal_url person person_sort
-#>    <chr>   <chr> <chr> <chr> <chr>        <chr>    <chr>      <list> <chr>      
-#>  1 gesis-… Glob… publ… 2008  2008         This ar… http://ww… <chr>  Forrest    
-#>  2 gesis-… From… publ… 2008  2008         The art… http://ww… <chr>  Bradshaw   
-#>  3 gesis-… Glob… publ… 2008  2008         Violent… http://ww… <chr>  Piachaud   
-#>  4 gesis-… Cult… publ… 2005  2005         <NA>     http://ww… <chr>  Ticktin    
-#>  5 gesis-… Insu… publ… 2005  2005         <NA>     http://ww… <chr>  Lowe       
-#>  6 gesis-… The … publ… 2005  2005         <NA>     http://ww… <chr>  HelliwellH…
-#>  7 gesis-… Kins… publ… 2005  2005         Among t… http://ww… <chr>  Yemelianova
-#>  8 gesis-… Libe… publ… 2005  2005         <NA>     http://ww… <chr>  Loobuyck   
-#>  9 gesis-… The … publ… 2005  2005         The foc… http://ww… <chr>  HickmanMor…
-#> 10 gesis-… Excl… publ… 2005  2005         This ar… http://ww… <chr>  AndersonTa…
-#> # ℹ 22 more variables: source <chr>, subtype <chr>, document_type <chr>,
-#> #   institutions <chr>, coreAuthor <list>, coreSjahr <chr>,
-#> #   coreJournalTitle <chr>, coreZsband <chr>, coreZsnummer <chr>,
-#> #   coreLanguage <chr>, doi <chr>, urn <chr>, data_source <chr>,
-#> #   index_source <chr>, database <chr>, link_count <int>, gesis_own <int>,
-#> #   fulltext <int>, metadata_quality <int>, full_text <chr>, coreIssn <chr>,
-#> #   topic <chr>
+#> # A tibble: 10 × 56
+#>    id       title type  date  date_recency abstract abstract_en portal_url doi  
+#>    <chr>    <chr> <chr> <chr> <chr>        <chr>    <chr>       <chr>      <chr>
+#>  1 zis198   Eins… inst… 1998  1998         "Die hi… The items … https://z… http…
+#>  2 gesis-s… Univ… publ… 2003  2003         "\"Die … <NA>        http://ww… <NA> 
+#>  3 gesis-s… 'Con… publ… 2006  2006          <NA>    <NA>        http://ww… <NA> 
+#>  4 gesis-s… A ed… publ… 2000  2000         "Estudo… <NA>        http://ww… <NA> 
+#>  5 gesis-s… Wahl… publ… 2007  2007         "Nach J… <NA>        http://ww… <NA> 
+#>  6 gesis-s… The … publ… 2014  2014         "In Dec… <NA>        http://ww… <NA> 
+#>  7 gesis-s… Dive… publ… 2000  2000         "Este a… <NA>        http://ww… <NA> 
+#>  8 gesis-s… Reze… publ… 2012  2012          <NA>    <NA>        http://ww… <NA> 
+#>  9 gesis-s… Konf… publ… 2004  2004          <NA>    <NA>        http://ww… <NA> 
+#> 10 gesis-s… Reze… publ… 2004  2004          <NA>    <NA>        http://ww… <NA> 
+#> # ℹ 47 more variables: topic <list>, topic_en <chr>, subject <chr>,
+#> #   subject_en <chr>, person <list>, person_sort <chr>, source <chr>,
+#> #   subtype <chr>, zis_date <chr>, count_items <chr>, validity <chr>,
+#> #   construct <chr>, language_documentation <chr>, language_items <chr>,
+#> #   language_items_en <chr>, author_website <chr>, data_archiv_website <chr>,
+#> #   item_in_socialsurvey <chr>, status_instrument <chr>, instrument <chr>,
+#> #   theory <chr>, development <chr>, quality_criteria <chr>, …
 ```
 
 Metadata records can also be used to download survey data directly from

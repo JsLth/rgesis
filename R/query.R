@@ -117,7 +117,7 @@ query_set_filter <- function(q, ..., queryless = FALSE) {
 
 #' Construct field weights
 #' @description
-#' Construct a vector that can be used to weight metadata fields of search hits.
+#' Construct a vector that can be used to weight metadata fields of search records.
 #' To be used as input to the \code{fields} argument in
 #' \code{\link{gesis_search}}.
 #'

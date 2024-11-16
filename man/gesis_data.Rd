@@ -5,7 +5,7 @@
 \title{Download survey data}
 \usage{
 gesis_data(
-  hit,
+  record,
   download_purpose = NULL,
   path = tempdir(),
   type = "dataset",
@@ -14,7 +14,7 @@ gesis_data(
 )
 }
 \arguments{
-\item{hit}{Object of class \code{gesis_hit} as returned by
+\item{record}{Object of class \code{gesis_record} as returned by
 \code{\link{gesis_search}} and \code{gesis_get} or dataset ID. If a dataset ID
 is passed, the function performs a call to \code{\link{gesis_get}}.}
 
@@ -60,7 +60,7 @@ files are offered in Stata and SPSS file formats and can be read using the
 \href{https://haven.tidyverse.org/}{haven} package.
 }
 \description{
-Downloads survey data from GESIS given a hit or a dataset ID. To download
+Downloads survey data from GESIS given a record or a dataset ID. To download
 data, the session must be authenticated using \code{\link{gesis_auth}}.
 }
 \details{
@@ -71,17 +71,17 @@ to avoid sending authentication information to other domains.
 \examples{
 if (FALSE) {
 # retrieve a search record to pass on to gesis_data()
-hit <- gesis_search(
+record <- gesis_search(
   "allbus",
   publication_year = c(2019, 2020),
   type = "research_data"
 )
 
 # in interactive mode, the function can be run without arguments
-path <- gesis_data(hit[[1]])
+path <- gesis_data(record[[1]])
 
 # in other cases, certain arguments should be provided
-path <- gesis_data(hit[[1]], download_purpose = "non_scientific", select = "\\\\.sav")
+path <- gesis_data(record[[1]], download_purpose = "non_scientific", select = "\\\\.sav")
 
 # you can also simply pass a dataset ID
 path <- gesis_data("ZA3753", select = "\\\\.por")

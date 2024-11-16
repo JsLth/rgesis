@@ -5,7 +5,7 @@
 #'
 #' @param id Dataset ID of the record.
 #'
-#' @returns An object of class \code{gesis_hit}.
+#' @returns An object of class \code{gesis_record}.
 #'
 #' @export
 #'
