@@ -68,7 +68,7 @@ variables, tools, publications, libraries, and websites.</p>
 <span>  tidy <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># S3 method for class 'gesis_hits'</span></span>
+<span><span class="co"># S3 method for class 'gesis_records'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -196,13 +196,13 @@ all pages.</p></dd>
 <dd><p>If <code>TRUE</code>, returns the records in a rectangular shape that
 can be wrangled more easily. In this form, some more complex metadata fields
 that cannot be converted to a rectangular shapre are discarded. If
-<code>FALSE</code>, returns the records as a list-like <code>gesis_hits</code> object.
+<code>FALSE</code>, returns the records as a list-like <code>gesis_records</code> object.
 This object is more comprehensive, but harder to work with. Defaults to
 <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>Object of class <code>gesis_hits</code></p></dd>
+<dd><p>Object of class <code>gesis_records</code></p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -212,8 +212,8 @@ This object is more comprehensive, but harder to work with. Defaults to
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>If <code>tidy = FALSE</code>, returns an object of class
-<code>gesis_hits</code> consisting of multiple objects of class <code>gesis_hit</code>.
-Each <code>gesis_hit</code> contains attributes <code>index</code>, <code>id</code>, and
+<code>gesis_records</code> consisting of multiple objects of class <code>gesis_record</code>.
+Each <code>gesis_record</code> contains attributes <code>index</code>, <code>id</code>, and
 <code>score</code> specifying the index, the record ID, and the match score.</p>
 <p>If <code>tidy = TRUE</code>, returns a dataframe or tibble where each
 row is a record and each column is a metadata field.</p>
@@ -226,125 +226,121 @@ row is a record and each column is a metadata field.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Make a queryless search across the entire database and return</span></span></span>
 <span class="r-in"><span><span class="co"># the first 10 results</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_hits&gt;</span> with 10 hits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-22993</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Globalization and the Housing Asset Rich: Geographies, Demographies and</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Policy Convoys</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2008</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Forrest, Ray</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> instruments_tools</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> zis198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Einstellungen zu Juden</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Zentralarchiv für empirische Sozialforschung (ZA), Zentrum für Umfragen</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Methoden und Analysen (ZUMA) e.V.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-22994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> From Structural Adjustment to Social Adjustment</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2008</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Bradshaw, Sarah</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-11223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Universität Bamberg - eine familienfreundliche Hochschule? Zur</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Vereinbarkeit von Familie und Beruf bzw. Studium an der Universität Bamberg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rost, Harald</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Schmidt, Jan</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-22998</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Globalization, Conflict and Mental Health</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-10451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> 'Concordia' Lomé 1907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2006</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Piachaud, Jack</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sebald, Peter</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-23001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Culture or inequality in sex-selective abortion?</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-10583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> A educação visual na televisão vista como educação cultural, política e</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> estética</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Ticktin, Miriam</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Almeida, Milton José de</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-23005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Insufficient difference</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-10542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Wahlen in der DR Kongo 2006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2007</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Lowe, Lisa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more hits</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more hits</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rohde, Eckart</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Queries can be narrowed down by providing a query string</span></span></span>
-<span class="r-in"><span><span class="va">hit</span> <span class="op">&lt;-</span> <span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">record</span> <span class="op">&lt;-</span> <span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># gesis_search() searches for all types of records by default. If you only</span></span></span>
 <span class="r-in"><span><span class="co"># want to search for, say, datasets, you can set the `type` argument.</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"research_data"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_hits&gt;</span> with 10 hits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> SDN-10.7802-2333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Die Themen "Umwelt" und "Corona" in der medialen Berichterstattung</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> während der ersten Coronawelle in Deutschland 2020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA2248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Media-Analyse (MA 92, Pressemedien)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Arbeitsgemeinschaft Media-Analyse, Frankfurt am Main</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Media-Micro-Census, Frankfurt am Main</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA1426</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Reiseanalyse 1983</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1985</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Krug, Maximilian</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Studienkreis für Tourismus, Starnberg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> SDN-10.7802-2433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> HMC Community Survey 2021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Arndt, Witold</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Gerlich, Silke Christine</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Hofmann, Volker</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Kubin, Markus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Kulla, Lucas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> ... and 9 more</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> SDN-10.7802-2508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> SiE survey dataset on solidarity in Europe (2021)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Hemerijck, Anton</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genschel, Philipp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Cicchi, Lorenzo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Nasr, Mohamed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> SDN-10.7802-2380</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> IMISEM Dataset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA1808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Herbststudie 1984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2014</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Pedroza, Luicy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sozialwissenschaftliches Forschungsinstitut der Konrad-Adenauer-Stiftung, St.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Augustin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> SDN-10.25652-diw_data_S0028.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Highway Conditions and Insufficient Maintenance in Germany: A Threat for</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Economic Growth? – Online Appendix</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Gaus, Dennis (Projektleitung)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Link, Heike (Projektleitung)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more hits</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more hits</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA1810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Frühjahrsstudie 1986</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1990</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sozialwissenschaftliches Forschungsinstitut der Konrad-Adenauer-Stiftung, St.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Augustin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA1807</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Frühjahrsstudie 1984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1990</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sozialwissenschaftliches Forschungsinstitut der Konrad-Adenauer-Stiftung, St.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Augustin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># By default, only 10 results (1 page) are returned. You can specify</span></span></span>
 <span class="r-in"><span><span class="co"># which pages should queried or if all should be returned</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span>, pages <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="co"># pages 2 and 3</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_hits&gt;</span> with 20 hits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 20 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_bib</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-bib-126747</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Climate change and cultural diversity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Wisner, Ben</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-79316</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Germany's Federal Climate Change Act</span>
@@ -353,7 +349,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Flachsland, Christian</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Levi, Sebastian</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-45173</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Can climate change negotiations succeed?</span>
@@ -363,7 +359,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Skodvin, Tora</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Aakre, Stine</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> bibsonomy-flachsland2021germanys</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Germany’s Federal Climate Change Act</span>
@@ -372,7 +368,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Flachsland, Christian</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Levi, Sebastian</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> bibsonomy-evansa2013climate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Climate of Doubt: What Australians Think About Climate Change</span>
@@ -380,26 +376,26 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Evans, A.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Reimondos, A.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 15 more hits</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more hits</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 15 more records</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span>, pages <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="co"># all pages</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># By default, results are wrapped in a complex list structure. This is</span></span></span>
 <span class="r-in"><span><span class="co"># good for representing detailed information, but not for analyzing data.</span></span></span>
 <span class="r-in"><span><span class="co"># Results can be tidied up to a dataframe using either `as_tibble()`</span></span></span>
 <span class="r-in"><span><span class="co"># or by setting the `tidy` argument to TRUE</span></span></span>
-<span class="r-in"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">hit</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">record</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 50</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id            title type  date  date_recency abstract portal_url topic person</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> csa-pais-201… Migr… publ… 2011  2011         <span style="color: #949494;">"</span>Provid… http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gesis-ssoar-… Japa… publ… 2021  2021         <span style="color: #949494;">"</span>This a… https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gesis-bib-14… The … gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> fes-bib-4691… Huma… publ… 2009  2009          <span style="color: #BB0000;">NA</span>      http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> fes-bib-4691… Huma… publ… 2009  2009          <span style="color: #BB0000;">NA</span>      http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gesis-ssoar-… Atti… publ… 2020  2020         <span style="color: #949494;">"</span>While … https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gesis-bib-15… Clim… gesi… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> gesis-bib-15… Clim… publ… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 41 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
@@ -416,11 +412,11 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> csa-pais-201… Migr… publ… 2011  2011         <span style="color: #949494;">"</span>Provid… http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gesis-ssoar-… Japa… publ… 2021  2021         <span style="color: #949494;">"</span>This a… https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gesis-bib-14… The … gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> fes-bib-4691… Huma… publ… 2009  2009          <span style="color: #BB0000;">NA</span>      http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> fes-bib-4691… Huma… publ… 2009  2009          <span style="color: #BB0000;">NA</span>      http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gesis-ssoar-… Atti… publ… 2020  2020         <span style="color: #949494;">"</span>While … https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gesis-bib-15… Clim… gesi… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> gesis-bib-15… Clim… publ… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 41 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
@@ -432,21 +428,16 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   coreZsnummer &lt;chr&gt;, doi &lt;chr&gt;, coreIssn &lt;chr&gt;, metadata_quality &lt;chr&gt;, …</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using the fields argument you can control how different text fields</span></span></span>
-<span class="r-in"><span><span class="co"># are weighted in matching the query string. Here we search for</span></span></span>
-<span class="r-in"><span><span class="co"># "climate change" only in full texts, not in other fields</span></span></span>
-<span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span>, fields <span class="op">=</span> <span class="fu"><a href="field_weights.html">field_weights</a></span><span class="op">(</span>full_text <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_hits&gt;</span> with 10 hits</span>
+<span class="r-in"><span><span class="co"># are weighted in matching the query string.</span></span></span>
+<span class="r-in"><span><span class="co"># Search for "climate change" only in texts, not in other fields</span></span></span>
+<span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span>, fields <span class="op">=</span> <span class="fu"><a href="field_weights.html">field_weights</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  full_text <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  abstract_en <span class="op">=</span> <span class="fl">5</span>,</span></span>
+<span class="r-in"><span>  abstract <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-46462</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> The Paris Agreement 2015: turning point for the international climate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> regime</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Dröge, Susanne</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-22412</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Does tomorrow ever come? Disaster narrative and public perceptions of</span>
@@ -460,37 +451,100 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Haynes, Kat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> ... and 1 more</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-19413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Framing adaptation to climate change - a challenge for building</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> institutions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-22420</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Ideological cultures and media discourses on scientific knowledge:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> re-reading news on climate change</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2007</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Horstmann, Britta</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Carvalho, Anabela</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-61995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> The Baker's Dozen: Key Nations Can and Should Act Together to Prevent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Further Dangerous Climate Change</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2009</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Oleson, Kirsten</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Hartzell, Lauren</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Mastrandea, Michael D.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-43950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Can affluence explain public attitudes towards climate change mitigation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> policies? A multilevel analysis with data from 27 EU countries</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sasko, David</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-61737</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Scenario as a tool for critical thinking: climate change awareness and</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> denial as a case study</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-39185</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Green governance - one solution for two problems? Climate change and</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> economic shocks ; risk perceptions and coping strategies in China, India and</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bangladesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2010</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Gramigna, Remo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Marling, Raili</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more hits</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more hits</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Senz, Anja</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Reinhardt, Dieter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-63976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> From climate migration to anthropocene mobilities: shifting the debate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Baldwin, Andrew</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Fröhlich, Christiane</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rothe, Delf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Search for articles in a specified journal</span></span></span>
+<span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"urban planning"</span>, fields <span class="op">=</span> <span class="fu"><a href="field_weights.html">field_weights</a></span><span class="op">(</span>coreJournalTitle <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54205</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Designing Difference: Co-Production of Spaces of Potentiality</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Wolf, Garrett</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Mahaffey, Nathan</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54236</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Planning for Planet or City?</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Davidson, Mark</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Characterizing New Channels of Communication: A Case Study of Municipal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 311 Requests in Edmonton, Canada</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Lu, Qing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Johnson, Peter A.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54306</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Planning with Citizens: Implementation of an e-Planning Platform and</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of Research Needs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Steiniger, Stefan</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Poorazizi, M. Ebrahim</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Hunter, Andrew J. S.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Data-Driven Participation: Algorithms, Cities, Citizens, and Corporate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Control</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Tenney, Matthew</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sieber, Renee</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search strings are separated by an AND operator by default</span></span></span>
 <span class="r-in"><span><span class="co"># this default can be overwritten by setting default_operator = "OR"</span></span></span>
@@ -522,9 +576,9 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Similarly, you can construct complex query terms using operators</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"(climate or environmental) AND (change OR crisis OR action)"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_hits&gt;</span> with 10 hits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-95723</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Environmental awareness: The case of climate change</span>
@@ -533,7 +587,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Weber, Shlomo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Wiesmeth, Hans</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> bibsonomy-hoffmann2022climate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Climate change experiences raise environmental concerns and promote</span>
@@ -545,7 +599,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Peisker, Jonas</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Stanig, Piero</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-78644</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Urban Commons and Collective Action to Address Climate Change</span>
@@ -557,7 +611,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Eriksson, Felix</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sjöberg, Stefan</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> bibsonomy-tranterbruce2011political</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Political divisions over climate change and environmental issues in</span>
@@ -566,7 +620,7 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Tranter, Bruce</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_hit&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> bibsonomy-smith2017public</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Public Attitudes towards Climate Change and Other Environmental Issues</span>
@@ -576,14 +630,14 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Smith, Tom W.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Kim, Jibum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Son, Jaesok</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more hits</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more hits</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Another way to narrow down the search is to set filters. GESIS Search</span></span></span>
 <span class="r-in"><span><span class="co"># offers a number of filters, including topic, publication year or</span></span></span>
 <span class="r-in"><span><span class="co"># methodology. Sensible values can be checked on https://search.gesis.org/.</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span>topics <span class="op">=</span> <span class="st">"climate change"</span>, type <span class="op">=</span> <span class="st">"publication"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_hits&gt;</span> with 0 hits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 0 records</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

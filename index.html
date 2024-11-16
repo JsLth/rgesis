@@ -72,9 +72,31 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span><span class="st">"allbus"</span>, type <span class="op">=</span> <span class="st">"research_data"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; A list of &lt;gesis_hits&gt; with 10 hits</span></span>
+<span><span class="co">#&gt; A list of &lt;gesis_records&gt; with 10 records</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_hit&gt;</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
+<span><span class="co">#&gt; Type: research_data</span></span>
+<span><span class="co">#&gt; ID: SDN-10.7802-2497</span></span>
+<span><span class="co">#&gt; Title: Code/Syntax: The role of values as mediator in relationships between</span></span>
+<span><span class="co">#&gt; social position and cultural omnivorousness in Germany [Replication files]</span></span>
+<span><span class="co">#&gt; Date: 2022</span></span>
+<span><span class="co">#&gt; Person:</span></span>
+<span><span class="co">#&gt; • Voronin, Yevhen</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
+<span><span class="co">#&gt; Type: research_data</span></span>
+<span><span class="co">#&gt; ID: ZA5272</span></span>
+<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2018</span></span>
+<span><span class="co">#&gt; Date: 2019</span></span>
+<span><span class="co">#&gt; Persons:</span></span>
+<span><span class="co">#&gt; • Diekmann, Andreas</span></span>
+<span><span class="co">#&gt; • Hadjar, Andreas</span></span>
+<span><span class="co">#&gt; • Kurz, Karin</span></span>
+<span><span class="co">#&gt; • Rosar, Ulrich</span></span>
+<span><span class="co">#&gt; • Wagner, Ulrich</span></span>
+<span><span class="co">#&gt; • ... and 1 more</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
 <span><span class="co">#&gt; ID: ZA3753</span></span>
 <span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 1998</span></span>
@@ -87,7 +109,7 @@
 <span><span class="co">#&gt; • Müller, Walter</span></span>
 <span><span class="co">#&gt; • ... and 2 more</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_hit&gt;</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
 <span><span class="co">#&gt; ID: ZA3702</span></span>
 <span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2002</span></span>
@@ -100,10 +122,10 @@
 <span><span class="co">#&gt; • Huinink, Johannes</span></span>
 <span><span class="co">#&gt; • ... and 2 more</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_hit&gt;</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA5272</span></span>
-<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2018</span></span>
+<span><span class="co">#&gt; ID: ZA5270</span></span>
+<span><span class="co">#&gt; Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 2018</span></span>
 <span><span class="co">#&gt; Date: 2019</span></span>
 <span><span class="co">#&gt; Persons:</span></span>
 <span><span class="co">#&gt; • Diekmann, Andreas</span></span>
@@ -112,14 +134,14 @@
 <span><span class="co">#&gt; • Rosar, Ulrich</span></span>
 <span><span class="co">#&gt; • Wagner, Ulrich</span></span>
 <span><span class="co">#&gt; • ... and 1 more</span></span>
-<span><span class="co">#&gt; # ℹ 7 more hits</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more hits</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 5 more records</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more records</span></span></code></pre></div>
 <p>… or other things from the social sciences, like publications.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span><span class="st">"climate change"</span>, type <span class="op">=</span> <span class="st">"publication"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; A list of &lt;gesis_hits&gt; with 10 hits</span></span>
+<span><span class="co">#&gt; A list of &lt;gesis_records&gt; with 10 records</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_hit&gt;</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: publication</span></span>
 <span><span class="co">#&gt; ID: csa-pais-2011-148719</span></span>
 <span><span class="co">#&gt; Title: Migration and Climate Change</span></span>
@@ -129,7 +151,7 @@
 <span><span class="co">#&gt; • Pecoud, Antoine [Ed]</span></span>
 <span><span class="co">#&gt; • de Guchteneire, Paul [Ed]</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_hit&gt;</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: publication</span></span>
 <span><span class="co">#&gt; ID: gesis-ssoar-75571</span></span>
 <span><span class="co">#&gt; Title: Japan's Climate Change Discourse: Toward Climate Securitisation?</span></span>
@@ -138,36 +160,52 @@
 <span><span class="co">#&gt; • Koppenborg, Florentine</span></span>
 <span><span class="co">#&gt; • Hanssen, Ulv</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_hit&gt;</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: publication</span></span>
 <span><span class="co">#&gt; ID: fes-bib-469114</span></span>
 <span><span class="co">#&gt; Title: Human rights and climate change</span></span>
 <span><span class="co">#&gt; Date: 2009</span></span>
-<span><span class="co">#&gt; # ℹ 7 more hits</span></span>
-<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more hits</span></span></code></pre></div>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
+<span><span class="co">#&gt; Type: publication</span></span>
+<span><span class="co">#&gt; ID: gesis-ssoar-76642</span></span>
+<span><span class="co">#&gt; Title: Attitudes towards climate change migrants</span></span>
+<span><span class="co">#&gt; Date: 2020</span></span>
+<span><span class="co">#&gt; Person:</span></span>
+<span><span class="co">#&gt; • Helbling, Marc</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
+<span><span class="co">#&gt; Type: publication</span></span>
+<span><span class="co">#&gt; ID: bibsonomy-goughietal2008climate</span></span>
+<span><span class="co">#&gt; Title: Climate Change and Social Policy</span></span>
+<span><span class="co">#&gt; Date: 2008</span></span>
+<span><span class="co">#&gt; Person:</span></span>
+<span><span class="co">#&gt; • Gough, I. et al</span></span>
+<span><span class="co">#&gt; # ℹ 5 more records</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more records</span></span></code></pre></div>
 <p>The results include metadata in complex data structures – or simplified to a tidy rectangular shape.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span>tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 31</span></span>
-<span><span class="co">#&gt;    id      title type  date  date_recency abstract portal_url person person_sort</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;      &lt;list&gt; &lt;chr&gt;      </span></span>
-<span><span class="co">#&gt;  1 gesis-… Glob… publ… 2008  2008         This ar… http://ww… &lt;chr&gt;  Forrest    </span></span>
-<span><span class="co">#&gt;  2 gesis-… From… publ… 2008  2008         The art… http://ww… &lt;chr&gt;  Bradshaw   </span></span>
-<span><span class="co">#&gt;  3 gesis-… Glob… publ… 2008  2008         Violent… http://ww… &lt;chr&gt;  Piachaud   </span></span>
-<span><span class="co">#&gt;  4 gesis-… Cult… publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  Ticktin    </span></span>
-<span><span class="co">#&gt;  5 gesis-… Insu… publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  Lowe       </span></span>
-<span><span class="co">#&gt;  6 gesis-… The … publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  HelliwellH…</span></span>
-<span><span class="co">#&gt;  7 gesis-… Kins… publ… 2005  2005         Among t… http://ww… &lt;chr&gt;  Yemelianova</span></span>
-<span><span class="co">#&gt;  8 gesis-… Libe… publ… 2005  2005         &lt;NA&gt;     http://ww… &lt;chr&gt;  Loobuyck   </span></span>
-<span><span class="co">#&gt;  9 gesis-… The … publ… 2005  2005         The foc… http://ww… &lt;chr&gt;  HickmanMor…</span></span>
-<span><span class="co">#&gt; 10 gesis-… Excl… publ… 2005  2005         This ar… http://ww… &lt;chr&gt;  AndersonTa…</span></span>
-<span><span class="co">#&gt; # ℹ 22 more variables: source &lt;chr&gt;, subtype &lt;chr&gt;, document_type &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   institutions &lt;chr&gt;, coreAuthor &lt;list&gt;, coreSjahr &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   coreJournalTitle &lt;chr&gt;, coreZsband &lt;chr&gt;, coreZsnummer &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   coreLanguage &lt;chr&gt;, doi &lt;chr&gt;, urn &lt;chr&gt;, data_source &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   index_source &lt;chr&gt;, database &lt;chr&gt;, link_count &lt;int&gt;, gesis_own &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   fulltext &lt;int&gt;, metadata_quality &lt;int&gt;, full_text &lt;chr&gt;, coreIssn &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   topic &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 10 × 56</span></span>
+<span><span class="co">#&gt;    id       title type  date  date_recency abstract abstract_en portal_url doi  </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1 zis198   Eins… inst… 1998  1998         "Die hi… The items … https://z… http…</span></span>
+<span><span class="co">#&gt;  2 gesis-s… Univ… publ… 2003  2003         "\"Die … &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  3 gesis-s… 'Con… publ… 2006  2006          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  4 gesis-s… A ed… publ… 2000  2000         "Estudo… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  5 gesis-s… Wahl… publ… 2007  2007         "Nach J… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  6 gesis-s… The … publ… 2014  2014         "In Dec… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  7 gesis-s… Dive… publ… 2000  2000         "Este a… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  8 gesis-s… Reze… publ… 2012  2012          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  9 gesis-s… Konf… publ… 2004  2004          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 10 gesis-s… Reze… publ… 2004  2004          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; # ℹ 47 more variables: topic &lt;list&gt;, topic_en &lt;chr&gt;, subject &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   subject_en &lt;chr&gt;, person &lt;list&gt;, person_sort &lt;chr&gt;, source &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   subtype &lt;chr&gt;, zis_date &lt;chr&gt;, count_items &lt;chr&gt;, validity &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   construct &lt;chr&gt;, language_documentation &lt;chr&gt;, language_items &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   language_items_en &lt;chr&gt;, author_website &lt;chr&gt;, data_archiv_website &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   item_in_socialsurvey &lt;chr&gt;, status_instrument &lt;chr&gt;, instrument &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   theory &lt;chr&gt;, development &lt;chr&gt;, quality_criteria &lt;chr&gt;, …</span></span></code></pre></div>
 <p>Metadata records can also be used to download survey data directly from the data archive. You need to be logged in, though.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gesis_auth()</span></span>
