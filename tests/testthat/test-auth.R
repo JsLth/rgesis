@@ -53,6 +53,6 @@ test_that("gesis_data() fails early", {
 local_mocked_bindings(gesis_download = function(path, ...) list(body = path))
 
 test_that("can select data", {
-  expect_true(endsWith(suppressWarnings(gesis_data(record)), ".dta.zip"))
-  expect_true(endsWith(suppressWarnings(gesis_data(record, select = "\\.sav")), ".sav.zip"))
+  expect_true(endsWith(suppressWarnings(gesis_data(record, prompt = TRUE)), ".dta.zip"))
+  expect_true(endsWith(suppressWarnings(gesis_data(record, select = "\\.sav", prompt = TRUE)), ".sav.zip"))
 })
