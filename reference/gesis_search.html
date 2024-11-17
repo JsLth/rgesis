@@ -227,7 +227,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span><span class="co"># the first 10 results</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_product</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-product-175874r5k9gg</span>
@@ -262,7 +261,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span><span class="co"># want to search for, say, datasets, you can set the `type` argument.</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"research_data"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA3651</span>
@@ -323,7 +321,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span><span class="co"># which pages should queried or if all should be returned</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"climate change"</span>, pages <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="co"># pages 2 and 3</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 20 records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> bibsonomy-evansa2013climate</span>
@@ -427,7 +424,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span>  abstract <span class="op">=</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-22412</span>
@@ -486,7 +482,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span><span class="co"># Search for articles in a specified journal</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"urban planning"</span>, fields <span class="op">=</span> <span class="fu"><a href="field_weights.html">field_weights</a></span><span class="op">(</span>coreJournalTitle <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-88806</span>
@@ -566,7 +561,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span><span class="co"># Similarly, you can construct complex query terms using operators</span></span></span>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="st">"(climate or environmental) AND (change OR crisis OR action)"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-95723</span>
