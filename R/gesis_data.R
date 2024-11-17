@@ -111,7 +111,7 @@ gesis_data <- function(record,
   }
 
   # if there's still multiple links, ask manually if possible
-  if (length(links) > 1 && interactive() && prompt) {
+  if (length(links) > 1 && prompt) {
     cli::cli_inform(c(
       "i" = "Multiple data files have been found.",
       "i" = "Please select a file to download from the selection below."
