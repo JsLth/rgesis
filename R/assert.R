@@ -79,3 +79,14 @@ assert_class <- function(x, class, null = FALSE) {
     )
   }
 }
+
+
+assert_dots_named <- function(...) {
+  cond <- ...length() == 0 || !is.null(...names())
+  if (!cond) {
+    rg_stop(
+      "Arguments passed to `...` must be named.",
+      class = get_caller_name()
+  )
+  }
+}

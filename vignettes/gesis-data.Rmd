@@ -23,25 +23,20 @@ GESIS Search is a service by GESIS - Leibniz Institute for the Social Sciences t
 
 # Authentication
 
-GESIS expects all users who wish to download a data file to be logged in. The `gesis_auth()` function takes over this task purely programmatically. You need to provide the function with a user email and a password. This can be done either by passing them as function arguments or by setting them as global options. It is recommended to do the latter using a `.Rprofile` file. This can look something like this:
+GESIS expects all users who wish to download a data file to be logged in. The `gesis_auth()` function takes over this task purely programmatically. You need to provide the function with a user email and a password. The credentials are used to login once and then stored in a secure [keyring](https://keyring.r-lib.org/) storage. If you get a success message, you are good to go.
 
 ```{r, eval=FALSE}
-options(
-  gesis_email = "jonas.lieth@gesis.org",
-  gesis_password = "****",
-  gesis_download_purpose = "non_scientific"
-)
-```
-
-Here, I also specified a download purpose which must be specified to download data. If you know that this purpose is not going to change between queries, you can specify it globally.
-
-When the credentials are set, you can run `gesis_auth()` without arguments. This step 1. sends a login request, 2. checks if you can login, and 3. stores the credentials in a secure [keyring](https://keyring.r-lib.org/) storage. If you get a success message, you are good to go.
-
-```{r, eval=FALSE}
-gesis_auth()
+gesis_auth(email = "jonas.lieth@gesis.org", password = "****")
 # ✔ Successfully performed GESIS login.
 ```
 
+You can also manually check the stored credentials by interacting with the keyring.
+
+```{r, eval=FALSE}
+keyring::key_list("rgesis")
+#>   service              username
+#> 1  rgesis jonas.lieth@gesis.org
+```
 
 # GESIS Search
 

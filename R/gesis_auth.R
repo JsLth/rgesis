@@ -78,10 +78,7 @@ gesis_auth <- function(email = NULL,
   }
 
   if (is.null(password) || is.null(email)) {
-    rg_stop(c(
-      "Both email and password are needed to authenticate.",
-      "i" = "You can set them in your .Rprofile using `options(gesis_email = ..., gesis_password = ...)`."
-    ))
+    rg_stop("Both email and password are needed to authenticate.")
   }
 
   assert_login(email = email, password = password)
@@ -93,8 +90,7 @@ gesis_auth <- function(email = NULL,
 #' @rdname gesis_auth
 #' @export
 gesis_can_auth <- function() {
-  assert_login(quiet = TRUE) %except% return(FALSE)
-  TRUE
+  assert_login(quiet = TRUE) %except% FALSE
 }
 
 

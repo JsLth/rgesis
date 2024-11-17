@@ -23,7 +23,7 @@ gesis_build_query <- function(query,
   publication_year <- format_range(publication_year)
   collection_year <- format_range(collection_year)
 
-  q <- q |>
+  q |>
     drop_null() |>
     query_set_query(
       query = query,
@@ -49,8 +49,6 @@ gesis_build_query <- function(query,
       study_lang_en.keyword = interview_language,
       queryless = is.null(query)
     )
-
-  q
 }
 
 
@@ -139,6 +137,8 @@ query_set_filter <- function(q, ..., queryless = FALSE) {
 #' # set no weights
 #' field_weights(use_default = FALSE)
 field_weights <- function(..., use_default = TRUE) {
+  assert_dots_named(...)
+
   if (is.null(...names()) && use_default) {
     args <- list(
       title = 10,
