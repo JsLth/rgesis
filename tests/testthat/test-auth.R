@@ -2,7 +2,9 @@ skip_if_not(keyring::has_keyring_support())
 
 local_mocked_bindings(rgesis_keyring = function() "rgesis_test")
 
-keyring::key_delete("rgesis_test", "testcreds")
+if (nrow(keyring::key_list("rgesis_test"))) {
+  keyring::key_delete("rgesis_test", "testcreds")
+}
 
 test_that("auth fails early", {
   expect_error(gesis_get_auth(), "could not be loaded")

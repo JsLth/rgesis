@@ -32,7 +32,7 @@ test_that("results can be tidied", {
 })
 
 test_that("pages can be flipped", {
-  expect_length(gesis_search(pages = 1:2))
+  expect_length(gesis_search(pages = 1:2), 20)
   expect_gt(length(
     gesis_search("bruno latour", pages = NULL, fields = field_weights(person = 10))
   ), 10)
