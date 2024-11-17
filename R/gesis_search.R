@@ -305,9 +305,10 @@ as.data.frame.gesis_records <- function(x, ...) {
   })
 
   x <- rbind_list(x, fill_in = NA_character_)
+
   first_nms <- c("id", "title", "type", "date")
   new_nms <- c(first_nms, setdiff(names(x), first_nms))
-  new_nms <- union(new_nms, names(x))
+  new_nms <- intersect(new_nms, names(x))
   x[new_nms]
 }
 
@@ -362,7 +363,7 @@ format.gesis_records <- function(x, n = 3, max_persons = 5, ...) {
 
     if (length(x)) {
       for (i in seq(1, min(length(x), n))) {
-        cli::cat_line()
+        if (i > 1) cli::cat_line()
         print(x[[i]], max_persons = max_persons, ...)
       }
 
