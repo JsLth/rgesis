@@ -85,26 +85,18 @@ publications. The package mainly consists of three functions</p>
 <p>GESIS expects all users who wish to download a data file to be logged
 in. The <code><a href="../reference/gesis_auth.html">gesis_auth()</a></code> function takes over this task purely
 programmatically. You need to provide the function with a user email and
-a password. This can be done either by passing them as function
-arguments or by setting them as global options. It is recommended to do
-the latter using a <code>.Rprofile</code> file. This can look something
-like this:</p>
+a password. The credentials are used to login once and then stored in a
+secure <a href="https://keyring.r-lib.org/" class="external-link">keyring</a> storage. If you
+get a success message, you are good to go.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
-<span>  gesis_email <span class="op">=</span> <span class="st">"jonas.lieth@gesis.org"</span>,</span>
-<span>  gesis_password <span class="op">=</span> <span class="st">"****"</span>,</span>
-<span>  gesis_download_purpose <span class="op">=</span> <span class="st">"non_scientific"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>Here, I also specified a download purpose which must be specified to
-download data. If you know that this purpose is not going to change
-between queries, you can specify it globally.</p>
-<p>When the credentials are set, you can run <code><a href="../reference/gesis_auth.html">gesis_auth()</a></code>
-without arguments. This step 1. sends a login request, 2. checks if you
-can login, and 3. stores the credentials in a secure <a href="https://keyring.r-lib.org/" class="external-link">keyring</a> storage. If you get a
-success message, you are good to go.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gesis_auth.html">gesis_auth</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gesis_auth.html">gesis_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"jonas.lieth@gesis.org"</span>, password <span class="op">=</span> <span class="st">"****"</span><span class="op">)</span></span>
 <span><span class="co"># ✔ Successfully performed GESIS login.</span></span></code></pre></div>
+<p>You can also manually check the stored credentials by interacting
+with the keyring.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">keyring</span><span class="fu">::</span><span class="fu"><a href="https://keyring.r-lib.org/reference/key_get.html" class="external-link">key_list</a></span><span class="op">(</span><span class="st">"rgesis"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   service              username</span></span>
+<span><span class="co">#&gt; 1  rgesis jonas.lieth@gesis.org</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="gesis-search">GESIS Search<a class="anchor" aria-label="anchor" href="#gesis-search"></a>
