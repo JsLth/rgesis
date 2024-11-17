@@ -29,7 +29,7 @@ local_mocked_bindings(
 )
 
 test_that("can set an auth", {
-  expect_message(gesis_auth(), "GESIS login")
+  expect_message(gesis_auth(prompt = TRUE), "GESIS login")
   creds <- gesis_get_auth()
   expect_equal(creds$email, "testcreds")
   expect_equal(creds$password, "testcreds")
@@ -47,7 +47,7 @@ local_mocked_bindings(
 
 test_that("gesis_data() fails early", {
   expect_error(gesis_data(record, prompt = FALSE), "Multiple data files")
-  expect_error(gesis_data(record, select = "badselect"))
+  expect_error(gesis_data(record, select = "badselect", prompt = TRUE))
 })
 
 local_mocked_bindings(gesis_download = function(path, ...) list(body = path))
