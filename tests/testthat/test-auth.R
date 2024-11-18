@@ -2,6 +2,11 @@ skip_if_not(keyring::has_keyring_support())
 
 local_mocked_bindings(rgesis_keyring = function() "rgesis_test")
 
+if (!nrow(keyring::keyring_list())) {
+  keyring::keyring_create("system", password = "")
+  on.exit(keyring::keyring_delete("system"))
+}
+
 if (nrow(keyring::key_list("rgesis_test"))) {
   keyring::key_delete("rgesis_test", "testcreds")
 }
