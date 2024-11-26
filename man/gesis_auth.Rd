@@ -53,7 +53,7 @@ example:
 }}
 }
 \examples{
-if (FALSE) {
+\dontrun{
 # if email and password are not stored yet, gesis_auth() registers them
 # in a keyring and checks if they work
 gesis_auth(email = "name@test.org", password = "DONTLOOK")

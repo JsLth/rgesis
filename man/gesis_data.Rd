@@ -69,7 +69,7 @@ if possible. This is done only for URLs pointing to the domain gesis.org
 to avoid sending authentication information to other domains.
 }
 \examples{
-if (FALSE) {
+\dontrun{
 # retrieve a search record to pass on to gesis_data()
 record <- gesis_search(
   "allbus",

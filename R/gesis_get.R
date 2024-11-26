@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @examples
-#' # retrieve metadata on the ALLBUS microdata record
-#' gesis_get("ZA5262")
+#' \donttest{# retrieve metadata on the ALLBUS microdata record
+#' gesis_get("ZA5262")}
 gesis_get <- function(id) {
   assert_vector(id, "character", size = 1)
 

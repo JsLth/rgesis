@@ -50,7 +50,7 @@
 #' @export
 #'
 #' @examples
-#' if (FALSE) {
+#' \dontrun{
 #' # retrieve a search record to pass on to gesis_data()
 #' record <- gesis_search(
 #'   "allbus",

@@ -17,6 +17,6 @@ Performs a simple lookup of a specific GESIS record ID and retrieves its
 metadata record from the data archive.
 }
 \examples{
-# retrieve metadata on the ALLBUS microdata record
-gesis_get("ZA5262")
+\donttest{# retrieve metadata on the ALLBUS microdata record
+gesis_get("ZA5262")}
 }
