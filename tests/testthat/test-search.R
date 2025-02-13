@@ -54,3 +54,9 @@ test_that("file metadata can be retrieved", {
   expect_output(print(files))
 })
 
+test_that("gesis_get is vectorized and gesis records can be casted", {
+  expect_identical(
+    gesis_get(c("ZA7500", "ZA4789")),
+    as_gesis_records(list(gesis_get("ZA7500"), gesis_get("ZA4789")))
+  )
+})

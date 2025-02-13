@@ -117,7 +117,7 @@
 #'   abstract_en = 5,
 #'   abstract = 3
 #'))
-#' 
+#'
 #' # Search for articles in a specified journal
 #' gesis_search("urban planning", fields = field_weights(coreJournalTitle = 10))
 #'
@@ -313,7 +313,30 @@ as.data.frame.gesis_records <- function(x, ...) {
 }
 
 
+#' Methods for \code{gesis_records} objects
+#' @description
+#' Methods and functions to print, format and cast to objects of class
+#' \code{gesis_records}.
+#'
+#' @param x An object of type \code{gesis_record} or \code{gesis_records}.
+#' For \code{as_gesis_records}, a list-like consisting of objects of class
+#' \code{gesis_record}.
+#' @param max_persons Maximum number of authors to print. Defaults to 5.
+#' @param n Maximum number of records to print. Defaults to 3.
+#' @param ... Arguments passed to the respective methods. Currently unused
+#' in \code{as_gesis_records}.
+#'
+#' @returns \code{print} methods return \code{x} invisibly. \code{format}
+#' functions return a character string. \code{as_gesis_records} returns an
+#' object of class \code{gesis_records}.
+#'
+#' @name gesis_records
 #' @export
+#'
+#' @examples
+#' \donttest{# wrap a list of records as gesis_records
+#' records <- list(gesis_get("ZA7500"), gesis_get("ZA4789"))
+#' as_gesis_records(records)}
 format.gesis_record <- function(x, max_persons = 5, ...) {
   cli::cli_format_method({
     cli::cli_text("{.cls {class(x)}}")
@@ -349,6 +372,7 @@ format.gesis_record <- function(x, max_persons = 5, ...) {
 }
 
 
+#' @name gesis_records
 #' @export
 print.gesis_record <- function(x, max_persons = 5, ...) {
   cat(format(x, max_persons = max_persons, ...), sep = "\n")
@@ -356,6 +380,7 @@ print.gesis_record <- function(x, max_persons = 5, ...) {
 }
 
 
+#' @name gesis_records
 #' @export
 format.gesis_records <- function(x, n = 3, max_persons = 5, ...) {
   cli::cli_format_method({
@@ -376,8 +401,26 @@ format.gesis_records <- function(x, n = 3, max_persons = 5, ...) {
 }
 
 
+#' @name gesis_records
 #' @export
 print.gesis_records <- function(x, n = 5, max_persons = 5, ...) {
   cat(format(x, n = n, max_persons = max_persons, ...), sep = "\n")
   invisible(x)
+}
+
+
+#' @name gesis_records
+#' @export
+as_gesis_records <- function(x, ...) {
+  if (!is.list(x)) {
+    rg_stop("Only list-like objects can be cast to an object of class gesis_records.")
+  }
+
+  has_records <- vapply(x, inherits, "gesis_record", FUN.VALUE = logical(1))
+  if (!all(has_records)) {
+    rg_stop("All elements in `x` must be of class {.cls gesis_record}.")
+  }
+
+  class(x) <- "gesis_records"
+  x
 }

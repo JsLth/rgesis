@@ -4,10 +4,10 @@
 \alias{gesis_get}
 \title{Get a GESIS record}
 \usage{
-gesis_get(id)
+gesis_get(ids)
 }
 \arguments{
-\item{id}{Dataset ID of the record.}
+\item{ids}{Dataset IDs of the records.}
 }
 \value{
 An object of class \code{gesis_record}.
