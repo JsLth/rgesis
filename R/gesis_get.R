@@ -13,7 +13,7 @@
 #' \donttest{# retrieve metadata on the ALLBUS microdata record
 #' gesis_get("ZA5262")}
 gesis_get <- function(ids) {
-  assert_vector(id, "character")
+  assert_vector(ids, "character")
   records <- as_gesis_records(lapply(ids, gesis_get_single))
   if (length(records) == 1) {
     records <- records[[1]]
