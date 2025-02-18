@@ -106,6 +106,7 @@ gesis_can_auth <- function() {
 #' @rdname gesis_auth
 #' @export
 gesis_pop_auth <- function() {
+  assert_has_key()
   keyring::key_delete("rgesis", gesis_get_email())
   invisible(NULL)
 }
@@ -124,10 +125,10 @@ ask_cred <- function(type = "password") {
 has_key <- function(email) {
   keys <- keyring::key_list(rgesis_keyring())
   if (nrow(keys) > 1) {
-    rg_stop(
+    rg_stop(c(
       "Multiple credentials found in keyring {.val rgesis}.",
       "i" = "You can manually fix this using `keyring::key_delete()`."
-    )
+    ))
   }
   nrow(keys) == 1
 }
@@ -151,6 +152,16 @@ assert_login <- function(email = NULL, password = NULL, quiet = FALSE) {
   }
 
   TRUE
+}
+
+
+assert_has_key <- function() {
+  if (!has_key()) {
+    rg_stop(c(
+      "Not credentials stored in keyring {.val rgesis}.",
+      "i" = "You can set them using {.fn gesis_auth}."
+    ))
+  }
 }
 
 
@@ -178,17 +189,10 @@ gesis_get_password <- function() {
 
 # get email and password, throw error if not found
 gesis_get_auth <- function() {
-  if (!has_key()) {
-    rg_stop(c(
-      "Credentials could not be loaded.",
-      "i" = "You can set them using {.fn gesis_auth}."
-    ))
-  }
-
+  assert_has_key()
   keys <- keyring::key_list(rgesis_keyring())
   email <- keys[["username"]]
   password <- keyring::key_get(rgesis_keyring(), username = email)
-
   list(email = email, password = password)
 }
 
