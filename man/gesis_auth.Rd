@@ -3,17 +3,20 @@
 \name{gesis_auth}
 \alias{gesis_auth}
 \alias{gesis_can_auth}
+\alias{gesis_pop_auth}
 \title{Authenticate user}
 \usage{
 gesis_auth(email = NULL, password = NULL, prompt = interactive())
 
 gesis_can_auth()
+
+gesis_pop_auth()
 }
 \arguments{
 \item{email, password}{Email address and password linked to a GESIS user
 account. These only have to be provided once and will be retrieved using
 \code{\link[keyring]{key_get}} afterwards. If not specified and
-\code{prompt = TRUE}, asks for email and password interactively.}
+\code{prompt = TRUE}, safely asks for email and password interactively.}
 
 \item{prompt}{If \code{TRUE} and \code{email} or \code{password} are
 not specified, opens a console prompt to provide these arguments. If
@@ -21,8 +24,8 @@ not specified, opens a console prompt to provide these arguments. If
 run in an interactive session.}
 }
 \value{
-\code{gesis_auth} returns \code{NULL}, invisibly.
-\code{gesis_can_auth} always returns \code{TRUE} or \code{FALSE}.
+\code{gesis_auth} and \code{gesis_pop_auth} return \code{NULL},
+invisibly. \code{gesis_can_auth} always returns \code{TRUE} or \code{FALSE}.
 }
 \description{
 Authenticate a GESIS user account using OAuth 2.0. This is necessary to
@@ -30,14 +33,14 @@ download datasets using \code{\link{gesis_data}}.
 }
 \details{
 \code{gesis_auth()} performs a GESIS login once and, if successful, stores
-the credentials used for the login in a \link[keyring:keyring_list]{keyring}
-on the disk. For all subsequent authentications, the credentials are
-retrieved from the keyring to authenticate automatically. To prevent the
-authentication process to access the stored credentials every time an
-OAuth request is sent, you can set \code{options(rgesis_cache_disk = TRUE)}
-to allow the access token to be cached. Note that this comes at the cost
-of storing access credentials on disk. See
-\code{\link[httr2]{req_oauth_password}} for details.
+the credentials used for the login in the operating system's built-in
+credentials manager using \link[keyring:keyring_list]{keyrings}. For all
+subsequent authentications, the credentials are retrieved from the keyring
+to authenticate automatically. To prevent the authentication process to
+access the stored credentials every time an OAuth request is sent, you can
+set \code{options(rgesis_cache_disk = TRUE)} to allow the access token to
+be cached. Note that this comes at the cost of storing access credentials on
+disk. See \code{\link[httr2]{req_oauth_password}} for details.
 
 To check if the package can successfully authenticate without passing
 new credentials, you can run \code{gesis_can_auth()}. Note that this
@@ -51,6 +54,15 @@ example:
 \preformatted{if (gesis_can_auth()) {
   gesis_data(...)
 }}
+
+To remove the credentials from the operating system's credentials manager,
+use \code{gesis_pop_auth()}.
+}
+\note{
+Be advised to avoid entering your password in plain text. Instead, use
+the masked password prompt that shows when not providing a value to the
+\code{password} argument or store the credentials manually, e.g. using
+\code{\link[keyring]{key_set}}.
 }
 \examples{
 \dontrun{

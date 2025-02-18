@@ -40,6 +40,7 @@ test_that("can set an auth", {
   expect_equal(creds$password, "testcreds")
 })
 
+on.exit(gesis_pop_auth())
 skip_if_offline("gesis.org")
 skip_on_cran()
 

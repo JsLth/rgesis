@@ -6,25 +6,25 @@
 #' @param email,password Email address and password linked to a GESIS user
 #' account. These only have to be provided once and will be retrieved using
 #' \code{\link[keyring]{key_get}} afterwards. If not specified and
-#' \code{prompt = TRUE}, asks for email and password interactively.
+#' \code{prompt = TRUE}, safely asks for email and password interactively.
 #' @param prompt If \code{TRUE} and \code{email} or \code{password} are
 #' not specified, opens a console prompt to provide these arguments. If
 #' \code{FALSE}, throws an error in this case. Defaults to \code{TRUE} if
 #' run in an interactive session.
 #'
-#' @returns \code{gesis_auth} returns \code{NULL}, invisibly.
-#' \code{gesis_can_auth} always returns \code{TRUE} or \code{FALSE}.
+#' @returns \code{gesis_auth} and \code{gesis_pop_auth} return \code{NULL},
+#' invisibly. \code{gesis_can_auth} always returns \code{TRUE} or \code{FALSE}.
 #'
 #' @details
 #' \code{gesis_auth()} performs a GESIS login once and, if successful, stores
-#' the credentials used for the login in a \link[keyring:keyring_list]{keyring}
-#' on the disk. For all subsequent authentications, the credentials are
-#' retrieved from the keyring to authenticate automatically. To prevent the
-#' authentication process to access the stored credentials every time an
-#' OAuth request is sent, you can set \code{options(rgesis_cache_disk = TRUE)}
-#' to allow the access token to be cached. Note that this comes at the cost
-#' of storing access credentials on disk. See
-#' \code{\link[httr2]{req_oauth_password}} for details.
+#' the credentials used for the login in the operating system's built-in
+#' credentials manager using \link[keyring:keyring_list]{keyrings}. For all
+#' subsequent authentications, the credentials are retrieved from the keyring
+#' to authenticate automatically. To prevent the authentication process to
+#' access the stored credentials every time an OAuth request is sent, you can
+#' set \code{options(rgesis_cache_disk = TRUE)} to allow the access token to
+#' be cached. Note that this comes at the cost of storing access credentials on
+#' disk. See \code{\link[httr2]{req_oauth_password}} for details.
 #'
 #' To check if the package can successfully authenticate without passing
 #' new credentials, you can run \code{gesis_can_auth()}. Note that this
@@ -38,6 +38,15 @@
 #' \preformatted{if (gesis_can_auth()) {
 #'   gesis_data(...)
 #' }}
+#'
+#' To remove the credentials from the operating system's credentials manager,
+#' use \code{gesis_pop_auth()}.
+#'
+#' @note
+#' Be advised to avoid entering your password in plain text. Instead, use
+#' the masked password prompt that shows when not providing a value to the
+#' \code{password} argument or store the credentials manually, e.g. using
+#' \code{\link[keyring]{key_set}}.
 #'
 #' @export
 #'
@@ -91,6 +100,14 @@ gesis_auth <- function(email = NULL,
 #' @export
 gesis_can_auth <- function() {
   assert_login(quiet = TRUE) %except% FALSE
+}
+
+
+#' @rdname gesis_auth
+#' @export
+gesis_pop_auth <- function() {
+  keyring::key_delete("rgesis", gesis_get_email())
+  invisible(NULL)
 }
 
 
