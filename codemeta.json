@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.3 (2024-02-29 ucrt)",
+  "runtimePlatform": "R version 4.4.0 (2024-04-24 ucrt)",
   "author": [
     {
       "@type": "Person",
@@ -69,6 +69,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
       "provider": {
@@ -78,6 +91,30 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "haven",
+      "name": "haven",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=haven"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "pdftools",
+      "name": "pdftools",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=pdftools"
     }
   ],
   "softwareRequirements": {
@@ -129,9 +166,23 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=keyring"
     },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "askpass",
+      "name": "askpass",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=askpass"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "199.104KB",
+  "fileSize": "230.97KB",
+  "readme": "https://github.com/JsLth/rgesis/blob/main/README.md",
   "contIntegration": ["https://github.com/jslth/rgesis/actions/workflows/R-CMD-check.yaml", "https://github.com/jslth/rgesis/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/JsLth/rgesis?branch=main"],
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "keywords": ["r", "r-package", "rstats"]
 }
