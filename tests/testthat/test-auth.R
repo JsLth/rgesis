@@ -12,11 +12,11 @@ if (nrow(keyring::key_list("rgesis_test"))) {
 }
 
 test_that("auth fails early", {
-  expect_error(gesis_get_auth(), "could not be loaded")
+  expect_error(gesis_get_auth(), class = "assert_has_key")
 })
 
 test_that("requires credentials", {
-  expect_error(gesis_auth(prompt = FALSE), "email and password")
+  expect_error(gesis_auth(prompt = FALSE), class = "incomplete_creds")
 })
 
 test_that("gesis_can_auth() does not error", {
@@ -28,10 +28,7 @@ local_mocked_bindings(
   .package = "httr2"
 )
 
-local_mocked_bindings(
-  readline = function(...) "testcreds",
-  .package = "base"
-)
+local_mocked_bindings(ask = function(...) "testcreds")
 
 test_that("can set an auth", {
   expect_message(gesis_auth(prompt = TRUE), "GESIS login")

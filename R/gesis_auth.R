@@ -87,7 +87,10 @@ gesis_auth <- function(email = NULL,
   }
 
   if (is.null(password) || is.null(email)) {
-    rg_stop("Both email and password are needed to authenticate.")
+    rg_stop(
+      "Both email and password are needed to authenticate.",
+      class = "incomplete_creds"
+    )
   }
 
   assert_login(email = email, password = password)
@@ -107,7 +110,7 @@ gesis_can_auth <- function() {
 #' @export
 gesis_pop_auth <- function() {
   assert_has_key()
-  keyring::key_delete("rgesis", gesis_get_email())
+  keyring::key_delete(rgesis_keyring(), gesis_get_email())
   invisible(NULL)
 }
 
@@ -118,17 +121,18 @@ ask_cred <- function(type = "password") {
     password = "Please enter your password",
     username = "Please enter your username"
   )
-  askpass::askpass(prompt) %||% rg_stop("Prompt interrupted.")
+  ask(prompt) %||% rg_stop("Prompt interrupted.")
 }
 
 
 has_key <- function(email) {
-  keys <- keyring::key_list(rgesis_keyring())
+  keyring <- rgesis_keyring()
+  keys <- keyring::key_list(keyring)
   if (nrow(keys) > 1) {
     rg_stop(c(
-      "Multiple credentials found in keyring {.val rgesis}.",
+      "Multiple credentials found in keyring {.val {keyring}}.",
       "i" = "You can manually fix this using `keyring::key_delete()`."
-    ))
+    ), class = "multiple_keys")
   }
   nrow(keys) == 1
 }
@@ -158,9 +162,9 @@ assert_login <- function(email = NULL, password = NULL, quiet = FALSE) {
 assert_has_key <- function() {
   if (!has_key()) {
     rg_stop(c(
-      "Not credentials stored in keyring {.val rgesis}.",
+      "No credentials stored in keyring {.val {rgesis_keyring()}}.",
       "i" = "You can set them using {.fn gesis_auth}."
-    ))
+    ), class = "assert_has_key")
   }
 }
 

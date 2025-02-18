@@ -106,3 +106,6 @@ as_nested_dataframe <- function(x) {
   attr(x, "row.names") <- seq_len(NROW(x[[1]]))
   x
 }
+
+
+ask <- function(prompt) askpass::askpass(prompt)
