@@ -69,12 +69,12 @@ gesis_auth <- function(email = NULL,
 
   if (is.null(email) && prompt) {
     cli::cli_inform(c("i" = "Email not set, needs manual input."))
-    email <- readline("Please specify a user email: ")
+    email <- ask_cred("username")
   }
 
   if (is.null(password) && prompt) {
     cli::cli_inform(c("i" = "Password not set, needs manual input."))
-    password <- readline("Please specify a password: ")
+    password <- ask_cred("password")
   }
 
   if (is.null(password) || is.null(email)) {
@@ -91,6 +91,16 @@ gesis_auth <- function(email = NULL,
 #' @export
 gesis_can_auth <- function() {
   assert_login(quiet = TRUE) %except% FALSE
+}
+
+
+ask_cred <- function(type = "password") {
+  prompt <- switch(
+    type,
+    password = "Please enter your password",
+    username = "Please enter your username"
+  )
+  askpass::askpass(prompt) %||% rg_stop("Prompt interrupted.")
 }
 
 

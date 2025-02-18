@@ -19,7 +19,8 @@ Imports:
     cli,
     httr2,
     jsonlite,
-    keyring
+    keyring,
+    askpass
 Suggests: 
     knitr,
     rmarkdown,
