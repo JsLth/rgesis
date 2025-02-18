@@ -45,7 +45,9 @@ download datasets using <code><a href="gesis_data.html">gesis_data</a></code>.</
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gesis_auth</span><span class="op">(</span>email <span class="op">=</span> <span class="cn">NULL</span>, password <span class="op">=</span> <span class="cn">NULL</span>, prompt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">gesis_can_auth</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">gesis_can_auth</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">gesis_pop_auth</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,7 +58,7 @@ download datasets using <code><a href="gesis_data.html">gesis_data</a></code>.</
 <dd><p>Email address and password linked to a GESIS user
 account. These only have to be provided once and will be retrieved using
 <code><a href="https://keyring.r-lib.org/reference/key_get.html" class="external-link">key_get</a></code> afterwards. If not specified and
-<code>prompt = TRUE</code>, asks for email and password interactively.</p></dd>
+<code>prompt = TRUE</code>, safely asks for email and password interactively.</p></dd>
 
 
 <dt id="arg-prompt">prompt<a class="anchor" aria-label="anchor" href="#arg-prompt"></a></dt>
@@ -68,20 +70,20 @@ run in an interactive session.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>gesis_auth</code> returns <code>NULL</code>, invisibly.
-<code>gesis_can_auth</code> always returns <code>TRUE</code> or <code>FALSE</code>.</p>
+    <p><code>gesis_auth</code> and <code>gesis_pop_auth</code> return <code>NULL</code>,
+invisibly. <code>gesis_can_auth</code> always returns <code>TRUE</code> or <code>FALSE</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>gesis_auth()</code> performs a GESIS login once and, if successful, stores
-the credentials used for the login in a <a href="https://keyring.r-lib.org/reference/has_keyring_support.html" class="external-link">keyring</a>
-on the disk. For all subsequent authentications, the credentials are
-retrieved from the keyring to authenticate automatically. To prevent the
-authentication process to access the stored credentials every time an
-OAuth request is sent, you can set <code>options(rgesis_cache_disk = TRUE)</code>
-to allow the access token to be cached. Note that this comes at the cost
-of storing access credentials on disk. See
-<code><a href="https://httr2.r-lib.org/reference/req_oauth_password.html" class="external-link">req_oauth_password</a></code> for details.</p>
+the credentials used for the login in the operating system's built-in
+credentials manager using <a href="https://keyring.r-lib.org/reference/has_keyring_support.html" class="external-link">keyrings</a>. For all
+subsequent authentications, the credentials are retrieved from the keyring
+to authenticate automatically. To prevent the authentication process to
+access the stored credentials every time an OAuth request is sent, you can
+set <code>options(rgesis_cache_disk = TRUE)</code> to allow the access token to
+be cached. Note that this comes at the cost of storing access credentials on
+disk. See <code><a href="https://httr2.r-lib.org/reference/req_oauth_password.html" class="external-link">req_oauth_password</a></code> for details.</p>
 <p>To check if the package can successfully authenticate without passing
 new credentials, you can run <code>gesis_can_auth()</code>. Note that this
 function catches all types of errors that occur when trying to
@@ -94,6 +96,15 @@ example:</p>
 <span>  <span class="fu"><a href="../reference/gesis_data.html">gesis_data</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 
+<p>To remove the credentials from the operating system's credentials manager,
+use <code>gesis_pop_auth()</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Be advised to avoid entering your password in plain text. Instead, use
+the masked password prompt that shows when not providing a value to the
+<code>password</code> argument or store the credentials manually, e.g. using
+<code><a href="https://keyring.r-lib.org/reference/key_get.html" class="external-link">key_set</a></code>.</p>
     </div>
 
     <div class="section level2">
