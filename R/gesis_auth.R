@@ -121,7 +121,7 @@ ask_cred <- function(type = "password") {
     password = "Please enter your password",
     username = "Please enter your username"
   )
-  ask(prompt) %||% rg_stop("Prompt interrupted.")
+  ask(prompt) %||% rg_stop("Prompt interrupted.", call = NULL)
 }
 
 
