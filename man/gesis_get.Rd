@@ -13,10 +13,13 @@ gesis_get(ids)
 An object of class \code{gesis_record}.
 }
 \description{
-Performs a simple lookup of a specific GESIS record ID and retrieves its
-metadata record from the data archive.
+Performs a simple lookup of one or multiple specific GESIS record ID and
+retrieves their metadata record from the data archive.
 }
 \examples{
 \donttest{# retrieve metadata on the ALLBUS microdata record
-gesis_get("ZA5262")}
+gesis_get("ZA5262")
+
+# retrieve ALLBUS 2014, 2016, and 2018
+gesis_get(c("ZA5240", "ZA5250", "ZA5270"))}
 }

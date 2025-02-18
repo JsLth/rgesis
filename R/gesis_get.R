@@ -1,7 +1,7 @@
 #' Get a GESIS record
 #' @description
-#' Performs a simple lookup of a specific GESIS record ID and retrieves its
-#' metadata record from the data archive.
+#' Performs a simple lookup of one or multiple specific GESIS record ID and
+#' retrieves their metadata record from the data archive.
 #'
 #' @param ids Dataset IDs of the records.
 #'
@@ -11,7 +11,10 @@
 #'
 #' @examples
 #' \donttest{# retrieve metadata on the ALLBUS microdata record
-#' gesis_get("ZA5262")}
+#' gesis_get("ZA5262")
+#'
+#' # retrieve ALLBUS 2014, 2016, and 2018
+#' gesis_get(c("ZA5240", "ZA5250", "ZA5270"))}
 gesis_get <- function(ids) {
   assert_vector(ids, "character")
   records <- as_gesis_records(lapply(ids, gesis_get_single))
