@@ -6,7 +6,7 @@
 \alias{print.gesis_record}
 \alias{format.gesis_records}
 \alias{print.gesis_records}
-\alias{as_gesis_records}
+\alias{gesis_record}
 \title{Methods for \code{gesis_records} objects}
 \usage{
 \method{format}{gesis_record}(x, max_persons = 5, ...)
@@ -17,24 +17,40 @@
 
 \method{print}{gesis_records}(x, n = 5, max_persons = 5, ...)
 
-as_gesis_records(x, ...)
+gesis_record(record, index = NULL, id = NULL, score = NULL, ...)
+
+gesis_records(x, ...)
 }
 \arguments{
 \item{x}{An object of type \code{gesis_record} or \code{gesis_records}.
-For \code{as_gesis_records}, a list-like consisting of objects of class
+For \code{gesis_records}, a list-like consisting of objects of class
 \code{gesis_record}.}
 
 \item{max_persons}{Maximum number of authors to print. Defaults to 5.}
 
 \item{...}{Arguments passed to the respective methods. Currently unused
-in \code{as_gesis_records}.}
+in \code{gesis_records}. Can be used to provide additional attributes to
+\code{gesis_record}.}
 
 \item{n}{Maximum number of records to print. Defaults to 3.}
+
+\item{record}{A named list as returned by functions such as
+\code{\link{gesis_get}}.}
+
+\item{index}{The search index of the GESIS Search. If \code{NULL}, will be
+inferred from \code{record}.}
+
+\item{id}{The unique identifier of the search record. If \code{NULL}, will
+be inferred from \code{record}.}
+
+\item{score}{Search score. If \code{NULL}, will be inferred from
+\code{record}.}
 }
 \value{
 \code{print} methods return \code{x} invisibly. \code{format}
-functions return a character string. \code{as_gesis_records} returns an
-object of class \code{gesis_records}.
+functions return a character string. \code{gesis_records} returns an
+object of class \code{gesis_records}. \code{gesis_record} returns an object
+of class \code{gesis_record}.
 }
 \description{
 Methods and functions to print, format and cast to objects of class
@@ -43,5 +59,5 @@ Methods and functions to print, format and cast to objects of class
 \examples{
 \donttest{# wrap a list of records as gesis_records
 records <- list(gesis_get("ZA7500"), gesis_get("ZA4789"))
-as_gesis_records(records)}
+gesis_records(records)}
 }

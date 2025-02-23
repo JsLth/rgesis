@@ -17,7 +17,7 @@
 #' gesis_get(c("ZA5240", "ZA5250", "ZA5270"))}
 gesis_get <- function(ids) {
   assert_vector(ids, "character")
-  records <- as_gesis_records(lapply(ids, gesis_get_single))
+  records <- gesis_records(lapply(ids, gesis_get_single))
   if (length(records) == 1) {
     records <- records[[1]]
   }

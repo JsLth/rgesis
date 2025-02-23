@@ -238,17 +238,7 @@ gesis_search <- function(query = NULL,
   )
 
   records <- request_searchengine(source, from = from)
-
-  records <- lapply(records, function(x) {
-    structure(
-      x[["_source"]],
-      index = x[["_index"]],
-      id = x[["_id"]],
-      score = x[["_score"]],
-      class = "gesis_record"
-    )
-  })
-  class(records) <- "gesis_records"
+  records <- gesis_records(lapply(records, gesis_record))
 
   if (tidy) {
     records <- as_data_frame(records)
@@ -319,16 +309,18 @@ as.data.frame.gesis_records <- function(x, ...) {
 #' \code{gesis_records}.
 #'
 #' @param x An object of type \code{gesis_record} or \code{gesis_records}.
-#' For \code{as_gesis_records}, a list-like consisting of objects of class
+#' For \code{gesis_records}, a list-like consisting of objects of class
 #' \code{gesis_record}.
 #' @param max_persons Maximum number of authors to print. Defaults to 5.
 #' @param n Maximum number of records to print. Defaults to 3.
 #' @param ... Arguments passed to the respective methods. Currently unused
-#' in \code{as_gesis_records}.
+#' in \code{gesis_records}. Can be used to provide additional attributes to
+#' \code{gesis_record}.
 #'
 #' @returns \code{print} methods return \code{x} invisibly. \code{format}
-#' functions return a character string. \code{as_gesis_records} returns an
-#' object of class \code{gesis_records}.
+#' functions return a character string. \code{gesis_records} returns an
+#' object of class \code{gesis_records}. \code{gesis_record} returns an object
+#' of class \code{gesis_record}.
 #'
 #' @name gesis_records
 #' @export
@@ -336,7 +328,7 @@ as.data.frame.gesis_records <- function(x, ...) {
 #' @examples
 #' \donttest{# wrap a list of records as gesis_records
 #' records <- list(gesis_get("ZA7500"), gesis_get("ZA4789"))
-#' as_gesis_records(records)}
+#' gesis_records(records)}
 format.gesis_record <- function(x, max_persons = 5, ...) {
   cli::cli_format_method({
     cli::cli_text("{.cls {class(x)}}")
@@ -410,8 +402,33 @@ print.gesis_records <- function(x, n = 5, max_persons = 5, ...) {
 
 
 #' @name gesis_records
+#' @param record A named list as returned by functions such as
+#' \code{\link{gesis_get}}.
+#' @param index The search index of the GESIS Search. If \code{NULL}, will be
+#' inferred from \code{record}.
+#' @param id The unique identifier of the search record. If \code{NULL}, will
+#' be inferred from \code{record}.
+#' @param score Search score. If \code{NULL}, will be inferred from
+#' \code{record}.
 #' @export
-as_gesis_records <- function(x, ...) {
+gesis_record <- function(record, index = NULL, id = NULL, score = NULL, ...) {
+  assert_class(record, "list")
+  structure(
+    record[["_source"]] %||% record,
+    index = index %||% record[["_index"]],
+    id = id %||% record[["_id"]] %|T|% cli::cli_warn(
+      "Corrupt GESIS record detected. Could not determine unique record identifier."
+    ),
+    score = score %||% record[["_score"]],
+    ...,
+    class = "gesis_record"
+  )
+}
+
+
+#' @name gesis_records
+#' @export
+gesis_records <- function(x, ...) {
   if (!is.list(x)) {
     rg_stop("Only list-like objects can be cast to an object of class gesis_records.")
   }

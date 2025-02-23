@@ -8,6 +8,14 @@
 }
 
 
+"%|T|%" <- function(x, y) {
+  if (is.null(x)) {
+    force(y)
+  }
+  x
+}
+
+
 "%except%" <- function(x, y) {
   x <- try(x, silent = TRUE)
   if (inherits(x, "try-error")) y else x
