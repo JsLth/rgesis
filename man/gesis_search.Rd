@@ -38,10 +38,23 @@ OR / AND. If no operator is specified, defaults to the operator specified
 in \code{default_operator}. If \code{NULL}, searches for all records.
 Queryless searches can still be filtered using the parameters below.}
 
-\item{type}{Type of search results to retrieve. Can be one of
-\code{"research_data"}, \code{"variables"}, \code{"instruments_tools"},
-\code{"publication"}, \code{"gesis_bib"}, or \code{"gesis_web"} or
-\code{"gesis_person"}. If \code{NULL}, includes all result types. Defaults to
+\item{type}{Type of search results to retrieve. Can be one of the following:
+
+\itemize{
+\item{\code{research_data}: Survey data records}
+\item{\code{variables}: Variables related to survey data records}
+\item{\code{instruments_tools}: Measurement instruments like items,
+scales, questionnaires, tests, and indexes offered by
+\href{https://zis.gesis.org/}{ZIS}.}
+\item{\code{publication}: Publications like journal articles or
+book chapters}
+\item{\code{gesis_bib}: Records from the
+\href{https://www.gesis.org/en/institute/about-us/departments/knowledge-transfer/library}{GESIS library}}
+\item{\code{gesis_web}: GESIS websites}
+\item{\code{gesis_person}: Institutional websites of GESIS employees}
+}
+
+If \code{NULL}, includes all result types. Defaults to
 \code{NULL}.}
 
 \item{default_operator}{Character specifying the default operator to use
@@ -55,10 +68,19 @@ a field influences the match probability. Defaults to the default values
 specified by \code{\link{field_weights}}. Ignored if \code{query} is
 \code{NULL}.}
 
-\item{sort}{Attribute to sort by. Must be one of \code{"relevance"},
-\code{"newest_first"}, \code{"oldest_first"}, \code{"title_ascending"},
-\code{"title_descending"}, \code{"variable_ascending"}, or
-\code{"variable_descending"}. Defaults to \code{"relevance"}.}
+\item{sort}{Attribute to sort by. Must be one of the following:
+
+\itemize{
+\item{\code{relevance}: Sorts by relevance (whatever that means)}
+\item{\code{newest_first}: Sorts by publication year, descending}
+\item{\code{oldest_first}: Sorts by publication year, ascending}
+\item{\code{title_ascending}: Sorts lexicographically by title, ascending}
+\item{\code{title_descending}: Sorts lexicographically by title, descending}
+\item{\code{variable_ascending}: Sorts lexicographically by variable name, ascending}
+\item{\code{variable_descending}: Sorts lexicographically by variable name, descending}
+}
+
+Defaults to \code{"relevance"} to mirror the behavior of the web interface.}
 
 \item{publication_year}{Numeric or character vector of length 2 specifying
 the time range in which a record was published. The first value is the start

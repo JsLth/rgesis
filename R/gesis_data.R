@@ -6,23 +6,34 @@
 #' @param record Object of class \code{gesis_record} as returned by
 #' \code{\link{gesis_search}} and \code{gesis_get} or dataset ID. If a dataset ID
 #' is passed, the function performs a call to \code{\link{gesis_get}}.
-#' @param download_purpose Purpose for the use of the research data as
-#' demanded by GESIS. Must be one of \code{"final_thesis"},
-#' \code{"commercial_research"}, \code{"non_scientific"},
-#' \code{"further_education"}, \code{"scientific_research"}, \code{"studies"},
-#' or \code{"lecturer"}.
+#' @param download_purpose Purpose for the use of the research data. You are
+#' required to use the downloaded data solely for the specified purpose
+#' (see also the
+#' \href{https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf}{terms of use}).
+#' The following values are supported:
+#'
+#' `r rd_purposes()`
 #' @param path Path where the downloaded file should be stored. Can be path
 #' to a directory or a file. If a directory path, it is attempted to infer the
 #' file name from the file to be downloaded. If this is not possible, the file
 #' is stored in a file called \code{gesis} with no file extension. If a file
 #' path is passed, the file is directly downloaded to this path. Defaults to
 #' a temporary directory path.
-#' @param type Type of data to download. Must be one of \code{"dataset"},
-#' \code{"questionnaire"}, \code{"codebook"}, \code{"otherdocs"},
-#' or \code{"uncategorized"}. A file type is "uncategorized" if it is falls
-#' under none of the other file types. Defaults to \code{"dataset"}. A list of
-#' available data types for a given record can be retrieved using
-#' \code{\link{gesis_file_types}}.
+#' @param type Type of data to download. The following values are supported:
+#'
+#' \itemize{
+#'  \item{\code{dataset}: Survey dataset, usually in a Stata or SPSS data format}
+#'  \item{\code{questionnaire}: Survey questionnaire, usually in PDF format}
+#'  \item{\code{codebook}: Survey codebook, usually in PDF format}
+#'  \item{\code{otherdocs}: Other files like READMEs, method
+#'  reports, or variable lists, usually in PDF format}
+#'  \item{\code{uncategorized}: Other files that are not categorized, usually
+#'  used for external links to full texts (DOI, URN)}
+#' }
+#'
+#' Defaults to \code{"dataset"} because downloading PDF or HTML files rarely
+#' makes sense in R. A list of available data types for a given record can be
+#' retrieved using \code{\link{gesis_file_types}}.
 #' @param select Character string to select a data file in case multiple files
 #' are available for the selected data type. The character string is
 #' matched against the file label using regular expressions. This argument
@@ -189,3 +200,12 @@ purposes <- c(
 file_types <- c(
   "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
 )
+
+
+rd_purposes <- function() {
+  plst <- lapply(names(purposes), function(p) {
+    sprintf(" \\item{\\code{%s}: %s}", p, purposes[p])
+  })
+
+  sprintf("\\itemize{\n%s\n}", paste(plst, collapse = "\n"))
+}
