@@ -71,12 +71,17 @@ is passed, the function performs a call to <code><a href="gesis_get.html">gesis_
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Type of data to download. Must be one of <code>"dataset"</code>,
-<code>"questionnaire"</code>, <code>"codebook"</code>, <code>"otherdocs"</code>,
-or <code>"uncategorized"</code>. A file type is "uncategorized" if it is falls
-under none of the other file types. Defaults to <code>"dataset"</code>. A list of
-available data types for a given record can be retrieved using
-<code>gesis_file_types</code>.</p></dd>
+<dd><p>Type of data to download. The following values are supported:</p>
+<ul><li><p><code>dataset</code>: Survey dataset, usually in a Stata or SPSS data format</p></li>
+<li><p><code>questionnaire</code>: Survey questionnaire, usually in PDF format</p></li>
+<li><p><code>codebook</code>: Survey codebook, usually in PDF format</p></li>
+<li><p><code>otherdocs</code>: Other files like READMEs, method
+reports, or variable lists, usually in PDF format</p></li>
+<li><p><code>uncategorized</code>: Other files that are not categorized, usually
+used for external links to full texts (DOI, URN)</p></li>
+</ul><p>Defaults to <code>"dataset"</code> because downloading PDF or HTML files rarely
+makes sense in R. A list of available data types for a given record can be
+retrieved using <code>gesis_file_types</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

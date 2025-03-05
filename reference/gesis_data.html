@@ -64,11 +64,19 @@ is passed, the function performs a call to <code><a href="gesis_get.html">gesis_
 
 
 <dt id="arg-download-purpose">download_purpose<a class="anchor" aria-label="anchor" href="#arg-download-purpose"></a></dt>
-<dd><p>Purpose for the use of the research data as
-demanded by GESIS. Must be one of <code>"final_thesis"</code>,
-<code>"commercial_research"</code>, <code>"non_scientific"</code>,
-<code>"further_education"</code>, <code>"scientific_research"</code>, <code>"studies"</code>,
-or <code>"lecturer"</code>.</p></dd>
+<dd><p>Purpose for the use of the research data. You are
+required to use the downloaded data solely for the specified purpose
+(see also the
+<a href="https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf" class="external-link">terms of use</a>).
+The following values are supported:</p>
+<ul><li><p><code>final_thesis</code>: for final thesis of the study programme (e.g. Bachelor/Master thesis)</p></li>
+<li><p><code>commercial_research</code>: for research with a commercial mission</p></li>
+<li><p><code>non_scientific</code>: for non-scientific purposes</p></li>
+<li><p><code>further_education</code>: for further education and qualification</p></li>
+<li><p><code>scientific_research</code>: for scientific research (incl. doctorate)</p></li>
+<li><p><code>studies</code>: in the course of my studies</p></li>
+<li><p><code>lecturer</code>: in a course as a lecturer</p></li>
+</ul></dd>
 
 
 <dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
@@ -81,12 +89,17 @@ a temporary directory path.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Type of data to download. Must be one of <code>"dataset"</code>,
-<code>"questionnaire"</code>, <code>"codebook"</code>, <code>"otherdocs"</code>,
-or <code>"uncategorized"</code>. A file type is "uncategorized" if it is falls
-under none of the other file types. Defaults to <code>"dataset"</code>. A list of
-available data types for a given record can be retrieved using
-<code><a href="gesis_files.html">gesis_file_types</a></code>.</p></dd>
+<dd><p>Type of data to download. The following values are supported:</p>
+<ul><li><p><code>dataset</code>: Survey dataset, usually in a Stata or SPSS data format</p></li>
+<li><p><code>questionnaire</code>: Survey questionnaire, usually in PDF format</p></li>
+<li><p><code>codebook</code>: Survey codebook, usually in PDF format</p></li>
+<li><p><code>otherdocs</code>: Other files like READMEs, method
+reports, or variable lists, usually in PDF format</p></li>
+<li><p><code>uncategorized</code>: Other files that are not categorized, usually
+used for external links to full texts (DOI, URN)</p></li>
+</ul><p>Defaults to <code>"dataset"</code> because downloading PDF or HTML files rarely
+makes sense in R. A list of available data types for a given record can be
+retrieved using <code><a href="gesis_files.html">gesis_file_types</a></code>.</p></dd>
 
 
 <dt id="arg-select">select<a class="anchor" aria-label="anchor" href="#arg-select"></a></dt>
@@ -146,7 +159,7 @@ to avoid sending authentication information to other domains.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ... or pdftools</span></span></span>
 <span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu">gesis_data</span><span class="op">(</span><span class="st">"ZA3753"</span>, select <span class="op">=</span> <span class="st">"fb\\.pdf"</span>, type <span class="op">=</span> <span class="st">"questionnaire"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">pdftools</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/pdftools/reference/pdftools.html" class="external-link">pdf_text</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pdftools</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/pdftools//reference/pdftools.html" class="external-link">pdf_text</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

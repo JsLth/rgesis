@@ -84,10 +84,19 @@ Queryless searches can still be filtered using the parameters below.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Type of search results to retrieve. Can be one of
-<code>"research_data"</code>, <code>"variables"</code>, <code>"instruments_tools"</code>,
-<code>"publication"</code>, <code>"gesis_bib"</code>, or <code>"gesis_web"</code> or
-<code>"gesis_person"</code>. If <code>NULL</code>, includes all result types. Defaults to
+<dd><p>Type of search results to retrieve. Can be one of the following:</p>
+<ul><li><p><code>research_data</code>: Survey data records</p></li>
+<li><p><code>variables</code>: Variables related to survey data records</p></li>
+<li><p><code>instruments_tools</code>: Measurement instruments like items,
+scales, questionnaires, tests, and indexes offered by
+<a href="https://zis.gesis.org/" class="external-link">ZIS</a>.</p></li>
+<li><p><code>publication</code>: Publications like journal articles or
+book chapters</p></li>
+<li><p><code>gesis_bib</code>: Records from the
+<a href="https://www.gesis.org/en/institute/about-us/departments/knowledge-transfer/library" class="external-link">GESIS library</a></p></li>
+<li><p><code>gesis_web</code>: GESIS websites</p></li>
+<li><p><code>gesis_person</code>: Institutional websites of GESIS employees</p></li>
+</ul><p>If <code>NULL</code>, includes all result types. Defaults to
 <code>NULL</code>.</p></dd>
 
 
@@ -107,10 +116,15 @@ specified by <code><a href="field_weights.html">field_weights</a></code>. Ignore
 
 
 <dt id="arg-sort">sort<a class="anchor" aria-label="anchor" href="#arg-sort"></a></dt>
-<dd><p>Attribute to sort by. Must be one of <code>"relevance"</code>,
-<code>"newest_first"</code>, <code>"oldest_first"</code>, <code>"title_ascending"</code>,
-<code>"title_descending"</code>, <code>"variable_ascending"</code>, or
-<code>"variable_descending"</code>. Defaults to <code>"relevance"</code>.</p></dd>
+<dd><p>Attribute to sort by. Must be one of the following:</p>
+<ul><li><p><code>relevance</code>: Sorts by relevance (whatever that means)</p></li>
+<li><p><code>newest_first</code>: Sorts by publication year, descending</p></li>
+<li><p><code>oldest_first</code>: Sorts by publication year, ascending</p></li>
+<li><p><code>title_ascending</code>: Sorts lexicographically by title, ascending</p></li>
+<li><p><code>title_descending</code>: Sorts lexicographically by title, descending</p></li>
+<li><p><code>variable_ascending</code>: Sorts lexicographically by variable name, ascending</p></li>
+<li><p><code>variable_descending</code>: Sorts lexicographically by variable name, descending</p></li>
+</ul><p>Defaults to <code>"relevance"</code> to mirror the behavior of the web interface.</p></dd>
 
 
 <dt id="arg-publication-year">publication_year<a class="anchor" aria-label="anchor" href="#arg-publication-year"></a></dt>
@@ -228,29 +242,49 @@ row is a record and each column is a metadata field.</p>
 <span class="r-in"><span><span class="fu">gesis_search</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_product</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-product-175874r5k9gg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> CEWS Portal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-11223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Universität Bamberg - eine familienfreundliche Hochschule? Zur</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Vereinbarkeit von Familie und Beruf bzw. Studium an der Universität Bamberg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rost, Harald</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Schmidt, Jan</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_product</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-product-3edc39peb9c0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> da|ra</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-10451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> 'Concordia' Lomé 1907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Sebald, Peter</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_product</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-product-75sp03aqjbt0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Mikrozensus-Service</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-10583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> A educação visual na televisão vista como educação cultural, política e</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> estética</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Almeida, Milton José de</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_product</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-product-13k95a7ieqm8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Bundestagswahlstudien</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-10542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Wahlen in der DR Kongo 2006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rohde, Eckart</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> gesis_product</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-product-2ss8ljjqhccg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> DeutschlandTREND</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-39168</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> The CSDP after the december summit: to rebalance, the EU should focus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> less on missions and more on security and defence cooperation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Ondarza, Nicolai von</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Overhaus, Marco</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
@@ -263,48 +297,43 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA5898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Flash Eurobarometer 384 (Citizens’ Awareness and Perceptions of EU</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Regional Policy, wave 3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA0221</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> REVUE-Copy-Test (8)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1966</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> European Commission, Brussels DG Communication COMM A1 ´Strategy, Corporate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Communication Actions and Eurobarometer´ Unit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> SAMPLE, Hamburg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA4808</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Flash Eurobarometer 222 (Euro Introduction in Cyprus)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA0226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> REVUE-Copy-Test (13)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1966</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Papacostas, Antonis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> SAMPLE, Hamburg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA4721</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Flash Eurobarometer 184 (Access to Finance Among Small and Medium-sized</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Enterprises in the New Member States)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA0287</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Verbraucherbefragung (Juni 1958)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1968</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> European Commission, Brussels DG Communication Public Opinion Analysis Sector</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Institut für Markt- und Verbrauchsforschung, FU Berlin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA5681</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Flash Eurobarometer 335 (Views and Attitudes Related to the Euro in the</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 Euro-Area Countries)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA0289</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Verbraucherbefragung (Juni 1959)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1968</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> European Commission, Brussels DG Communication Public Opinion Analysis Sector</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Institut für Markt- und Verbrauchsforschung, FU Berlin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> research_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA6641</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Flash Eurobarometer 419 (Quality of Life in European Cities 2015)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> ZA0296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Verbraucherbefragung (Januar 1964)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 1968</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> European Commission, Brussels DG Communication COMM A1 ´Strategy, Corporate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Communication Actions and Eurobarometer´ Unit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Institut für Markt- und Verbrauchsforschung, FU Berlin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
@@ -370,12 +399,12 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> csa-pais-201… Migr… publ… 2011  2011         <span style="color: #949494;">"</span>Provid… http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gesis-ssoar-… Japa… publ… 2021  2021         <span style="color: #949494;">"</span>This a… https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gesis-bib-14… The … gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gesis-ssoar-… Atti… publ… 2020  2020         <span style="color: #949494;">"</span>While … https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gesis-bib-15… Clim… gesi… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gesis-bib-15… Clim… publ… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gesis-ssoar-… Atti… publ… 2020  2020         <span style="color: #949494;">"</span>While … https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gesis-bib-15… Clim… gesi… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gesis-bib-15… Clim… publ… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> fes-bib-4691… Huma… publ… 2009  2009          <span style="color: #BB0000;">NA</span>      http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 41 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   publisher &lt;chr&gt;, database &lt;chr&gt;, document_type &lt;chr&gt;, coreAuthor &lt;list&gt;,</span></span>
@@ -391,12 +420,12 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> csa-pais-201… Migr… publ… 2011  2011         <span style="color: #949494;">"</span>Provid… http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gesis-ssoar-… Japa… publ… 2021  2021         <span style="color: #949494;">"</span>This a… https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gesis-bib-14… The … gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gesis-ssoar-… Atti… publ… 2020  2020         <span style="color: #949494;">"</span>While … https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gesis-bib-15… Clim… gesi… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gesis-bib-15… Clim… publ… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gesis-bib-14… Futu… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gesis-bib-13… Intr… gesi… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> bibsonomy-go… Clim… publ… 2008  2008         <span style="color: #949494;">""</span>       <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gesis-ssoar-… Atti… publ… 2020  2020         <span style="color: #949494;">"</span>While … https://w… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gesis-bib-15… Clim… gesi… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gesis-bib-15… Clim… publ… 2019  2019          <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> fes-bib-4691… Huma… publ… 2009  2009          <span style="color: #BB0000;">NA</span>      http://so… <span style="color: #949494;">&lt;chr&gt;</span> <span style="color: #949494;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 41 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   publisher &lt;chr&gt;, database &lt;chr&gt;, document_type &lt;chr&gt;, coreAuthor &lt;list&gt;,</span></span>
@@ -449,6 +478,16 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-63976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> From climate migration to anthropocene mobilities: shifting the debate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Baldwin, Andrew</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Fröhlich, Christiane</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rothe, Delf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-39185</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Green governance - one solution for two problems? Climate change and</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> economic shocks ; risk perceptions and coping strategies in China, India and</span>
@@ -457,16 +496,6 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Senz, Anja</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Reinhardt, Dieter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-63976</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> From climate migration to anthropocene mobilities: shifting the debate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2019</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Baldwin, Andrew</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Fröhlich, Christiane</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Rothe, Delf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
@@ -475,57 +504,53 @@ row is a record and each column is a metadata field.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A list of <span style="color: #0000BB;">&lt;gesis_records&gt;</span> with 10 records</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54207</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Planners in the Future City: Using City Information Modelling to Support</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Planners as Market Actors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Thompson, Emine Mine</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Greenhalgh, Paul</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Muldoon-Smith, Kevin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Charlton, James</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Dolník, Michal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54291</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Revealing Cultural Ecosystem Services through Instagram Images: The</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Potential of Social Media Volunteered Geographic Information for Urban Green</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Infrastructure Planning and Governance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Guerrero, Paulina</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Møller, Maja Steen</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Olafsson, Anton Stahl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Snizek, Bernhard</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-54312</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Civic Hackathons: New Terrain for Local Government-Citizen Interaction?</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Robinson, Pamela J.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Johnson, Peter A.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-58361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Dead Grass: Foreclosure and the Production of Space in Maricopa County,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Arizona</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Cutts, Bethany B.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Minn, Michael</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-58369</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> The Ubiquitous-Eco-City of Songdo: An Urban Systems Perspective on South</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Korea's Green City Approach</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-68257</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Editing Cumulated Landscapes: Point Cloud Modeling as a Method of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Analysis in Landscape Design</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2020</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Person:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Mullins, Paul D.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Urech, Philipp R. W.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-68346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Mapping as Gap-Finder: Geddes, Tyrwhitt, and the Comparative Spatial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of Port City Regions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Hein, Carola</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Mil, Yvonne van</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-68539</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Citizen Participation in Digitised Environments in Berlin: Visualising</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial Knowledge in Urban Planning</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Singh, Ajit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Christmann, Gabriela B.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-70098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Imagining Cities of Inclusion - Formulating Spaces of Justice</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Nygren, Anja</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Quesada, Florencia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_record&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Type:</span> publication</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ID:</span> gesis-ssoar-70210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Title:</span> Pathways to the ‘Good Life’: Co-Producing Prosperity Research in</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Informal Settlements in Tanzania</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Date:</span> 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Persons:</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Woodcraft, Saffron</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Osuteye, Emmanuel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Ndezi, Tim</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Makoba, Festo D.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ 5 more records</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># ℹ Use `print(n = ...)` to see more records</span></span>
 <span class="r-in"><span></span></span>
