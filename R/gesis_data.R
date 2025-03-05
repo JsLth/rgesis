@@ -123,8 +123,15 @@ gesis_data <- function(record,
 
   # if there's still multiple links, ask manually if possible
   if (length(links) > 1 && prompt) {
+    if (!is.null(select)) {
+      add <- " containing the expression {.val {select}}"
+      labels <- labels[choice]
+    } else {
+      add <- ""
+    }
+
     cli::cli_inform(c(
-      "i" = "Multiple data files have been found.",
+      "i" = sprintf("Multiple data files have been found%s.", as.character(add)),
       "i" = "Please select a file to download from the selection below."
     ))
     choice <- utils::menu(labels)
