@@ -48,7 +48,8 @@ gesis_build_query <- function(query,
       kind_data_en.keyword = data_type,
       study_lang_en.keyword = interview_language,
       queryless = is.null(query)
-    )
+    ) |>
+    structure(class = "gesis_query")
 }
 
 
@@ -161,4 +162,11 @@ field_weights <- function(..., use_default = TRUE) {
 
   fields <- c(paste(names(args), args, sep = "^"))
   gsub("^\\^", "", fields)
+}
+
+
+#' @export
+print.gesis_query <- function(x, pretty = TRUE, ...) {
+  print(jsonlite::toJSON(x, force = TRUE, pretty = pretty, ...))
+  invisible(x)
 }

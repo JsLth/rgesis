@@ -1,5 +1,5 @@
 request_searchengine <- function(source, from) {
-  source_json <- jsonlite::toJSON(source, auto_unbox = TRUE)
+  source_json <- jsonlite::toJSON(source, auto_unbox = TRUE, force = TRUE)
   req <- httr2::request("https://search.gesis.org/searchengine")
   req <- httr2::req_url_query(
     req,
