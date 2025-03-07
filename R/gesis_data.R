@@ -153,7 +153,9 @@ gesis_data <- function(record,
     ))
 
     choice <- utils::menu(labels)
-    links <- links[labels == labels[choice]]
+    choice <- labels == labels[choice]
+    labels <- labels[choice]
+    links <- links[choice]
   }
 
   # if no file matches the select regex, fail
