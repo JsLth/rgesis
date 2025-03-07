@@ -3,6 +3,12 @@
 #' Downloads survey data from GESIS given a record or a dataset ID. To download
 #' data, the session must be authenticated using \code{\link{gesis_auth}}.
 #'
+#' By downloading data from the GESIS data archive, you agree to its
+#' \href{https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf}{terms of use}.
+#' This function is intended to be used for singular, programmatic access to
+#' survey datasets. Please refrain from using it for large-scale batch
+#' downloads.
+#'
 #' @param record Object of class \code{gesis_record} as returned by
 #' \code{\link{gesis_search}} and \code{gesis_get} or dataset ID. If a dataset ID
 #' is passed, the function performs a call to \code{\link{gesis_get}}.

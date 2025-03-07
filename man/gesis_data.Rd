@@ -81,6 +81,12 @@ files are offered in Stata and SPSS file formats and can be read using the
 \description{
 Downloads survey data from GESIS given a record or a dataset ID. To download
 data, the session must be authenticated using \code{\link{gesis_auth}}.
+
+By downloading data from the GESIS data archive, you agree to its
+\href{https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf}{terms of use}.
+This function is intended to be used for singular, programmatic access to
+survey datasets. Please refrain from using it for large-scale batch
+downloads.
 }
 \details{
 Access and refresh tokens are automatically attached to the requests sent

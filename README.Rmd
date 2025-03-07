@@ -30,7 +30,7 @@ coverage](https://codecov.io/gh/JsLth/rgesis/branch/main/graph/badge.svg)](https
 
 `{rgesis}` provides a simple, programmatic and reproducible interface to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.
 
-Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account [here](https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login). `{rgesis}` takes over continuous credentials management and OAuth authentication using the [`{keyring}`](https://keyring.r-lib.org/) and [`{httr2}`](https://httr2.r-lib.org/) packages.
+Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account [here](https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login). `{rgesis}` takes over continuous credentials management and OAuth authentication using the [`{keyring}`](https://keyring.r-lib.org/) and [`{httr2}`](https://httr2.r-lib.org/) packages. By downloading data from the GESIS data archive, you agree to its [terms of use](https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf).
 
 ## Installation
 
