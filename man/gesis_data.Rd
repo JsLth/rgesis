@@ -10,7 +10,6 @@ gesis_data(
   path = tempdir(),
   type = "dataset",
   select = NULL,
-  ...,
   prompt = interactive()
 )
 }
