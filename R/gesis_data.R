@@ -175,8 +175,8 @@ gesis_data <- function(record,
   # if a directory is provided, construct the file name
   # otherwise adopt the provided file name
   if (is_dir(path)) {
-    file <- labels[choice]
-    file <- filename_from_label(file) %|||% basename(tempfile(pattern = "gesis"))
+    file <- filename_from_label(labels) %|||%
+      basename(tempfile(pattern = "gesis"))
     path <- file.path(path, file)
   }
 
