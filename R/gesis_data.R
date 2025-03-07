@@ -40,14 +40,16 @@
 #' Defaults to \code{"dataset"} because downloading PDF or HTML files rarely
 #' makes sense in R. A list of available data types for a given record can be
 #' retrieved using \code{\link{gesis_file_types}}.
-#' @param select Character string to select a data file in case multiple files
+#' @param select Character vector to select a data file in case multiple files
 #' are available for the selected data type. The character string is
 #' matched against the file label using regular expressions. This argument
 #' can also be used to match explicitly for file extensions, e.g.
-#' \code{"\\\\.sav"} or \code{"\\\\.dat"}. A list of file labels for a given
-#' record can be retrieved using \code{\link{gesis_files}}. If \code{NULL},
-#' multiple files are detected, and the session is interactive, prompts the
-#' user to select a file. Defaults to \code{NULL}.
+#' \code{"\\\\.sav"} or \code{"\\\\.dat"}. Can also be of length > 1 in which
+#' case the regular expressions are matched in the order of their index
+#' positions. A list of file labels for a given record can be retrieved using
+#' \code{\link{gesis_files}}. If \code{NULL}, multiple files are detected, and
+#' the session is interactive, prompts the user to select a file. Defaults to
+#' \code{NULL}.
 #' @param prompt If \code{TRUE}, allows the function to open an interactive
 #' prompt in case multiple files are found and \code{select} is either
 #' \code{NULL} or fails to select a file unambiguously. If \code{FALSE},
@@ -90,7 +92,16 @@
 #' # ... or pdftools
 #' path <- gesis_data("ZA3753", select = "fb\\.pdf", type = "questionnaire")
 #' pdftools::pdf_text(path)
-#' }
+#'
+#' # In some cases, a single selection regex might be difficult to work
+#' # with, e.g., if multiple files with the same format exist.
+#' # In this case, you may pass multiple regular expressions which are
+#' # evaluated back by back
+#' gesis_data(
+#'   "ZA7716",
+#'   select = c("\\.sav", "main"),
+#'   download_purpose = "non_scientific"
+#' )}
 gesis_data <- function(record,
                        download_purpose = NULL,
                        path = tempdir(),
@@ -99,7 +110,7 @@ gesis_data <- function(record,
                        prompt = interactive()) {
   assert_class(record, c("character", "gesis_record"))
   assert_vector(path, "character", size = 1)
-  assert_vector(select, "character", size = 1, null = TRUE)
+  assert_vector(select, "character", null = TRUE)
   assert_flag(prompt)
 
   download_purpose <- download_purpose %||% getOption("gesis_download_purpose")
@@ -123,23 +134,24 @@ gesis_data <- function(record,
 
   # if multiple links are found, select one using regex if provided
   if (length(links) > 1 && !is.null(select)) {
-    choice <- grepl(select, labels)
-    links <- links[choice]
+    for (expr in select) {
+      choice <- grepl(expr, labels)
+      labels <- labels[choice]
+      links <- links[choice]
+
+      if (length(links) == 1) break
+    }
   }
 
   # if there's still multiple links, ask manually if possible
   if (length(links) > 1 && prompt) {
-    if (!is.null(select)) {
-      add <- " containing the expression {.val {select}}"
-      labels <- labels[choice]
-    } else {
-      add <- ""
-    }
+    add <- ifelse(!is.null(select), " containing the expression {.val {select}}", "")
 
     cli::cli_inform(c(
       "i" = sprintf("Multiple data files have been found%s.", as.character(add)),
       "i" = "Please select a file to download from the selection below."
     ))
+
     choice <- utils::menu(labels)
     links <- links[labels == labels[choice]]
   }

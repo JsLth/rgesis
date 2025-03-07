@@ -10,6 +10,7 @@ gesis_data(
   path = tempdir(),
   type = "dataset",
   select = NULL,
+  ...,
   prompt = interactive()
 )
 }
@@ -57,14 +58,16 @@ Defaults to \code{"dataset"} because downloading PDF or HTML files rarely
 makes sense in R. A list of available data types for a given record can be
 retrieved using \code{\link{gesis_file_types}}.}
 
-\item{select}{Character string to select a data file in case multiple files
+\item{select}{Character vector to select a data file in case multiple files
 are available for the selected data type. The character string is
 matched against the file label using regular expressions. This argument
 can also be used to match explicitly for file extensions, e.g.
-\code{"\\\\.sav"} or \code{"\\\\.dat"}. A list of file labels for a given
-record can be retrieved using \code{\link{gesis_files}}. If \code{NULL},
-multiple files are detected, and the session is interactive, prompts the
-user to select a file. Defaults to \code{NULL}.}
+\code{"\\\\.sav"} or \code{"\\\\.dat"}. Can also be of length > 1 in which
+case the regular expressions are matched in the order of their index
+positions. A list of file labels for a given record can be retrieved using
+\code{\link{gesis_files}}. If \code{NULL}, multiple files are detected, and
+the session is interactive, prompts the user to select a file. Defaults to
+\code{NULL}.}
 
 \item{prompt}{If \code{TRUE}, allows the function to open an interactive
 prompt in case multiple files are found and \code{select} is either
@@ -117,5 +120,14 @@ haven::read_por(path)
 # ... or pdftools
 path <- gesis_data("ZA3753", select = "fb\\\\.pdf", type = "questionnaire")
 pdftools::pdf_text(path)
-}
+
+# In some cases, a single selection regex might be difficult to work
+# with, e.g., if multiple files with the same format exist.
+# In this case, you may pass multiple regular expressions which are
+# evaluated back by back
+gesis_data(
+  "ZA7716",
+  select = c("\\\\.sav", "main"),
+  download_purpose = "non_scientific"
+)}
 }
