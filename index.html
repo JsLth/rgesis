@@ -56,7 +56,7 @@
 <!-- badges: start -->
 
 <p><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> provides a simple, programmatic and reproducible interface to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.</p>
-<p>Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account <a href="https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login" class="external-link">here</a>. <a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> takes over continuous credentials management and OAuth authentication using the <a href="https://keyring.r-lib.org/" class="external-link"><code>{keyring}</code></a> and <a href="https://httr2.r-lib.org/" class="external-link"><code>{httr2}</code></a> packages.</p>
+<p>Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account <a href="https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login" class="external-link">here</a>. <a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> takes over continuous credentials management and OAuth authentication using the <a href="https://keyring.r-lib.org/" class="external-link"><code>{keyring}</code></a> and <a href="https://httr2.r-lib.org/" class="external-link"><code>{httr2}</code></a> packages. By downloading data from the GESIS data archive, you agree to its <a href="https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf" class="external-link">terms of use</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -73,6 +73,29 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span><span class="st">"allbus"</span>, type <span class="op">=</span> <span class="st">"research_data"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A list of &lt;gesis_records&gt; with 10 records</span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
+<span><span class="co">#&gt; Type: research_data</span></span>
+<span><span class="co">#&gt; ID: ZA5288</span></span>
+<span><span class="co">#&gt; Title: ALLBUS 2021 - Soziodemographische Standardvariablen (KonsortSWD)</span></span>
+<span><span class="co">#&gt; Date: 2024</span></span>
+<span><span class="co">#&gt; Persons:</span></span>
+<span><span class="co">#&gt; • Hadjar, Andreas</span></span>
+<span><span class="co">#&gt; • Ackermann, Kathrin</span></span>
+<span><span class="co">#&gt; • Auspurg, Katrin</span></span>
+<span><span class="co">#&gt; • Bühler, Christoph</span></span>
+<span><span class="co">#&gt; • Carol, Sarah</span></span>
+<span><span class="co">#&gt; • ... and 3 more</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
+<span><span class="co">#&gt; Type: research_data</span></span>
+<span><span class="co">#&gt; ID: ZA8838</span></span>
+<span><span class="co">#&gt; Title: ALLBUS 2023 - DBD Add-On</span></span>
+<span><span class="co">#&gt; Date: 2025</span></span>
+<span><span class="co">#&gt; Persons:</span></span>
+<span><span class="co">#&gt; • Binder, Barbara</span></span>
+<span><span class="co">#&gt; • Linzbach, Stephan</span></span>
+<span><span class="co">#&gt; • Mangold, Frank</span></span>
+<span><span class="co">#&gt; • Schmidt, Felix</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
@@ -85,62 +108,35 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA5272</span></span>
-<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2018</span></span>
-<span><span class="co">#&gt; Date: 2019</span></span>
+<span><span class="co">#&gt; ID: ZA2140</span></span>
+<span><span class="co">#&gt; Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 1992</span></span>
+<span><span class="co">#&gt; Date: 2014</span></span>
 <span><span class="co">#&gt; Persons:</span></span>
-<span><span class="co">#&gt; • Diekmann, Andreas</span></span>
-<span><span class="co">#&gt; • Hadjar, Andreas</span></span>
-<span><span class="co">#&gt; • Kurz, Karin</span></span>
-<span><span class="co">#&gt; • Rosar, Ulrich</span></span>
-<span><span class="co">#&gt; • Wagner, Ulrich</span></span>
-<span><span class="co">#&gt; • ... and 1 more</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
-<span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA3753</span></span>
-<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 1998</span></span>
-<span><span class="co">#&gt; Date: 2005</span></span>
-<span><span class="co">#&gt; Persons:</span></span>
-<span><span class="co">#&gt; • Allerbeck, Klaus</span></span>
+<span><span class="co">#&gt; • Allerbeck, Klaus R.</span></span>
 <span><span class="co">#&gt; • Allmendinger, Jutta</span></span>
-<span><span class="co">#&gt; • Bürklin, Wilhelm</span></span>
-<span><span class="co">#&gt; • Kiefer, Marie Luise</span></span>
 <span><span class="co">#&gt; • Müller, Walter</span></span>
+<span><span class="co">#&gt; • Opp, Karl-Dieter</span></span>
+<span><span class="co">#&gt; • Pappi, Franz U.</span></span>
 <span><span class="co">#&gt; • ... and 2 more</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA3702</span></span>
-<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2002</span></span>
-<span><span class="co">#&gt; Date: 2008</span></span>
-<span><span class="co">#&gt; Persons:</span></span>
-<span><span class="co">#&gt; • Andreß, Hans-Jürgen</span></span>
-<span><span class="co">#&gt; • Bürklin, Wilhelm</span></span>
-<span><span class="co">#&gt; • Diekmann, Andreas</span></span>
-<span><span class="co">#&gt; • Feger, Hubert</span></span>
-<span><span class="co">#&gt; • Huinink, Johannes</span></span>
-<span><span class="co">#&gt; • ... and 2 more</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
-<span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA5270</span></span>
-<span><span class="co">#&gt; Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 2018</span></span>
+<span><span class="co">#&gt; ID: ZA4616</span></span>
+<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2012</span></span>
 <span><span class="co">#&gt; Date: 2019</span></span>
 <span><span class="co">#&gt; Persons:</span></span>
 <span><span class="co">#&gt; • Diekmann, Andreas</span></span>
-<span><span class="co">#&gt; • Hadjar, Andreas</span></span>
-<span><span class="co">#&gt; • Kurz, Karin</span></span>
-<span><span class="co">#&gt; • Rosar, Ulrich</span></span>
-<span><span class="co">#&gt; • Wagner, Ulrich</span></span>
-<span><span class="co">#&gt; • ... and 1 more</span></span>
+<span><span class="co">#&gt; • Fetchenhauer, Detlef</span></span>
+<span><span class="co">#&gt; • Kühnel, Steffen</span></span>
+<span><span class="co">#&gt; • Liebig, Stefan</span></span>
+<span><span class="co">#&gt; • Schmitt-Beck, Rüdiger</span></span>
+<span><span class="co">#&gt; • ... and 2 more</span></span>
 <span><span class="co">#&gt; # ℹ 5 more records</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more records</span></span></code></pre></div>
 <p>… or other things from the social sciences, like publications.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span><span class="st">"climate change"</span>, type <span class="op">=</span> <span class="st">"publication"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A list of &lt;gesis_records&gt; with 10 records</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: publication</span></span>
 <span><span class="co">#&gt; ID: csa-pais-2011-148719</span></span>
@@ -176,36 +172,34 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: publication</span></span>
-<span><span class="co">#&gt; ID: bibsonomy-goughietal2008climate</span></span>
-<span><span class="co">#&gt; Title: Climate Change and Social Policy</span></span>
-<span><span class="co">#&gt; Date: 2008</span></span>
-<span><span class="co">#&gt; Person:</span></span>
-<span><span class="co">#&gt; • Gough, I. et al</span></span>
+<span><span class="co">#&gt; ID: gesis-bib-153820-LP</span></span>
+<span><span class="co">#&gt; Title: Climate Change : Fieldwork: April 2019</span></span>
+<span><span class="co">#&gt; Date: 2019</span></span>
 <span><span class="co">#&gt; # ℹ 5 more records</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more records</span></span></code></pre></div>
 <p>The results include metadata in complex data structures – or simplified to a tidy rectangular shape.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span>tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 56</span></span>
-<span><span class="co">#&gt;    id       title type  date  date_recency abstract abstract_en portal_url doi  </span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;</span></span>
-<span><span class="co">#&gt;  1 zis198   Eins… inst… 1998  1998         "Die hi… The items … https://z… http…</span></span>
-<span><span class="co">#&gt;  2 gesis-s… Univ… publ… 2003  2003         "\"Die … &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  3 gesis-s… 'Con… publ… 2006  2006          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  4 gesis-s… A ed… publ… 2000  2000         "Estudo… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  5 gesis-s… Wahl… publ… 2007  2007         "Nach J… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  6 gesis-s… The … publ… 2014  2014         "In Dec… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  7 gesis-s… Dive… publ… 2000  2000         "Este a… &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  8 gesis-s… Reze… publ… 2012  2012          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt;  9 gesis-s… Konf… publ… 2004  2004          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt; 10 gesis-s… Reze… publ… 2004  2004          &lt;NA&gt;    &lt;NA&gt;        http://ww… &lt;NA&gt; </span></span>
-<span><span class="co">#&gt; # ℹ 47 more variables: topic &lt;list&gt;, topic_en &lt;chr&gt;, subject &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   subject_en &lt;chr&gt;, person &lt;list&gt;, person_sort &lt;chr&gt;, source &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   subtype &lt;chr&gt;, zis_date &lt;chr&gt;, count_items &lt;chr&gt;, validity &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   construct &lt;chr&gt;, language_documentation &lt;chr&gt;, language_items &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   language_items_en &lt;chr&gt;, author_website &lt;chr&gt;, data_archiv_website &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   item_in_socialsurvey &lt;chr&gt;, status_instrument &lt;chr&gt;, instrument &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   theory &lt;chr&gt;, development &lt;chr&gt;, quality_criteria &lt;chr&gt;, …</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 10 × 33</span></span>
+<span><span class="co">#&gt;    id            title type  date  date_recency abstract portal_url topic person</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;      &lt;lis&gt; &lt;list&gt;</span></span>
+<span><span class="co">#&gt;  1 gesis-ssoar-… Muje… publ… 2010  2010         "The ca… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  2 gesis-ssoar-… Rußl… publ… 1999  1999         "'Durch… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  3 gesis-ssoar-… Prob… publ… 1999  1999         "'Die I… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  4 gesis-ssoar-… Ukra… publ… 1995  1995          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  5 gesis-ssoar-… Prob… publ… 2002  2002         "Vor nu… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  6 gesis-ssoar-… Migr… publ… 2002  2002         "\"Als … http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  7 gesis-ssoar-… Staa… publ… 2002  2002         "Im vor… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  8 gesis-ssoar-… Wahl… publ… 2001  2001         "\"Die … http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  9 gesis-ssoar-… Ener… publ… 2001  2001         "Ebenso… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 10 gesis-ssoar-… Iden… publ… 2008  2008         "Events… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; # ℹ 24 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   document_type &lt;chr&gt;, institutions &lt;chr&gt;, coreAuthor &lt;list&gt;,</span></span>
+<span><span class="co">#&gt; #   coreSjahr &lt;chr&gt;, coreJournalTitle &lt;chr&gt;, coreZsband &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   coreZsnummer &lt;chr&gt;, coreLanguage &lt;chr&gt;, urn &lt;chr&gt;, coreIssn &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   data_source &lt;chr&gt;, index_source &lt;chr&gt;, database &lt;chr&gt;, link_count &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   gesis_own &lt;int&gt;, fulltext &lt;int&gt;, metadata_quality &lt;int&gt;, full_text &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   coreCorpEditor &lt;chr&gt;, publishLocation_str_mv &lt;chr&gt;, doi &lt;chr&gt;</span></span></code></pre></div>
 <p>Metadata records can also be used to download survey data directly from the data archive. You need to be logged in, though.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gesis_auth()</span></span>
