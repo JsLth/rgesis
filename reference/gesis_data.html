@@ -108,6 +108,7 @@ a temporary directory path.</p></dd>
 <ul><li><p><code>dataset</code>: Survey dataset, usually in a Stata or SPSS data format</p></li>
 <li><p><code>questionnaire</code>: Survey questionnaire, usually in PDF format</p></li>
 <li><p><code>codebook</code>: Survey codebook, usually in PDF format</p></li>
+<li><p><code>syntax</code>: Code files, e.g. for replication or data cleaning</p></li>
 <li><p><code>otherdocs</code>: Other files like READMEs, method
 reports, or variable lists, usually in PDF format</p></li>
 <li><p><code>uncategorized</code>: Other files that are not categorized, usually
@@ -186,7 +187,11 @@ to avoid sending authentication information to other domains.</p>
 <span class="r-in"><span>  <span class="st">"ZA7716"</span>,</span></span>
 <span class="r-in"><span>  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"\\.sav"</span>, <span class="st">"main"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  download_purpose <span class="op">=</span> <span class="st">"non_scientific"</span></span></span>
-<span class="r-in"><span><span class="op">)</span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># `gesis_data` can be used to download and execute R code</span></span></span>
+<span class="r-in"><span><span class="va">record</span> <span class="op">&lt;-</span> <span class="fu"><a href="gesis_get.html">gesis_get</a></span><span class="op">(</span><span class="st">"SDN-10.7802-2109"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span><span class="fu">gesis_data</span><span class="op">(</span><span class="va">record</span>, type <span class="op">=</span> <span class="st">"syntax"</span>, select <span class="op">=</span> <span class="st">"car_ref_all"</span><span class="op">)</span><span class="op">)</span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
