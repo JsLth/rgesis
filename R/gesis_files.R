@@ -82,7 +82,7 @@ get_links_from_record <- function(record, type) {
 
 
 filename_from_label <- function(file) {
-  regex_match(file, "(^.+\\.[A-Za-z]+) ", i = 2)
+  regex_match(file, "(^.+\\.[A-Za-z]+) ?", i = 2)
 }
 
 

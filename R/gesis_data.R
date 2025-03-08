@@ -31,6 +31,7 @@
 #'  \item{\code{dataset}: Survey dataset, usually in a Stata or SPSS data format}
 #'  \item{\code{questionnaire}: Survey questionnaire, usually in PDF format}
 #'  \item{\code{codebook}: Survey codebook, usually in PDF format}
+#'  \item{\code{syntax}: Code files, e.g. for replication or data cleaning}
 #'  \item{\code{otherdocs}: Other files like READMEs, method
 #'  reports, or variable lists, usually in PDF format}
 #'  \item{\code{uncategorized}: Other files that are not categorized, usually
@@ -101,7 +102,11 @@
 #'   "ZA7716",
 #'   select = c("\\.sav", "main"),
 #'   download_purpose = "non_scientific"
-#' )}
+#' )
+#'
+#' # `gesis_data` can be used to download and execute R code
+#' record <- gesis_get("SDN-10.7802-2109")
+#' parse(gesis_data(record, type = "syntax", select = "car_ref_all"))}
 gesis_data <- function(record,
                        download_purpose = NULL,
                        path = tempdir(),
@@ -129,8 +134,13 @@ gesis_data <- function(record,
   }
 
   links <- get_links_from_record(record, type = type)
-  label_field <- if ("label_en" %in% names(links)) "label_en" else "label"
-  labels <- vapply(links, FUN.VALUE = character(1), "[[", label_field)
+  labels <- vapply(
+    links,
+    FUN.VALUE = character(1),
+    function(link) link$label_en %||%
+      link$label %||%
+      link$file_name
+  )
 
   # if multiple links are found, select one using regex if provided
   if (length(links) > 1 && !is.null(select)) {
@@ -225,7 +235,7 @@ purposes <- c(
 
 
 file_types <- c(
-  "dataset", "questionnaire", "codebook", "otherdocs", "uncategorized"
+  "dataset", "questionnaire", "codebook", "syntax", "otherdocs", "uncategorized"
 )
 
 

@@ -20,6 +20,7 @@ is passed, the function performs a call to \code{\link{gesis_get}}.}
 \item{\code{dataset}: Survey dataset, usually in a Stata or SPSS data format}
 \item{\code{questionnaire}: Survey questionnaire, usually in PDF format}
 \item{\code{codebook}: Survey codebook, usually in PDF format}
+\item{\code{syntax}: Code files, e.g. for replication or data cleaning}
 \item{\code{otherdocs}: Other files like READMEs, method
 reports, or variable lists, usually in PDF format}
 \item{\code{uncategorized}: Other files that are not categorized, usually

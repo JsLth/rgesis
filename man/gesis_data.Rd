@@ -47,6 +47,7 @@ a temporary directory path.}
 \item{\code{dataset}: Survey dataset, usually in a Stata or SPSS data format}
 \item{\code{questionnaire}: Survey questionnaire, usually in PDF format}
 \item{\code{codebook}: Survey codebook, usually in PDF format}
+\item{\code{syntax}: Code files, e.g. for replication or data cleaning}
 \item{\code{otherdocs}: Other files like READMEs, method
 reports, or variable lists, usually in PDF format}
 \item{\code{uncategorized}: Other files that are not categorized, usually
@@ -128,5 +129,9 @@ gesis_data(
   "ZA7716",
   select = c("\\\\.sav", "main"),
   download_purpose = "non_scientific"
-)}
+)
+
+# `gesis_data` can be used to download and execute R code
+record <- gesis_get("SDN-10.7802-2109")
+parse(gesis_data(record, type = "syntax", select = "car_ref_all"))}
 }
