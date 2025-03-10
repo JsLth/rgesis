@@ -71,18 +71,24 @@ is passed, the function performs a call to <code><a href="gesis_get.html">gesis_
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Type of data to download. The following values are supported:</p>
-<ul><li><p><code>dataset</code>: Survey dataset, usually in a Stata or SPSS data format</p></li>
+<dd><p>Type of data to download. A list of file types available for
+a given record can be retrieved using <code>gesis_file_types</code>.
+Common types include:</p>
+<ul><li><p><code>data</code>: Research or survey dataset, usually in a Stata or SPSS
+data format.</p></li>
 <li><p><code>questionnaire</code>: Survey questionnaire, usually in PDF format</p></li>
 <li><p><code>codebook</code>: Survey codebook, usually in PDF format</p></li>
+<li><p><code>report</code>: Method, project or technical reports, usually in
+PDF format.</p></li>
 <li><p><code>syntax</code>: Code files, e.g. for replication or data cleaning</p></li>
-<li><p><code>otherdocs</code>: Other files like READMEs, method
-reports, or variable lists, usually in PDF format</p></li>
+<li><p><code>other</code>: Other files like READMEs, method
+reports, or variable lists, usually in PDF format.</p></li>
 <li><p><code>uncategorized</code>: Other files that are not categorized, usually
 used for external links to full texts (DOI, URN)</p></li>
-</ul><p>Defaults to <code>"dataset"</code> because downloading PDF or HTML files rarely
-makes sense in R. A list of available data types for a given record can be
-retrieved using <code>gesis_file_types</code>.</p></dd>
+</ul><p>Defaults to <code>"data"</code> because downloading PDF or HTML files rarely
+makes sense in R. Note that <code>"data"</code>, <code>"report"</code>, and
+<code>"other"</code> are keywords that cover all types of datasets, written
+reports, and other documents respectively.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -136,10 +142,12 @@ categorized. If <code>NULL</code>, no files are available for download.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_files&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> → File 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3000_fb.pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Format:</span> pdf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> no</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ────</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> → File 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> ZA3753_q.pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Format:</span> pdf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> no</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># other record types can have files, too</span></span></span>
@@ -148,6 +156,7 @@ categorized. If <code>NULL</code>, no files are available for download.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;gesis_files&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> → File 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Label:</span> Projektbericht</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Login required?</span> no</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
