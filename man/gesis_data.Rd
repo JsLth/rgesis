@@ -8,7 +8,7 @@ gesis_data(
   record,
   download_purpose = NULL,
   path = tempdir(),
-  type = "dataset",
+  type = "data",
   select = NULL,
   prompt = interactive()
 )
@@ -41,22 +41,28 @@ is stored in a file called \code{gesis} with no file extension. If a file
 path is passed, the file is directly downloaded to this path. Defaults to
 a temporary directory path.}
 
-\item{type}{Type of data to download. The following values are supported:
+\item{type}{Type of data to download. A list of file types available for
+a given record can be retrieved using \code{\link{gesis_file_types}}.
+Common types include:
 
 \itemize{
-\item{\code{dataset}: Survey dataset, usually in a Stata or SPSS data format}
+\item{\code{data}: Research or survey dataset, usually in a Stata or SPSS
+data format.}
 \item{\code{questionnaire}: Survey questionnaire, usually in PDF format}
 \item{\code{codebook}: Survey codebook, usually in PDF format}
+\item{\code{report}: Method, project or technical reports, usually in
+PDF format.}
 \item{\code{syntax}: Code files, e.g. for replication or data cleaning}
-\item{\code{otherdocs}: Other files like READMEs, method
-reports, or variable lists, usually in PDF format}
+\item{\code{other}: Other files like READMEs, method
+reports, or variable lists, usually in PDF format.}
 \item{\code{uncategorized}: Other files that are not categorized, usually
 used for external links to full texts (DOI, URN)}
 }
 
-Defaults to \code{"dataset"} because downloading PDF or HTML files rarely
-makes sense in R. A list of available data types for a given record can be
-retrieved using \code{\link{gesis_file_types}}.}
+Defaults to \code{"data"} because downloading PDF or HTML files rarely
+makes sense in R. Note that \code{"data"}, \code{"report"}, and
+\code{"other"} are keywords that cover all types of datasets, written
+reports, and other documents respectively.}
 
 \item{select}{Character vector to select a data file in case multiple files
 are available for the selected data type. The character string is

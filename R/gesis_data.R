@@ -25,22 +25,28 @@
 #' is stored in a file called \code{gesis} with no file extension. If a file
 #' path is passed, the file is directly downloaded to this path. Defaults to
 #' a temporary directory path.
-#' @param type Type of data to download. The following values are supported:
+#' @param type Type of data to download. A list of file types available for
+#' a given record can be retrieved using \code{\link{gesis_file_types}}.
+#' Common types include:
 #'
 #' \itemize{
-#'  \item{\code{dataset}: Survey dataset, usually in a Stata or SPSS data format}
+#'  \item{\code{data}: Research or survey dataset, usually in a Stata or SPSS
+#'  data format.}
 #'  \item{\code{questionnaire}: Survey questionnaire, usually in PDF format}
 #'  \item{\code{codebook}: Survey codebook, usually in PDF format}
+#'  \item{\code{report}: Method, project or technical reports, usually in
+#'  PDF format.}
 #'  \item{\code{syntax}: Code files, e.g. for replication or data cleaning}
-#'  \item{\code{otherdocs}: Other files like READMEs, method
-#'  reports, or variable lists, usually in PDF format}
+#'  \item{\code{other}: Other files like READMEs, method
+#'  reports, or variable lists, usually in PDF format.}
 #'  \item{\code{uncategorized}: Other files that are not categorized, usually
 #'  used for external links to full texts (DOI, URN)}
 #' }
 #'
-#' Defaults to \code{"dataset"} because downloading PDF or HTML files rarely
-#' makes sense in R. A list of available data types for a given record can be
-#' retrieved using \code{\link{gesis_file_types}}.
+#' Defaults to \code{"data"} because downloading PDF or HTML files rarely
+#' makes sense in R. Note that \code{"data"}, \code{"report"}, and
+#' \code{"other"} are keywords that cover all types of datasets, written
+#' reports, and other documents respectively.
 #' @param select Character vector to select a data file in case multiple files
 #' are available for the selected data type. The character string is
 #' matched against the file label using regular expressions. This argument
@@ -110,12 +116,13 @@
 gesis_data <- function(record,
                        download_purpose = NULL,
                        path = tempdir(),
-                       type = "dataset",
+                       type = "data",
                        select = NULL,
                        prompt = interactive()) {
   assert_class(record, c("character", "gesis_record"))
   assert_vector(path, "character", size = 1)
   assert_vector(select, "character", null = TRUE)
+  assert_vector(type, "character", size = 1)
   assert_flag(prompt)
 
   download_purpose <- download_purpose %||% getOption("gesis_download_purpose")
@@ -126,7 +133,6 @@ gesis_data <- function(record,
   }
 
   download_purpose <- match.arg(download_purpose, choices = names(purposes))
-  type <- match.arg(type, choices = file_types)
 
   # if a character is provided, interpret it as an id and look it up
   if (is.character(record)) {
@@ -231,11 +237,6 @@ purposes <- c(
   scientific_research = "for scientific research (incl. doctorate)",
   studies = "in the course of my studies",
   lecturer = "in a course as a lecturer"
-)
-
-
-file_types <- c(
-  "dataset", "questionnaire", "codebook", "syntax", "otherdocs", "uncategorized"
 )
 
 
