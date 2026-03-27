@@ -6,14 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Interface to GESIS Search • rgesis</title>
-<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.10/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><script src="deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interface to GESIS Search">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interface to GESIS Search">
 <meta name="description" content="Provides programmatic access to the GESIS Search engine &lt;https://search.gesis.org/&gt; to retrieve metadata on research data, variables, literature, and tools. Authenticate and download datasets from the GESIS data archive with minimal dependencies.">
 <meta property="og:description" content="Provides programmatic access to the GESIS Search engine &lt;https://search.gesis.org/&gt; to retrieve metadata on research data, variables, literature, and tools. Authenticate and download datasets from the GESIS data archive with minimal dependencies.">
 </head>
@@ -55,8 +61,9 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> provides a simple, programmatic and reproducible interface to the GESIS search engine. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.</p>
-<p>Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account <a href="https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login" class="external-link">here</a>. <a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> takes over continuous credentials management and OAuth authentication using the <a href="https://keyring.r-lib.org/" class="external-link"><code>{keyring}</code></a> and <a href="https://httr2.r-lib.org/" class="external-link"><code>{httr2}</code></a> packages. By downloading data from the GESIS data archive, you agree to its <a href="https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf" class="external-link">terms of use</a>.</p>
+<p><a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> provides a simple, programmatic and reproducible interface to the GESIS search engine and data archive. It allows the retrieval of metadata on records like research datasets, variables, publications, and tools. Based on this, the package can also download survey data from the data archive.</p>
+<p>Note that while the GESIS search API can be accessed directly, you need to be logged in to download any survey data. You can create a user account <a href="https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login" class="external-link">here</a>. <a href="https://github.com/jslth/rgesis/" class="external-link">rgesis</a> takes over continuous credentials management and OAuth authentication using the <a href="https://keyring.r-lib.org/" class="external-link"><code>{keyring}</code></a> and <a href="https://httr2.r-lib.org/" class="external-link"><code>{httr2}</code></a> packages.</p>
+<p><strong>Disclaimer:</strong> This is not an official GESIS product. Not affiliated with or endorsed by GESIS – Leibniz Institute for the Social Sciences. Users are responsible for complying with GESIS <a href="https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf" class="external-link">terms of use</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -75,19 +82,6 @@
 <span><span class="co">#&gt; A list of &lt;gesis_records&gt; with 10 records</span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA5288</span></span>
-<span><span class="co">#&gt; Title: ALLBUS 2021 - Soziodemographische Standardvariablen (KonsortSWD)</span></span>
-<span><span class="co">#&gt; Date: 2024</span></span>
-<span><span class="co">#&gt; Persons:</span></span>
-<span><span class="co">#&gt; • Hadjar, Andreas</span></span>
-<span><span class="co">#&gt; • Ackermann, Kathrin</span></span>
-<span><span class="co">#&gt; • Auspurg, Katrin</span></span>
-<span><span class="co">#&gt; • Bühler, Christoph</span></span>
-<span><span class="co">#&gt; • Carol, Sarah</span></span>
-<span><span class="co">#&gt; • ... and 3 more</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
-<span><span class="co">#&gt; Type: research_data</span></span>
 <span><span class="co">#&gt; ID: ZA8838</span></span>
 <span><span class="co">#&gt; Title: ALLBUS 2023 - DBD Add-On</span></span>
 <span><span class="co">#&gt; Date: 2025</span></span>
@@ -95,43 +89,30 @@
 <span><span class="co">#&gt; • Binder, Barbara</span></span>
 <span><span class="co">#&gt; • Linzbach, Stephan</span></span>
 <span><span class="co">#&gt; • Mangold, Frank</span></span>
-<span><span class="co">#&gt; • Schmidt, Felix</span></span>
+<span><span class="co">#&gt; • ... and 1 more</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: SDN-10.7802-2497</span></span>
-<span><span class="co">#&gt; Title: Code/Syntax: The role of values as mediator in relationships between</span></span>
-<span><span class="co">#&gt; social position and cultural omnivorousness in Germany [Replication files]</span></span>
-<span><span class="co">#&gt; Date: 2022</span></span>
-<span><span class="co">#&gt; Person:</span></span>
-<span><span class="co">#&gt; • Voronin, Yevhen</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
-<span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA2140</span></span>
-<span><span class="co">#&gt; Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 1992</span></span>
-<span><span class="co">#&gt; Date: 2014</span></span>
+<span><span class="co">#&gt; ID: ZA5288</span></span>
+<span><span class="co">#&gt; Title: ALLBUS 2021 - Soziodemographische Standardvariablen (KonsortSWD)</span></span>
+<span><span class="co">#&gt; Date: 2024</span></span>
 <span><span class="co">#&gt; Persons:</span></span>
-<span><span class="co">#&gt; • Allerbeck, Klaus R.</span></span>
-<span><span class="co">#&gt; • Allmendinger, Jutta</span></span>
-<span><span class="co">#&gt; • Müller, Walter</span></span>
-<span><span class="co">#&gt; • Opp, Karl-Dieter</span></span>
-<span><span class="co">#&gt; • Pappi, Franz U.</span></span>
-<span><span class="co">#&gt; • ... and 2 more</span></span>
+<span><span class="co">#&gt; • Hadjar, Andreas</span></span>
+<span><span class="co">#&gt; • Ackermann, Kathrin</span></span>
+<span><span class="co">#&gt; • Auspurg, Katrin</span></span>
+<span><span class="co">#&gt; • ... and 5 more</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: research_data</span></span>
-<span><span class="co">#&gt; ID: ZA4616</span></span>
-<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2012</span></span>
-<span><span class="co">#&gt; Date: 2019</span></span>
+<span><span class="co">#&gt; ID: ZA5252</span></span>
+<span><span class="co">#&gt; Title: German General Social Survey - ALLBUS 2016</span></span>
+<span><span class="co">#&gt; Date: 2018</span></span>
 <span><span class="co">#&gt; Persons:</span></span>
-<span><span class="co">#&gt; • Diekmann, Andreas</span></span>
-<span><span class="co">#&gt; • Fetchenhauer, Detlef</span></span>
-<span><span class="co">#&gt; • Kühnel, Steffen</span></span>
-<span><span class="co">#&gt; • Liebig, Stefan</span></span>
-<span><span class="co">#&gt; • Schmitt-Beck, Rüdiger</span></span>
-<span><span class="co">#&gt; • ... and 2 more</span></span>
-<span><span class="co">#&gt; # ℹ 5 more records</span></span>
+<span><span class="co">#&gt; • Stefan Bauernschuster</span></span>
+<span><span class="co">#&gt; • Andreas Diekmann</span></span>
+<span><span class="co">#&gt; • Andreas Hadjar</span></span>
+<span><span class="co">#&gt; • ... and 4 more</span></span>
+<span><span class="co">#&gt; # ℹ 7 more records</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more records</span></span></code></pre></div>
 <p>… or other things from the social sciences, like publications.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -158,48 +139,38 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
 <span><span class="co">#&gt; Type: publication</span></span>
-<span><span class="co">#&gt; ID: fes-bib-469114</span></span>
-<span><span class="co">#&gt; Title: Human rights and climate change</span></span>
-<span><span class="co">#&gt; Date: 2009</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
-<span><span class="co">#&gt; Type: publication</span></span>
-<span><span class="co">#&gt; ID: gesis-ssoar-76642</span></span>
-<span><span class="co">#&gt; Title: Attitudes towards climate change migrants</span></span>
-<span><span class="co">#&gt; Date: 2020</span></span>
-<span><span class="co">#&gt; Person:</span></span>
-<span><span class="co">#&gt; • Helbling, Marc</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; &lt;gesis_record&gt;</span></span>
-<span><span class="co">#&gt; Type: publication</span></span>
-<span><span class="co">#&gt; ID: gesis-bib-153820-LP</span></span>
-<span><span class="co">#&gt; Title: Climate Change : Fieldwork: April 2019</span></span>
-<span><span class="co">#&gt; Date: 2019</span></span>
-<span><span class="co">#&gt; # ℹ 5 more records</span></span>
+<span><span class="co">#&gt; ID: bibsonomy-noth2025epistemic</span></span>
+<span><span class="co">#&gt; Title: How Epistemic Beliefs about Climate Change Predict Climate Change</span></span>
+<span><span class="co">#&gt; Conspiracy Beliefs</span></span>
+<span><span class="co">#&gt; Date: 2025</span></span>
+<span><span class="co">#&gt; Persons:</span></span>
+<span><span class="co">#&gt; • Nöth, Linnea</span></span>
+<span><span class="co">#&gt; • Zander, Lysann</span></span>
+<span><span class="co">#&gt; # ℹ 7 more records</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more records</span></span></code></pre></div>
 <p>The results include metadata in complex data structures – or simplified to a tidy rectangular shape.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gesis_search.html">gesis_search</a></span><span class="op">(</span>tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10 × 33</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 35</span></span>
 <span><span class="co">#&gt;    id            title type  date  date_recency abstract portal_url topic person</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;      &lt;lis&gt; &lt;list&gt;</span></span>
-<span><span class="co">#&gt;  1 gesis-ssoar-… Muje… publ… 2010  2010         "The ca… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  2 gesis-ssoar-… Rußl… publ… 1999  1999         "'Durch… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  3 gesis-ssoar-… Prob… publ… 1999  1999         "'Die I… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  4 gesis-ssoar-… Ukra… publ… 1995  1995          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  5 gesis-ssoar-… Prob… publ… 2002  2002         "Vor nu… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  6 gesis-ssoar-… Migr… publ… 2002  2002         "\"Als … http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  7 gesis-ssoar-… Staa… publ… 2002  2002         "Im vor… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  8 gesis-ssoar-… Wahl… publ… 2001  2001         "\"Die … http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  9 gesis-ssoar-… Ener… publ… 2001  2001         "Ebenso… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt; 10 gesis-ssoar-… Iden… publ… 2008  2008         "Events… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt; # ℹ 24 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt;  1 gesis-ssoar-… Die … publ… 2005  2005         "'Im Ze… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  2 gesis-ssoar-… Book… publ… 2005  2005          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  3 gesis-ssoar-… Verm… publ… 2005  2005         "\"In d… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  4 gesis-ssoar-… Reze… publ… 2006  2006          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  5 gesis-ssoar-… Prol… publ… 1999  1999          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  6 gesis-ssoar-… Chro… publ… 2010  2010         "Vingt … http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  7 gesis-ssoar-… Bezi… publ… 2000  2000          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  8 gesis-ssoar-… Book… publ… 2007  2007          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  9 gesis-ssoar-… Tele… publ… 2007  2007         "The mo… http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 10 gesis-ssoar-… Book… publ… 2007  2007          &lt;NA&gt;    http://ww… &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; # ℹ 26 more variables: person_sort &lt;chr&gt;, source &lt;chr&gt;, subtype &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   document_type &lt;chr&gt;, institutions &lt;chr&gt;, coreAuthor &lt;list&gt;,</span></span>
 <span><span class="co">#&gt; #   coreSjahr &lt;chr&gt;, coreJournalTitle &lt;chr&gt;, coreZsband &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   coreZsnummer &lt;chr&gt;, coreLanguage &lt;chr&gt;, urn &lt;chr&gt;, coreIssn &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   data_source &lt;chr&gt;, index_source &lt;chr&gt;, database &lt;chr&gt;, link_count &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   gesis_own &lt;int&gt;, fulltext &lt;int&gt;, metadata_quality &lt;int&gt;, full_text &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   coreCorpEditor &lt;chr&gt;, publishLocation_str_mv &lt;chr&gt;, doi &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; #   coreZsnummer &lt;chr&gt;, coreLanguage &lt;chr&gt;, urn &lt;chr&gt;, data_source &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   index_source &lt;chr&gt;, database &lt;chr&gt;, link_count &lt;int&gt;, gesis_own &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   fulltext &lt;int&gt;, metadata_quality &lt;int&gt;, full_text &lt;chr&gt;, doi &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   coreIssn &lt;chr&gt;, publishLocation_str_mv &lt;chr&gt;, coreRecensionTitle &lt;chr&gt;, …</span></span></code></pre></div>
 <p>Metadata records can also be used to download survey data directly from the data archive. You need to be logged in, though.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gesis_auth()</span></span>
@@ -245,7 +216,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Jonas Lieth <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-3451-3176" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Jonas Lieth <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-3451-3176" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -270,7 +241,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
