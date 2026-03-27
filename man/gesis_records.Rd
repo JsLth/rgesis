@@ -9,13 +9,25 @@
 \alias{gesis_record}
 \title{Methods for \code{gesis_records} objects}
 \usage{
-\method{format}{gesis_record}(x, max_persons = 5, ...)
+\method{format}{gesis_record}(x, max_persons = 5, compact = FALSE, ...)
 
-\method{print}{gesis_record}(x, max_persons = 5, ...)
+\method{print}{gesis_record}(x, max_persons = 3, compact = FALSE, ...)
 
-\method{format}{gesis_records}(x, n = 3, max_persons = 5, ...)
+\method{format}{gesis_records}(
+  x,
+  n = 3,
+  max_persons = 3,
+  compact = getOption("gesis_compact", FALSE),
+  ...
+)
 
-\method{print}{gesis_records}(x, n = 5, max_persons = 5, ...)
+\method{print}{gesis_records}(
+  x,
+  n = 3,
+  max_persons = 3,
+  compact = getOption("gesis_compact", FALSE),
+  ...
+)
 
 gesis_record(record, index = NULL, id = NULL, score = NULL, ...)
 
@@ -27,6 +39,11 @@ For \code{gesis_records}, a list-like consisting of objects of class
 \code{gesis_record}.}
 
 \item{max_persons}{Maximum number of authors to print. Defaults to 5.}
+
+\item{compact}{If \code{TRUE}, prints records in compact format, showing
+only the dataset identifier and title. If \code{FALSE}, shows the full
+record preview. Can be controlled through the option
+\code{getOption("gesis_compact")}. Defaults to \code{FALSE}.}
 
 \item{...}{Arguments passed to the respective methods. Currently unused
 in \code{gesis_records}. Can be used to provide additional attributes to
@@ -59,5 +76,8 @@ Methods and functions to print, format and cast to objects of class
 \examples{
 \donttest{# wrap a list of records as gesis_records
 records <- list(gesis_get("ZA7500"), gesis_get("ZA4789"))
-gesis_records(records)}
+records <- gesis_records(records)
+
+print(records) # full view
+print(records, compact = TRUE) # compact view}
 }

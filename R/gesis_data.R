@@ -72,8 +72,7 @@
 #'
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf getFromNamespace("gesis_can_auth", "rgesis")()
 #' # retrieve a search record to pass on to gesis_data()
 #' record <- gesis_search(
 #'   "allbus",

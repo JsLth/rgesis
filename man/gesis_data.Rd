@@ -102,7 +102,7 @@ if possible. This is done only for URLs pointing to the domain gesis.org
 to avoid sending authentication information to other domains.
 }
 \examples{
-\dontrun{
+\dontshow{if (getFromNamespace("gesis_can_auth", "rgesis")()) withAutoprint(\{ # examplesIf}
 # retrieve a search record to pass on to gesis_data()
 record <- gesis_search(
   "allbus",
@@ -135,8 +135,5 @@ gesis_data(
   select = c("\\\\.sav", "main"),
   download_purpose = "non_scientific"
 )
-
-# `gesis_data` can be used to download and execute R code
-record <- gesis_get("SDN-10.7802-2109")
-parse(gesis_data(record, type = "syntax", select = "car_ref_all"))}
+\dontshow{\}) # examplesIf}
 }

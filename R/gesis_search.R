@@ -334,6 +334,10 @@ as.data.frame.gesis_records <- function(x, ...) {
 #' For \code{gesis_records}, a list-like consisting of objects of class
 #' \code{gesis_record}.
 #' @param max_persons Maximum number of authors to print. Defaults to 5.
+#' @param compact If \code{TRUE}, prints records in compact format, showing
+#' only the dataset identifier and title. If \code{FALSE}, shows the full
+#' record preview. Can be controlled through the option
+#' \code{getOption("gesis_compact")}. Defaults to \code{FALSE}.
 #' @param n Maximum number of records to print. Defaults to 3.
 #' @param ... Arguments passed to the respective methods. Currently unused
 #' in \code{gesis_records}. Can be used to provide additional attributes to
@@ -350,8 +354,32 @@ as.data.frame.gesis_records <- function(x, ...) {
 #' @examples
 #' \donttest{# wrap a list of records as gesis_records
 #' records <- list(gesis_get("ZA7500"), gesis_get("ZA4789"))
-#' gesis_records(records)}
-format.gesis_record <- function(x, max_persons = 5, ...) {
+#' records <- gesis_records(records)
+#'
+#' print(records) # full view
+#' print(records, compact = TRUE) # compact view}
+format.gesis_record <- function(x, max_persons = 5, compact = FALSE, ...) {
+  if (compact) {
+    format_record_compact(x, max_persons, ...)
+  } else {
+    format_record_long(x, max_persons, ...)
+  }
+}
+
+
+format_record_compact <- function(x, ...) {
+  strwrap(
+    sprintf(
+      "- %s [%s]",
+      x$title,
+      cli::style_bold(attr(x, "id"))
+    ),
+    exdent = 3
+  )
+}
+
+
+format_record_long <- function(x, max_persons = 5, ...) {
   cli::cli_format_method({
     cli::cli_text("{.cls {class(x)}}")
 
@@ -371,8 +399,8 @@ format.gesis_record <- function(x, max_persons = 5, ...) {
       cli::cli_text("{.strong Date:} {x$date}")
     }
 
-    if (!is.null(x$person)) {
-      persons <- x$person
+    persons <- unlist(x$person)
+    if (length(persons) && any(nzchar(persons))) {
       n_persons <- length(persons)
       if (n_persons > max_persons) {
         persons <- persons[1:max_persons]
@@ -388,25 +416,33 @@ format.gesis_record <- function(x, max_persons = 5, ...) {
 
 #' @name gesis_records
 #' @export
-print.gesis_record <- function(x, max_persons = 5, ...) {
-  cat(format(x, max_persons = max_persons, ...), sep = "\n")
+print.gesis_record <- function(x, max_persons = 3, compact = FALSE, ...) {
+  cat(format(x, max_persons = max_persons, compact = compact, ...), sep = "\n")
   invisible(x)
 }
 
 
 #' @name gesis_records
 #' @export
-format.gesis_records <- function(x, n = 3, max_persons = 5, ...) {
+format.gesis_records <- function(x,
+                                 n = 3,
+                                 max_persons = 3,
+                                 compact = getOption("gesis_compact", FALSE),
+                                 ...) {
+  if (missing(n) && compact) {
+    n <- 20
+  }
+
   cli::cli_format_method({
     cli::cli_text("A list of {.cls gesis_records} with {length(x)} records")
 
     if (length(x)) {
       for (i in seq(1, min(length(x), n))) {
-        if (i > 1) cli::cat_line()
-        print(x[[i]], max_persons = max_persons, ...)
+        if (i > 1 & !compact) cli::cat_line()
+        print(x[[i]], max_persons = max_persons, compact = compact, ...)
       }
 
-      if (length(x) > 5) {
+      if (length(x) > n) {
         cli::cli_text(cli::col_grey("# {cli::symbol$info} {length(x) - {n}} more records"))
         cli::cli_text(cli::col_grey("# {cli::symbol$info} Use `print(n = ...)` to see more records"))
       }
@@ -417,8 +453,16 @@ format.gesis_records <- function(x, n = 3, max_persons = 5, ...) {
 
 #' @name gesis_records
 #' @export
-print.gesis_records <- function(x, n = 5, max_persons = 5, ...) {
-  cat(format(x, n = n, max_persons = max_persons, ...), sep = "\n")
+print.gesis_records <- function(x,
+                                n = 3,
+                                max_persons = 3,
+                                compact = getOption("gesis_compact", FALSE),
+                                ...) {
+  if (missing(n) && compact) {
+    n <- 20
+  }
+
+  cat(format(x, n = n, max_persons = max_persons, compact = compact, ...), sep = "\n")
   invisible(x)
 }
 
