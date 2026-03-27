@@ -63,7 +63,7 @@ gesis_search("allbus", type = "research_data")
 #> • Binder, Barbara
 #> • Linzbach, Stephan
 #> • Mangold, Frank
-#> • Schmidt, Felix
+#> • ... and 1 more
 #> 
 #> <gesis_record>
 #> Type: research_data
@@ -74,9 +74,7 @@ gesis_search("allbus", type = "research_data")
 #> • Hadjar, Andreas
 #> • Ackermann, Kathrin
 #> • Auspurg, Katrin
-#> • Bühler, Christoph
-#> • Carol, Sarah
-#> • ... and 3 more
+#> • ... and 5 more
 #> 
 #> <gesis_record>
 #> Type: research_data
@@ -87,36 +85,8 @@ gesis_search("allbus", type = "research_data")
 #> • Stefan Bauernschuster
 #> • Andreas Diekmann
 #> • Andreas Hadjar
-#> • Karin Kurz
-#> • Ulrich Rosar
-#> • ... and 2 more
-#> 
-#> <gesis_record>
-#> Type: research_data
-#> ID: ZA4616
-#> Title: German General Social Survey - ALLBUS 2012
-#> Date: 2019
-#> Persons:
-#> • Diekmann, Andreas
-#> • Fetchenhauer, Detlef
-#> • Kühnel, Steffen
-#> • Liebig, Stefan
-#> • Schmitt-Beck, Rüdiger
-#> • ... and 2 more
-#> 
-#> <gesis_record>
-#> Type: research_data
-#> ID: ZA8830
-#> Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 2023
-#> Date: 2025
-#> Persons:
-#> • Ackermann, Kathrin
-#> • Auspurg, Katrin
-#> • Bühler, Christoph
-#> • Carol, Sarah
-#> • Friehs, Maria-Therese
-#> • ... and 2 more
-#> # ℹ 5 more records
+#> • ... and 4 more
+#> # ℹ 7 more records
 #> # ℹ Use `print(n = ...)` to see more records
 ```
 
@@ -153,22 +123,7 @@ gesis_search("climate change", type = "publication")
 #> Persons:
 #> • Nöth, Linnea
 #> • Zander, Lysann
-#> 
-#> <gesis_record>
-#> Type: publication
-#> ID: fes-bib-469114
-#> Title: Human rights and climate change
-#> Date: 2009
-#> 
-#> <gesis_record>
-#> Type: publication
-#> ID: gesis-ssoar-79316
-#> Title: Germany's Federal Climate Change Act
-#> Date: 2021
-#> Persons:
-#> • Flachsland, Christian
-#> • Levi, Sebastian
-#> # ℹ 5 more records
+#> # ℹ 7 more records
 #> # ℹ Use `print(n = ...)` to see more records
 ```
 

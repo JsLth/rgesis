@@ -404,7 +404,8 @@ format_record_long <- function(x, max_persons = 5, ...) {
       n_persons <- length(persons)
       if (n_persons > max_persons) {
         persons <- persons[1:max_persons]
-        persons <- c(persons, "... and {n_persons - 5} more")
+        remaining <- n_persons - max_persons
+        persons <- c(persons, "... and {remaining} more")
       }
       names(persons) <- rep("*", length(persons))
       cli::cli_text("{cli::qty(persons)} {.strong Person{?s}:}")
@@ -425,11 +426,12 @@ print.gesis_record <- function(x, max_persons = 3, compact = FALSE, ...) {
 #' @name gesis_records
 #' @export
 format.gesis_records <- function(x,
-                                 n = 3,
+                                 n = getOption("gesis_print_n", 3),
                                  max_persons = 3,
                                  compact = getOption("gesis_compact", FALSE),
                                  ...) {
-  if (missing(n) && compact) {
+  opt <- getOption("gesis_print_n")
+  if (missing(n) && is.null(opt) && compact) {
     n <- 20
   }
 
@@ -454,11 +456,12 @@ format.gesis_records <- function(x,
 #' @name gesis_records
 #' @export
 print.gesis_records <- function(x,
-                                n = 3,
+                                n = getOption("gesis_print_n", 3),
                                 max_persons = 3,
                                 compact = getOption("gesis_compact", FALSE),
                                 ...) {
-  if (missing(n) && compact) {
+  opt <- getOption("gesis_print_n")
+  if (missing(n) && is.null(opt) && compact) {
     n <- 20
   }
 
