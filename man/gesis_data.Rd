@@ -10,7 +10,8 @@ gesis_data(
   path = tempdir(),
   type = "dataset",
   select = NULL,
-  prompt = interactive()
+  prompt = interactive(),
+  overwrite = FALSE
 )
 }
 \arguments{
@@ -74,6 +75,10 @@ prompt in case multiple files are found and \code{select} is either
 \code{NULL} or fails to select a file unambiguously. If \code{FALSE},
 throws an error in such a case. Defaults to \code{TRUE} if run in an
 interactive session.}
+
+\item{overwrite}{If \code{TRUE}, overwrites any existing file with the
+downloaded file. If \code{FALSE}, returns the file path without downloading
+if the file already exists. Defaults to \code{FALSE}.}
 }
 \value{
 The path to the downloaded file. Depending on the selected file,

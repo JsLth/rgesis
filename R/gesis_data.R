@@ -56,6 +56,9 @@
 #' \code{NULL} or fails to select a file unambiguously. If \code{FALSE},
 #' throws an error in such a case. Defaults to \code{TRUE} if run in an
 #' interactive session.
+#' @param overwrite If \code{TRUE}, overwrites any existing file with the
+#' downloaded file. If \code{FALSE}, returns the file path without downloading
+#' if the file already exists. Defaults to \code{FALSE}.
 #'
 #' @returns The path to the downloaded file. Depending on the selected file,
 #' there are different ways to read the file contents. Traditionally, data
@@ -103,16 +106,13 @@
 #'   select = c("\\.sav", "main"),
 #'   download_purpose = "non_scientific"
 #' )
-#'
-#' # `gesis_data` can be used to download and execute R code
-#' record <- gesis_get("SDN-10.7802-2109")
-#' parse(gesis_data(record, type = "syntax", select = "car_ref_all"))}
 gesis_data <- function(record,
                        download_purpose = NULL,
                        path = tempdir(),
                        type = "dataset",
                        select = NULL,
-                       prompt = interactive()) {
+                       prompt = interactive(),
+                       overwrite = FALSE) {
   assert_class(record, c("character", "gesis_record"))
   assert_vector(path, "character", size = 1)
   assert_vector(select, "character", null = TRUE)
@@ -190,6 +190,10 @@ gesis_data <- function(record,
     file <- filename_from_label(labels) %|||%
       basename(tempfile(pattern = "gesis"))
     path <- file.path(path, file)
+  }
+
+  if (file.exists(path) && !overwrite) {
+    return(path)
   }
 
   url <- links[[1]]$url %||% links[[1]]$link
