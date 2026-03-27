@@ -217,7 +217,7 @@ req_add_auth <- function(req) {
     username = creds$email,
     password = creds$password,
     scope = "openid",
-    cache_disk = getOption("rgesis_cache_disk", FALSE)
+    cache_disk = getOption("gesis_cache_disk", FALSE)
   )
 }
 
