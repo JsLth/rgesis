@@ -18,9 +18,10 @@ coverage](https://codecov.io/gh/JsLth/rgesis/branch/main/graph/badge.svg)](https
 <!-- badges: end -->
 
 `{rgesis}` provides a simple, programmatic and reproducible interface to
-the GESIS search engine. It allows the retrieval of metadata on records
-like research datasets, variables, publications, and tools. Based on
-this, the package can also download survey data from the data archive.
+the GESIS search engine and data archive. It allows the retrieval of
+metadata on records like research datasets, variables, publications, and
+tools. Based on this, the package can also download survey data from the
+data archive.
 
 Note that while the GESIS search API can be accessed directly, you need
 to be logged in to download any survey data. You can create a user
@@ -28,8 +29,11 @@ account
 [here](https://login.gesis.org/realms/gesis/login-actions/registration?client_id=js-login).
 `{rgesis}` takes over continuous credentials management and OAuth
 authentication using the [`{keyring}`](https://keyring.r-lib.org/) and
-[`{httr2}`](https://httr2.r-lib.org/) packages. By downloading data from
-the GESIS data archive, you agree to its [terms of
+[`{httr2}`](https://httr2.r-lib.org/) packages.
+
+**Disclaimer:** This is not an official GESIS product. Not affiliated
+with or endorsed by GESIS – Leibniz Institute for the Social Sciences.
+Users are responsible for complying with GESIS [terms of
 use](https://www.gesis.org/fileadmin/upload/dienstleistung/daten/umfragedaten/_bgordnung_bestellen/2023-06-30_Usage_regulations.pdf).
 
 ## Installation
@@ -52,6 +56,17 @@ gesis_search("allbus", type = "research_data")
 #> A list of <gesis_records> with 10 records
 #> <gesis_record>
 #> Type: research_data
+#> ID: ZA8838
+#> Title: ALLBUS 2023 - DBD Add-On
+#> Date: 2025
+#> Persons:
+#> • Binder, Barbara
+#> • Linzbach, Stephan
+#> • Mangold, Frank
+#> • Schmidt, Felix
+#> 
+#> <gesis_record>
+#> Type: research_data
 #> ID: ZA5288
 #> Title: ALLBUS 2021 - Soziodemographische Standardvariablen (KonsortSWD)
 #> Date: 2024
@@ -65,35 +80,15 @@ gesis_search("allbus", type = "research_data")
 #> 
 #> <gesis_record>
 #> Type: research_data
-#> ID: ZA8838
-#> Title: ALLBUS 2023 - DBD Add-On
-#> Date: 2025
+#> ID: ZA5252
+#> Title: German General Social Survey - ALLBUS 2016
+#> Date: 2018
 #> Persons:
-#> • Binder, Barbara
-#> • Linzbach, Stephan
-#> • Mangold, Frank
-#> • Schmidt, Felix
-#> 
-#> <gesis_record>
-#> Type: research_data
-#> ID: SDN-10.7802-2497
-#> Title: Code/Syntax: The role of values as mediator in relationships between
-#> social position and cultural omnivorousness in Germany [Replication files]
-#> Date: 2022
-#> Person:
-#> • Voronin, Yevhen
-#> 
-#> <gesis_record>
-#> Type: research_data
-#> ID: ZA2140
-#> Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 1992
-#> Date: 2014
-#> Persons:
-#> • Allerbeck, Klaus R.
-#> • Allmendinger, Jutta
-#> • Müller, Walter
-#> • Opp, Karl-Dieter
-#> • Pappi, Franz U.
+#> • Stefan Bauernschuster
+#> • Andreas Diekmann
+#> • Andreas Hadjar
+#> • Karin Kurz
+#> • Ulrich Rosar
 #> • ... and 2 more
 #> 
 #> <gesis_record>
@@ -107,6 +102,19 @@ gesis_search("allbus", type = "research_data")
 #> • Kühnel, Steffen
 #> • Liebig, Stefan
 #> • Schmitt-Beck, Rüdiger
+#> • ... and 2 more
+#> 
+#> <gesis_record>
+#> Type: research_data
+#> ID: ZA8830
+#> Title: Allgemeine Bevölkerungsumfrage der Sozialwissenschaften ALLBUS 2023
+#> Date: 2025
+#> Persons:
+#> • Ackermann, Kathrin
+#> • Auspurg, Katrin
+#> • Bühler, Christoph
+#> • Carol, Sarah
+#> • Friehs, Maria-Therese
 #> • ... and 2 more
 #> # ℹ 5 more records
 #> # ℹ Use `print(n = ...)` to see more records
@@ -138,23 +146,28 @@ gesis_search("climate change", type = "publication")
 #> 
 #> <gesis_record>
 #> Type: publication
+#> ID: bibsonomy-noth2025epistemic
+#> Title: How Epistemic Beliefs about Climate Change Predict Climate Change
+#> Conspiracy Beliefs
+#> Date: 2025
+#> Persons:
+#> • Nöth, Linnea
+#> • Zander, Lysann
+#> 
+#> <gesis_record>
+#> Type: publication
 #> ID: fes-bib-469114
 #> Title: Human rights and climate change
 #> Date: 2009
 #> 
 #> <gesis_record>
 #> Type: publication
-#> ID: gesis-ssoar-76642
-#> Title: Attitudes towards climate change migrants
-#> Date: 2020
-#> Person:
-#> • Helbling, Marc
-#> 
-#> <gesis_record>
-#> Type: publication
-#> ID: gesis-bib-153820-LP
-#> Title: Climate Change : Fieldwork: April 2019
-#> Date: 2019
+#> ID: gesis-ssoar-79316
+#> Title: Germany's Federal Climate Change Act
+#> Date: 2021
+#> Persons:
+#> • Flachsland, Christian
+#> • Levi, Sebastian
 #> # ℹ 5 more records
 #> # ℹ Use `print(n = ...)` to see more records
 ```
@@ -164,26 +177,26 @@ to a tidy rectangular shape.
 
 ``` r
 gesis_search(tidy = TRUE)
-#> # A tibble: 10 × 33
+#> # A tibble: 10 × 35
 #>    id            title type  date  date_recency abstract portal_url topic person
 #>    <chr>         <chr> <chr> <chr> <chr>        <chr>    <chr>      <lis> <list>
-#>  1 gesis-ssoar-… Muje… publ… 2010  2010         "The ca… http://ww… <chr> <chr> 
-#>  2 gesis-ssoar-… Rußl… publ… 1999  1999         "'Durch… http://ww… <chr> <chr> 
-#>  3 gesis-ssoar-… Prob… publ… 1999  1999         "'Die I… http://ww… <chr> <chr> 
-#>  4 gesis-ssoar-… Ukra… publ… 1995  1995          <NA>    http://ww… <chr> <chr> 
-#>  5 gesis-ssoar-… Prob… publ… 2002  2002         "Vor nu… http://ww… <chr> <chr> 
-#>  6 gesis-ssoar-… Migr… publ… 2002  2002         "\"Als … http://ww… <chr> <chr> 
-#>  7 gesis-ssoar-… Staa… publ… 2002  2002         "Im vor… http://ww… <chr> <chr> 
-#>  8 gesis-ssoar-… Wahl… publ… 2001  2001         "\"Die … http://ww… <chr> <chr> 
-#>  9 gesis-ssoar-… Ener… publ… 2001  2001         "Ebenso… http://ww… <chr> <chr> 
-#> 10 gesis-ssoar-… Iden… publ… 2008  2008         "Events… http://ww… <chr> <chr> 
-#> # ℹ 24 more variables: person_sort <chr>, source <chr>, subtype <chr>,
+#>  1 gesis-ssoar-… Die … publ… 2005  2005         "'Im Ze… http://ww… <chr> <chr> 
+#>  2 gesis-ssoar-… Book… publ… 2005  2005          <NA>    http://ww… <chr> <chr> 
+#>  3 gesis-ssoar-… Verm… publ… 2005  2005         "\"In d… http://ww… <chr> <chr> 
+#>  4 gesis-ssoar-… Reze… publ… 2006  2006          <NA>    http://ww… <chr> <chr> 
+#>  5 gesis-ssoar-… Prol… publ… 1999  1999          <NA>    http://ww… <chr> <chr> 
+#>  6 gesis-ssoar-… Chro… publ… 2010  2010         "Vingt … http://ww… <chr> <chr> 
+#>  7 gesis-ssoar-… Bezi… publ… 2000  2000          <NA>    http://ww… <chr> <chr> 
+#>  8 gesis-ssoar-… Book… publ… 2007  2007          <NA>    http://ww… <chr> <chr> 
+#>  9 gesis-ssoar-… Tele… publ… 2007  2007         "The mo… http://ww… <chr> <chr> 
+#> 10 gesis-ssoar-… Book… publ… 2007  2007          <NA>    http://ww… <chr> <chr> 
+#> # ℹ 26 more variables: person_sort <chr>, source <chr>, subtype <chr>,
 #> #   document_type <chr>, institutions <chr>, coreAuthor <list>,
 #> #   coreSjahr <chr>, coreJournalTitle <chr>, coreZsband <chr>,
-#> #   coreZsnummer <chr>, coreLanguage <chr>, urn <chr>, coreIssn <chr>,
-#> #   data_source <chr>, index_source <chr>, database <chr>, link_count <int>,
-#> #   gesis_own <int>, fulltext <int>, metadata_quality <int>, full_text <chr>,
-#> #   coreCorpEditor <chr>, publishLocation_str_mv <chr>, doi <chr>
+#> #   coreZsnummer <chr>, coreLanguage <chr>, urn <chr>, data_source <chr>,
+#> #   index_source <chr>, database <chr>, link_count <int>, gesis_own <int>,
+#> #   fulltext <int>, metadata_quality <int>, full_text <chr>, doi <chr>,
+#> #   coreIssn <chr>, publishLocation_str_mv <chr>, coreRecensionTitle <chr>, …
 ```
 
 Metadata records can also be used to download survey data directly from
