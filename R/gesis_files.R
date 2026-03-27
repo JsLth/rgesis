@@ -34,7 +34,6 @@
 #' gesis_files("pretest-129", type = "uncategorized")}
 gesis_files <- function(record, type = "dataset") {
   assert_class(record, c("character", "gesis_record"))
-  type <- match.arg(type, choices = file_types)
 
   if (is.character(record)) {
     record <- gesis_get(record)
@@ -63,14 +62,21 @@ gesis_file_types <- function(record) {
 
 
 get_links_from_record <- function(record, type) {
-  if (!identical(type, "uncategorized")) {
-    link_field <- sprintf("links_%s", type)
-  } else {
-    link_field <- "links"
+  link_field <- guess_link_field(record, type)
+
+  if (length(link_field) > 1) {
+    rg_stop(c(
+      "Multiple matching document types found for type {.field {type}}.",
+      "Maybe try to narrow it down by using `gesis_file_types(\"{id}\")`?"
+    ))
   }
 
   if (!link_field %in% names(record)) {
-    trail_s <- ifelse(!identical(type, "otherdocs"), "s", "")
+    type <- gsub("links_", "", link_field)
+    trail_s <- ifelse(
+      !type %in% c("otherdocs", "other_documents", "research_data"),
+      "s", ""
+    )
     id <- attr(record, 'id')
     rg_stop(c(
       "No {.field {type}}{trail_s} are available for record ID {.val {id}}.",
@@ -81,9 +87,34 @@ get_links_from_record <- function(record, type) {
 }
 
 
+guess_link_field <- function(record, type) {
+  if (identical(type, "uncategorized")) {
+    return("links")
+  }
+
+  link_sel <- grepl(sprintf("^links_[a-z_]*%s[a-z_]*", type), names(record))
+  if (any(link_sel)) {
+    names(record)[link_sel]
+  } else {
+    sprintf("links_%s", type)
+  }
+}
+
+
 filename_from_label <- function(file) {
   regex_match(file, "(^.+\\.[A-Za-z]+) ?", i = 2)
 }
+
+
+file_type_lookup <- list(
+  c("dataset", "research_data"),
+  c("otherdocs", "other_documents"),
+  c("methods_report", "project_report", "technical_report")
+)
+
+  c(
+  "dataset", "questionnaire", "codebook", "syntax", "otherdocs", "uncategorized"
+)
 
 
 #' @export
@@ -94,14 +125,17 @@ format.gesis_files <- function(x, ...) {
     for (i in seq_along(x)) {
       cli::cli_text("{cli::symbol$arrow_right} File {i}")
       file <- x[[i]]
-      label <- file$label_en %||% file$label
+      label <- file$label_en %||% file$label %||% file$file_name
       if (!is.null(label)) {
         fname <- filename_from_label(label) %|||% label
         cli::cli_text("{.strong Label:} {fname}")
       }
 
-      if (!is.null(file$format) && nzchar(file$format)) {
-        cli::cli_text("{.strong Format:} {file$format}")
+      format <- file$format %||%
+        regex_match(label, "\\.([[:alnum:]]+) ?", i = 2) %|||%
+        NULL
+      if (!is.null(format) && nzchar(format)) {
+        cli::cli_text("{.strong Format:} {format}")
       }
 
       if (!is.null(file$filesize)) {
@@ -109,8 +143,10 @@ format.gesis_files <- function(x, ...) {
         cli::cli_text("{.strong File size:} {round(size, 2)} MB")
       }
 
-      if (!is.null(file$secured)) {
-        secured <- ifelse(isTRUE(as.logical(file$secured)), "yes", "no")
+      secured <- file$secured %||%
+        identical(file$fileAccess, "Restricted Access")
+      if (!is.null(secured)) {
+        secured <- ifelse(isTRUE(as.logical(secured)), "yes", "no")
         cli::cli_text("{.strong Login required?} {secured}")
       }
 
