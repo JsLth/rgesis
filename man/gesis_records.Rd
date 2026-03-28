@@ -15,7 +15,7 @@
 
 \method{format}{gesis_records}(
   x,
-  n = 3,
+  n = getOption("gesis_print_n", 3),
   max_persons = 3,
   compact = getOption("gesis_compact", FALSE),
   ...
@@ -23,7 +23,7 @@
 
 \method{print}{gesis_records}(
   x,
-  n = 3,
+  n = getOption("gesis_print_n", 3),
   max_persons = 3,
   compact = getOption("gesis_compact", FALSE),
   ...
