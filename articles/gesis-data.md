@@ -150,7 +150,6 @@ gesis_search(
   tidy = TRUE,
   pages = NULL
 )
-#> ⠙ iterating 3 done (1.3/s) | 2.3s
 #> # A tibble: 13 × 123
 #>    id         title type  date  study_title date_recency study_number portal_url
 #>    <chr>      <chr> <chr> <chr> <chr>       <chr>        <chr>        <chr>     

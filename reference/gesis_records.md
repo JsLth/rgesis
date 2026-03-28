@@ -15,7 +15,7 @@ print(x, max_persons = 3, compact = FALSE, ...)
 # S3 method for class 'gesis_records'
 format(
   x,
-  n = 3,
+  n = getOption("gesis_print_n", 3),
   max_persons = 3,
   compact = getOption("gesis_compact", FALSE),
   ...
@@ -24,7 +24,7 @@ format(
 # S3 method for class 'gesis_records'
 print(
   x,
-  n = 3,
+  n = getOption("gesis_print_n", 3),
   max_persons = 3,
   compact = getOption("gesis_compact", FALSE),
   ...
